@@ -1,0 +1,16 @@
+label=symbols16_live100k book=pool symbols=16 target_live=100000 depth_levels=64 max_orders_per_book=26024 ids=sequential seed=1
+warmup=500000 measured=2000000  clock: granularity=41 ns, read cost=44.1 ns
+measured mix: accepted=899666 trades=209730 canceled=688347 reduced=75484 replaced=76666 rejected=259837
+end state: resting_orders=76595 bid_levels=968 ask_levels=987
+throughput: 7120831 commands/s (140.4 ns/command mean, 2209730 reports)
+allocations: 0 in measured window (0.0000 per command)
+latency per command, ns (includes one clock read, ~44 ns):
+  class                count      p50      p95      p99    p99.9        max      mean
+  all                2000000       83      208      292      583     149459      84.9
+  add_passive         821840       42      125      167      416     122209      62.7
+  add_aggressive       77826       42      125      209      458      98541      65.8
+  cancel              688347       84      250      333      708     149459     115.8
+  reduce               75484       84      209      333      708      53625     114.4
+  replace              76666      125      292      417     1208     102875     161.4
+  reject              259837       42      125      167      250      64375      47.3
+command: build-bench/me_latency --book pool --label symbols16_live100k --count 2000000 --warmup 500000 --live 100000 --symbols 16

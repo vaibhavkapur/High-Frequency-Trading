@@ -1,0 +1,6 @@
+{
+  "audited_runs": 24,
+  "max_reconciliation_error_dollars": 1.057287590811029e-11,
+  "max_markout_identity_error_ticks": 0.0,
+  "all_position_limits_respected": true
+}

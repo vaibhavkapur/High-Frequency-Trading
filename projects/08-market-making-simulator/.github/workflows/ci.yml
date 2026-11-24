@@ -1,0 +1,68 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+
+jobs:
+  cpp-build-and-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        build:
+          - name: release
+            build_type: Release
+            sanitize: OFF
+          - name: asan-ubsan
+            build_type: Debug
+            sanitize: ON
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure CMake (${{ matrix.build.name }})
+        run: |
+          cmake -S . -B build-${{ matrix.build.name }} \
+            -DCMAKE_BUILD_TYPE=${{ matrix.build.build_type }} \
+            -DMMSIM_SANITIZE=${{ matrix.build.sanitize }} \
+            -DMMSIM_WERROR=ON
+
+      - name: Build (${{ matrix.build.name }})
+        run: cmake --build build-${{ matrix.build.name }} -j
+
+      - name: Run CTest (${{ matrix.build.name }})
+        run: ctest --test-dir build-${{ matrix.build.name }} --output-on-failure
+
+  python-experiments-and-pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Build Release CLI & Benchmark
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DMMSIM_WERROR=ON
+          cmake --build build -j
+
+      - name: Run Benchmarks and 12-Session Experiments
+        run: |
+          ./scripts/run_benchmarks.sh
+          python3 scripts/run_experiments.py
+
+      - name: Run Pytest Verification Suite
+        run: pytest -v python/test_analytics.py
+
+  format-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt-get install -y clang-format
+      - name: Check C++ Formatting
+        run: ./scripts/format.sh --check

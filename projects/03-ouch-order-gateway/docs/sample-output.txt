@@ -1,0 +1,115 @@
+exchange simulator listening on 127.0.0.1:<ephemeral port>
+
+== 1. login
+    session active, next sequence number 1
+
+== 2. enter a resting buy, then a sell that partially fills it
+    <- Submitted        GW000000000001  PendingNew      qty=100  cum=0    leaves=100 
+    -> buy 100 AAPL @ 150.00    token GW000000000001
+    <- Accepted         GW000000000001  Live            qty=100  cum=0    leaves=100 
+    <- Submitted        GW000000000002  PendingNew      qty=40   cum=0    leaves=40  
+    -> sell 40 AAPL @ 150.00    token GW000000000002
+    <- Accepted         GW000000000002  Live            qty=40   cum=0    leaves=40  
+    <- Executed         GW000000000002  Filled          qty=40   cum=40   leaves=0     fill 40 @ 150.0000
+    <- Executed         GW000000000001  PartiallyFilled qty=100  cum=40   leaves=60    fill 40 @ 150.0000
+
+== 3. replace the remainder: new price, larger size (new token, old one retired)
+    <- ReplaceRequested GW000000000001  PartiallyFilled qty=100  cum=40   leaves=60  
+    -> replace -> 200 @ 149.50  token GW000000000003
+    <- Replaced         GW000000000003  Live            qty=160  cum=0    leaves=160 
+
+== 4. partial cancel down to 50 open shares, then cancel the rest
+    <- CancelRequested  GW000000000003  Live            qty=160  cum=0    leaves=160 
+    -> cancel to 50             token GW000000000003
+    <- Canceled         GW000000000003  Live            qty=50   cum=0    leaves=50    -110
+    <- CancelRequested  GW000000000003  Live            qty=50   cum=0    leaves=50  
+    -> cancel                   token GW000000000003
+    <- Canceled         GW000000000003  Canceled        qty=0    cum=0    leaves=0     -50 (reason U)
+
+== 5. pre-trade risk: these never reach the wire
+    xx buy 5000 (max qty 1000)  blocked by risk: max-order-qty
+    xx buy 100 @ 170.00 (band 5%) blocked by risk: price-band
+    xx buy 100 MSFT (no ref px) blocked by risk: no-reference-price
+    xx market order             blocked by risk: market-order-not-allowed
+    exchange has seen 5 messages so far; 4 requests blocked locally
+
+== 6. exchange-side reject: passes local risk, unknown symbol at the exchange
+    <- Submitted        GW000000000004  PendingNew      qty=100  cum=0    leaves=100 
+    -> buy 100 NOPE @ 150.00    token GW000000000004
+    <- Rejected         GW000000000004  Rejected        qty=100  cum=0    leaves=0     reason S
+
+== 7. fault: order lost in transit, connection drops -> Reconciling -> resent once
+    <- Submitted        GW000000000005  PendingNew      qty=100  cum=0    leaves=100 
+    -> buy 100 AAPL @ 149.00    token GW000000000005
+    <- Uncertain        GW000000000005  Reconciling     qty=100  cum=0    leaves=100 
+    !! disconnected (connection closed by peer); order is Reconciling, still counted as exposure
+    <- Resent           GW000000000005  Reconciling     qty=100  cum=0    leaves=100 
+    <- Accepted         GW000000000005  Live            qty=100  cum=0    leaves=100 
+    reconnected; exchange accepted it 1 time(s)
+
+== 8. fault: exchange accepts and fills, but the connection drops before the ack
+    <- Submitted        GW000000000006  PendingNew      qty=100  cum=0    leaves=100 
+    -> sell 100 AAPL @ 149.00   token GW000000000006
+    <- Uncertain        GW000000000006  Reconciling     qty=100  cum=0    leaves=100 
+    !! disconnected; order is Reconciling
+    <- Resent           GW000000000006  Reconciling     qty=100  cum=0    leaves=100 
+    <- Accepted         GW000000000006  Live            qty=100  cum=0    leaves=100 
+    <- Executed         GW000000000006  Filled          qty=100  cum=100  leaves=0     fill 100 @ 149.0000
+    <- Executed         GW000000000005  Filled          qty=100  cum=100  leaves=0     fill 100 @ 149.0000
+    replay delivered the missed messages; the same-token resend was ignored
+    by the exchange (duplicate tokens ignored: 1)
+
+== 9. fault: every response duplicated -> quantities counted once
+    <- Submitted        GW000000000007  PendingNew      qty=100  cum=0    leaves=100 
+    -> buy 100 AAPL @ 150.00    token GW000000000007
+    <- Accepted         GW000000000007  Live            qty=100  cum=0    leaves=100 
+    <- Submitted        GW000000000008  PendingNew      qty=100  cum=0    leaves=100 
+    -> sell 100 AAPL @ 150.00   token GW000000000008
+    <- Accepted         GW000000000008  Live            qty=100  cum=0    leaves=100 
+    <- Executed         GW000000000008  Filled          qty=100  cum=100  leaves=0     fill 100 @ 150.0000
+    <- Executed         GW000000000007  Filled          qty=100  cum=100  leaves=0     fill 100 @ 150.0000
+    duplicates dropped by the order manager: 3, AAPL position: 0
+
+== 10. restart: a new gateway rebuilds everything from the append-only journal
+    <- Submitted        GW000000000009  PendingNew      qty=300  cum=0    leaves=300 
+    -> buy 300 AAPL @ 148.00    token GW000000000009
+    <- Accepted         GW000000000009  Live            qty=300  cum=0    leaves=300 
+    before restart: 11 requests sent, 2 resends, 4 risk rejects, 3 logins
+    recovered 9/9 orders, next sequence 21 (was 21), invariants: ok
+    <- CancelRequested  GW000000000009  Live            qty=300  cum=0    leaves=300 
+    -> cancel recovered order   token GW000000000009
+    <- Canceled         GW000000000009  Canceled        qty=0    cum=0    leaves=0     -300 (reason U)
+
+== 11. controlled shutdown
+    session closed: logout
+
+== final order table
+    token           side symbol   price      state             qty   cum leaves
+    GW000000000001  B    AAPL     150.0000   Replaced          100    40      0
+    GW000000000002  S    AAPL     150.0000   Filled             40    40      0
+    GW000000000003  B    AAPL     149.5000   Canceled            0     0      0
+    GW000000000004  B    NOPE     150.0000   Rejected          100     0      0
+    GW000000000005  B    AAPL     149.0000   Filled            100   100      0
+    GW000000000006  S    AAPL     149.0000   Filled            100   100      0
+    GW000000000007  B    AAPL     150.0000   Filled            100   100      0
+    GW000000000008  S    AAPL     150.0000   Filled            100   100      0
+    GW000000000009  B    AAPL     148.0000   Canceled            0     0      0
+
+    oms     : 3 duplicates dropped, 2 uncertain, 0 anomalies
+    exchange: 7 accepted, 1 rejected, 6 executions, 3 cancels, 1 replaces
+    gateway vs exchange ground truth: 0 mismatches
+    journal: ouch_demo.journal
+
+---- ouch_journal_dump ouch_demo.journal (last 12 lines) ----
+
+49 records, 43 applied, 0 skipped; next sequence 22; 9 orders
+  GW000000000001  B AAPL     Replaced        qty=100 cum=40 leaves=0
+  GW000000000002  S AAPL     Filled          qty=40 cum=40 leaves=0
+  GW000000000003  B AAPL     Canceled        qty=0 cum=0 leaves=0
+  GW000000000004  B NOPE     Rejected        qty=100 cum=0 leaves=0
+  GW000000000005  B AAPL     Filled          qty=100 cum=100 leaves=0
+  GW000000000006  S AAPL     Filled          qty=100 cum=100 leaves=0
+  GW000000000007  B AAPL     Filled          qty=100 cum=100 leaves=0
+  GW000000000008  S AAPL     Filled          qty=100 cum=100 leaves=0
+  GW000000000009  B AAPL     Canceled        qty=0 cum=0 leaves=0
+invariants: ok

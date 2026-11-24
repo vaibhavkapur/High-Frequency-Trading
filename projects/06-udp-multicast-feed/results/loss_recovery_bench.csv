@@ -1,0 +1,6 @@
+scenario,drop_prob,packets,injected_drops,gaps,retx_pkts,snapshots,rec_p50_us,rec_p99_us,rec_max_us,hash_match
+loss_0.0pct,0,2000,0,0,0,0,0,0,0,1
+loss_0.5pct,0.005,2000,17,17,17,0,73.917,374.375,374.375,1
+loss_2.0pct,0.02,2000,44,40,44,0,116.708,917.417,917.417,1
+loss_5.0pct,0.05,2000,104,83,104,0,101.25,3615.62,3615.62,1
+disconnect_250pkts,0,2000,250,1,24,1,408.167,408.167,408.167,1

@@ -1,0 +1,18 @@
+{
+  "timestamp_utc": "2026-11-24T04:58:07Z",
+  "git_revision": "uncommitted",
+  "os": "Darwin",
+  "kernel": "25.5.0",
+  "arch": "arm64",
+  "cpu_model": "Apple M5",
+  "physical_cores": "10",
+  "logical_cores": "10",
+  "governor": "macOS default (no user-space governor)",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+  "cxx_flags_release": "-O3 -DNDEBUG",
+  "warmup": 20000,
+  "samples": 200000,
+  "depth": 5,
+  "seed": 42,
+  "command": "./scripts/run_benchmarks.sh"
+}

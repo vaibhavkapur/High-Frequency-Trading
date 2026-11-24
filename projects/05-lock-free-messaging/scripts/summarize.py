@@ -1,0 +1,115 @@
+#!/usr/bin/env python3
+"""Turn the raw CSV/JSON in a results directory into Markdown tables.
+
+    scripts/summarize.py results/<label> > results/<label>/summary.md
+
+Only derived from the files in that directory; prints nothing it did not read.
+"""
+import csv
+import json
+import os
+import statistics
+import sys
+from collections import defaultdict
+
+
+def throughput(path):
+    groups = defaultdict(list)
+    with open(path, newline="") as f:
+        for row in csv.DictReader(f):
+            key = (row["queue"], int(row["msg_bytes"]), int(row["capacity"]))
+            groups[key].append(row)
+    queues = list(dict.fromkeys(k[0] for k in groups))
+    shapes = sorted({(k[1], k[2]) for k in groups})
+    runs = max(len(v) for v in groups.values())
+    messages = next(iter(groups.values()))[0]["messages"]
+
+    print("## Throughput (million messages/second)\n")
+    print(f"Median of {runs} runs of {messages} messages; min-max across runs in brackets. "
+          "One producer thread, one consumer thread.\n")
+    print("| msg bytes | capacity | " + " | ".join(queues) + " |")
+    print("|---|---|" + "---|" * len(queues))
+    for size, cap in shapes:
+        cells = []
+        for q in queues:
+            rates = [float(r["msgs_per_sec"]) / 1e6 for r in groups.get((q, size, cap), [])]
+            if not rates:
+                cells.append("-")
+                continue
+            cells.append(f"{statistics.median(rates):.1f} [{min(rates):.1f}-{max(rates):.1f}]")
+        print(f"| {size} | {cap} | " + " | ".join(cells) + " |")
+
+    print("\n## CPU use and spinning during the throughput runs\n")
+    print("CPU = thread CPU time / wall time, median across runs (1.00 = one core fully busy). "
+          "Retries = failed try_push / try_pop attempts per delivered message, i.e. spin "
+          "iterations; the blocking mutex_cv variant sleeps instead of retrying.\n")
+    print("| queue | msg bytes | capacity | producer CPU | consumer CPU | "
+          "producer retries/msg | consumer retries/msg |")
+    print("|---|---|---|---|---|---|---|")
+    for (q, size, cap), rows in groups.items():
+        def med(fn):
+            return statistics.median(fn(r) for r in rows)
+        pcpu = med(lambda r: int(r["producer_cpu_ns"]) / int(r["elapsed_ns"]))
+        ccpu = med(lambda r: int(r["consumer_cpu_ns"]) / int(r["elapsed_ns"]))
+        pret = med(lambda r: int(r["producer_retries"]) / int(r["messages"]))
+        cret = med(lambda r: int(r["consumer_retries"]) / int(r["messages"]))
+        print(f"| {q} | {size} | {cap} | {pcpu:.2f} | {ccpu:.2f} | {pret:.3f} | {cret:.3f} |")
+    placements = sorted({(r["producer_placement"], r["consumer_placement"])
+                         for rows in groups.values() for r in rows})
+    print("\nThread placement (producer, consumer): " + "; ".join(f"{p}, {c}" for p, c in placements))
+
+
+def latency(path):
+    with open(path, newline="") as f:
+        rows = list(csv.DictReader(f))
+    if not rows:
+        return
+    r0 = rows[0]
+    print("\n## One-way latency (nanoseconds)\n")
+    print(f"Queue capacity {r0['capacity']}, warmup {r0['warmup']} messages discarded. "
+          f"Clock step {r0['clock_step_ns']} ns: values are quantised to that step, and each "
+          f"sample includes one clock read (~{float(r0['clock_cost_ns']):.0f} ns). "
+          "Rate 0 = unpaced (producer runs flat out, queue stays near full, so the figure is "
+          "queueing delay). Paced rows are measured from the intended send time.\n")
+    print("| rate (msgs/s) | queue | samples | mean occupancy | min | p50 | p90 | p99 | p99.9 | max |")
+    print("|---|---|---|---|---|---|---|---|---|---|")
+    for r in rows:
+        rate = "unpaced" if r["rate_msgs_per_sec"] == "0" else f"{int(r['rate_msgs_per_sec']):,}"
+        print(f"| {rate} | {r['queue']} | {int(r['samples']):,} | {float(r['mean_occupancy']):.1f} | "
+              f"{int(r['min_ns']):,} | {int(r['p50_ns']):,} | {int(r['p90_ns']):,} | "
+              f"{int(r['p99_ns']):,} | {int(r['p999_ns']):,} | {int(r['max_ns']):,} |")
+
+
+def micro(path):
+    with open(path) as f:
+        data = json.load(f)
+    groups = defaultdict(list)
+    for b in data["benchmarks"]:
+        if b.get("run_type", "iteration") != "iteration":
+            continue
+        groups[b["run_name"] if "run_name" in b else b["name"]].append(b)
+    print("\n## Single-threaded operation cost (Google Benchmark)\n")
+    print("No second thread, so no cache-line transfer: this is the instruction-path cost only. "
+          "Median across repetitions.\n")
+    print("| benchmark | ns per message | repetitions |")
+    print("|---|---|---|")
+    for name, bs in groups.items():
+        per_item = statistics.median(1e9 / b["items_per_second"] for b in bs)
+        print(f"| {name} | {per_item:.2f} | {len(bs)} |")
+
+
+def main():
+    if len(sys.argv) != 2:
+        sys.exit(__doc__)
+    d = sys.argv[1]
+    print(f"# Benchmark summary: {os.path.basename(os.path.normpath(d))}\n")
+    print("Generated by scripts/summarize.py from the raw files in this directory. "
+          "See environment.md for hardware, compiler, flags and exact commands.\n")
+    for name, fn in (("throughput.csv", throughput), ("latency.csv", latency), ("micro.json", micro)):
+        path = os.path.join(d, name)
+        if os.path.exists(path):
+            fn(path)
+
+
+if __name__ == "__main__":
+    main()

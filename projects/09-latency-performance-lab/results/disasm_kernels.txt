@@ -1,0 +1,380 @@
+# Disassembly of hot microbenchmark kernels
+# Binary: /Users/vaibhavkapur/Desktop/hft-projects/09-latency-performance-lab/build/benchmarks/bench_suite
+# Host: Darwin arm64
+
+================================================================
+SYMBOL PATTERN: branch_filter_natural_if
+================================================================
+100017100: 1400001c    	b	0x100017170 <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)>
+
+0000000100017170 <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)>:
+100017170: a9402408    	ldp	x8, x9, [x0]
+100017174: eb08012b    	subs	x11, x9, x8
+100017178: 540000e0    	b.eq	0x100017194 <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x24>
+10001717c: 9342fd69    	asr	x9, x11, #2
+100017180: f1000d3f    	cmp	x9, #0x3
+100017184: 540000c8    	b.hi	0x10001719c <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x2c>
+100017188: d280000a    	mov	x10, #0x0               ; =0
+10001718c: d2800000    	mov	x0, #0x0                ; =0
+100017190: 14000048    	b	0x1000172b0 <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x140>
+100017194: d2800000    	mov	x0, #0x0                ; =0
+100017198: d65f03c0    	ret
+10001719c: 4e040c20    	dup.4s	v0, w1
+1000171a0: f100413f    	cmp	x9, #0x10
+1000171a4: 54000082    	b.hs	0x1000171b4 <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x44>
+1000171a8: d280000a    	mov	x10, #0x0               ; =0
+1000171ac: d2800000    	mov	x0, #0x0                ; =0
+1000171b0: 1400002d    	b	0x100017264 <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0xf4>
+1000171b4: 6f00e401    	movi.2d	v1, #0000000000000000
+1000171b8: 927ced2a    	and	x10, x9, #0xfffffffffffffff0
+1000171bc: 6f00e402    	movi.2d	v2, #0000000000000000
+1000171c0: 9100810c    	add	x12, x8, #0x20
+1000171c4: aa0a03ed    	mov	x13, x10
+1000171c8: 6f00e404    	movi.2d	v4, #0000000000000000
+1000171cc: 6f00e405    	movi.2d	v5, #0000000000000000
+1000171d0: 6f00e406    	movi.2d	v6, #0000000000000000
+1000171d4: 6f00e403    	movi.2d	v3, #0000000000000000
+1000171d8: 6f00e410    	movi.2d	v16, #0000000000000000
+1000171dc: 6f00e407    	movi.2d	v7, #0000000000000000
+1000171e0: ad7f4991    	ldp	q17, q18, [x12, #-0x20]
+1000171e4: acc25193    	ldp	q19, q20, [x12], #0x40
+1000171e8: 6ea03e35    	cmhs.4s	v21, v17, v0
+1000171ec: 4e311eb1    	and.16b	v17, v21, v17
+1000171f0: 6ea03e55    	cmhs.4s	v21, v18, v0
+1000171f4: 4e321eb2    	and.16b	v18, v21, v18
+1000171f8: 6ea03e75    	cmhs.4s	v21, v19, v0
+1000171fc: 4e331eb3    	and.16b	v19, v21, v19
+100017200: 6ea03e95    	cmhs.4s	v21, v20, v0
+100017204: 4e341eb4    	and.16b	v20, v21, v20
+100017208: 6eb11042    	uaddw2.2d	v2, v2, v17
+10001720c: 2eb11021    	uaddw.2d	v1, v1, v17
+100017210: 6eb210a5    	uaddw2.2d	v5, v5, v18
+100017214: 2eb21084    	uaddw.2d	v4, v4, v18
+100017218: 6eb31063    	uaddw2.2d	v3, v3, v19
+10001721c: 2eb310c6    	uaddw.2d	v6, v6, v19
+100017220: 6eb410e7    	uaddw2.2d	v7, v7, v20
+100017224: 2eb41210    	uaddw.2d	v16, v16, v20
+100017228: f10041ad    	subs	x13, x13, #0x10
+10001722c: 54fffda1    	b.ne	0x1000171e0 <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x70>
+100017230: 4ee18481    	add.2d	v1, v4, v1
+100017234: 4ee284a2    	add.2d	v2, v5, v2
+100017238: 4ee68604    	add.2d	v4, v16, v6
+10001723c: 4ee18481    	add.2d	v1, v4, v1
+100017240: 4ee384e3    	add.2d	v3, v7, v3
+100017244: 4ee28462    	add.2d	v2, v3, v2
+100017248: 4ee28421    	add.2d	v1, v1, v2
+10001724c: 5ef1b821    	addp.2d	d1, v1
+100017250: 9e660020    	fmov	x0, d1
+100017254: eb0a013f    	cmp	x9, x10
+100017258: 540003c0    	b.eq	0x1000172d0 <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x160>
+10001725c: f27c057f    	tst	x11, #0x30
+100017260: 54000280    	b.eq	0x1000172b0 <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x140>
+100017264: aa0a03ec    	mov	x12, x10
+100017268: 927ef52a    	and	x10, x9, #0xfffffffffffffffc
+10001726c: 6f00e401    	movi.2d	v1, #0000000000000000
+100017270: 6f00e402    	movi.2d	v2, #0000000000000000
+100017274: 4e081c02    	mov.d	v2[0], x0
+100017278: cb0a018b    	sub	x11, x12, x10
+10001727c: 8b0c090c    	add	x12, x8, x12, lsl #2
+100017280: 3cc10583    	ldr	q3, [x12], #0x10
+100017284: 6ea03c64    	cmhs.4s	v4, v3, v0
+100017288: 4e231c83    	and.16b	v3, v4, v3
+10001728c: 6ea31021    	uaddw2.2d	v1, v1, v3
+100017290: 2ea31042    	uaddw.2d	v2, v2, v3
+100017294: b100116b    	adds	x11, x11, #0x4
+100017298: 54ffff41    	b.ne	0x100017280 <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x110>
+10001729c: 4ee18440    	add.2d	v0, v2, v1
+1000172a0: 5ef1b800    	addp.2d	d0, v0
+1000172a4: 9e660000    	fmov	x0, d0
+1000172a8: eb0a013f    	cmp	x9, x10
+1000172ac: 54000120    	b.eq	0x1000172d0 <lpl::branch_filter_natural_if(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x160>
+1000172b0: cb0a0129    	sub	x9, x9, x10
+1000172b4: 8b0a0908    	add	x8, x8, x10, lsl #2
+1000172b8: b840450a    	ldr	w10, [x8], #0x4
+1000172bc: 6b01015f    	cmp	w10, w1
+1000172c0: 1a8a33ea    	csel	w10, wzr, w10, lo
+1000172c4: 8b0a0000    	add	x0, x0, x10
+1000172c8: f1000529    	subs	x9, x9, #0x1
+
+================================================================
+SYMBOL PATTERN: branch_filter_forced_branch
+================================================================
+100017428: 1400001c    	b	0x100017498 <lpl::branch_filter_forced_branch(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)>
+
+0000000100017498 <lpl::branch_filter_forced_branch(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)>:
+100017498: a9402408    	ldp	x8, x9, [x0]
+10001749c: d2800000    	mov	x0, #0x0                ; =0
+1000174a0: eb080129    	subs	x9, x9, x8
+1000174a4: 54000140    	b.eq	0x1000174cc <lpl::branch_filter_forced_branch(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x34>
+1000174a8: 9342fd29    	asr	x9, x9, #2
+1000174ac: 14000003    	b	0x1000174b8 <lpl::branch_filter_forced_branch(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x20>
+1000174b0: f1000529    	subs	x9, x9, #0x1
+1000174b4: 540000c0    	b.eq	0x1000174cc <lpl::branch_filter_forced_branch(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x34>
+1000174b8: b840450a    	ldr	w10, [x8], #0x4
+1000174bc: 6b01015f    	cmp	w10, w1
+1000174c0: 54ffff83    	b.lo	0x1000174b0 <lpl::branch_filter_forced_branch(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x18>
+1000174c4: 8b0a0000    	add	x0, x0, x10
+1000174c8: 17fffffa    	b	0x1000174b0 <lpl::branch_filter_forced_branch(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x18>
+1000174cc: d65f03c0    	ret
+
+100017544: 17ffffd5    	b	0x100017498 <lpl::branch_filter_forced_branch(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)>
+
+
+================================================================
+SYMBOL PATTERN: branch_filter_branchless
+================================================================
+100017624: 1400001c    	b	0x100017694 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)>
+
+0000000100017694 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)>:
+100017694: a9402408    	ldp	x8, x9, [x0]
+100017698: eb08012b    	subs	x11, x9, x8
+10001769c: 540000e0    	b.eq	0x1000176b8 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x24>
+1000176a0: 9342fd69    	asr	x9, x11, #2
+1000176a4: f1000d3f    	cmp	x9, #0x3
+1000176a8: 540000c8    	b.hi	0x1000176c0 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x2c>
+1000176ac: d2800000    	mov	x0, #0x0                ; =0
+1000176b0: d280000a    	mov	x10, #0x0               ; =0
+1000176b4: 14000048    	b	0x1000177d4 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x140>
+1000176b8: d2800000    	mov	x0, #0x0                ; =0
+1000176bc: d65f03c0    	ret
+1000176c0: 4e040c20    	dup.4s	v0, w1
+1000176c4: f100413f    	cmp	x9, #0x10
+1000176c8: 54000082    	b.hs	0x1000176d8 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x44>
+1000176cc: d280000a    	mov	x10, #0x0               ; =0
+1000176d0: d2800000    	mov	x0, #0x0                ; =0
+1000176d4: 1400002d    	b	0x100017788 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0xf4>
+1000176d8: 6f00e401    	movi.2d	v1, #0000000000000000
+1000176dc: 927ced2a    	and	x10, x9, #0xfffffffffffffff0
+1000176e0: 6f00e402    	movi.2d	v2, #0000000000000000
+1000176e4: 9100810c    	add	x12, x8, #0x20
+1000176e8: aa0a03ed    	mov	x13, x10
+1000176ec: 6f00e404    	movi.2d	v4, #0000000000000000
+1000176f0: 6f00e405    	movi.2d	v5, #0000000000000000
+1000176f4: 6f00e406    	movi.2d	v6, #0000000000000000
+1000176f8: 6f00e403    	movi.2d	v3, #0000000000000000
+1000176fc: 6f00e410    	movi.2d	v16, #0000000000000000
+100017700: 6f00e407    	movi.2d	v7, #0000000000000000
+100017704: ad7f4991    	ldp	q17, q18, [x12, #-0x20]
+100017708: acc25193    	ldp	q19, q20, [x12], #0x40
+10001770c: 6ea03e35    	cmhs.4s	v21, v17, v0
+100017710: 4e311eb1    	and.16b	v17, v21, v17
+100017714: 6ea03e55    	cmhs.4s	v21, v18, v0
+100017718: 4e321eb2    	and.16b	v18, v21, v18
+10001771c: 6ea03e75    	cmhs.4s	v21, v19, v0
+100017720: 4e331eb3    	and.16b	v19, v21, v19
+100017724: 6ea03e95    	cmhs.4s	v21, v20, v0
+100017728: 4e341eb4    	and.16b	v20, v21, v20
+10001772c: 6eb11042    	uaddw2.2d	v2, v2, v17
+100017730: 2eb11021    	uaddw.2d	v1, v1, v17
+100017734: 6eb210a5    	uaddw2.2d	v5, v5, v18
+100017738: 2eb21084    	uaddw.2d	v4, v4, v18
+10001773c: 6eb31063    	uaddw2.2d	v3, v3, v19
+100017740: 2eb310c6    	uaddw.2d	v6, v6, v19
+100017744: 6eb410e7    	uaddw2.2d	v7, v7, v20
+100017748: 2eb41210    	uaddw.2d	v16, v16, v20
+10001774c: f10041ad    	subs	x13, x13, #0x10
+100017750: 54fffda1    	b.ne	0x100017704 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x70>
+100017754: 4ee18481    	add.2d	v1, v4, v1
+100017758: 4ee284a2    	add.2d	v2, v5, v2
+10001775c: 4ee68604    	add.2d	v4, v16, v6
+100017760: 4ee18481    	add.2d	v1, v4, v1
+100017764: 4ee384e3    	add.2d	v3, v7, v3
+100017768: 4ee28462    	add.2d	v2, v3, v2
+10001776c: 4ee28421    	add.2d	v1, v1, v2
+100017770: 5ef1b821    	addp.2d	d1, v1
+100017774: 9e660020    	fmov	x0, d1
+100017778: eb0a013f    	cmp	x9, x10
+10001777c: 540003c0    	b.eq	0x1000177f4 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x160>
+100017780: f27c057f    	tst	x11, #0x30
+100017784: 54000280    	b.eq	0x1000177d4 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x140>
+100017788: aa0a03ec    	mov	x12, x10
+10001778c: 927ef52a    	and	x10, x9, #0xfffffffffffffffc
+100017790: 6f00e401    	movi.2d	v1, #0000000000000000
+100017794: 6f00e402    	movi.2d	v2, #0000000000000000
+100017798: 4e081c02    	mov.d	v2[0], x0
+10001779c: cb0a018b    	sub	x11, x12, x10
+1000177a0: 8b0c090c    	add	x12, x8, x12, lsl #2
+1000177a4: 3cc10583    	ldr	q3, [x12], #0x10
+1000177a8: 6ea03c64    	cmhs.4s	v4, v3, v0
+1000177ac: 4e231c83    	and.16b	v3, v4, v3
+1000177b0: 6ea31021    	uaddw2.2d	v1, v1, v3
+1000177b4: 2ea31042    	uaddw.2d	v2, v2, v3
+1000177b8: b100116b    	adds	x11, x11, #0x4
+1000177bc: 54ffff41    	b.ne	0x1000177a4 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x110>
+1000177c0: 4ee18440    	add.2d	v0, v2, v1
+1000177c4: 5ef1b800    	addp.2d	d0, v0
+1000177c8: 9e660000    	fmov	x0, d0
+1000177cc: eb0a013f    	cmp	x9, x10
+1000177d0: 54000120    	b.eq	0x1000177f4 <lpl::branch_filter_branchless(std::__1::vector<unsigned int, std::__1::allocator<unsigned int>> const&, unsigned int)+0x160>
+1000177d4: cb0a0129    	sub	x9, x9, x10
+1000177d8: 8b0a0908    	add	x8, x8, x10, lsl #2
+1000177dc: b840450a    	ldr	w10, [x8], #0x4
+1000177e0: 6b01015f    	cmp	w10, w1
+1000177e4: 1a8a33ea    	csel	w10, wzr, w10, lo
+1000177e8: 8b0a0000    	add	x0, x0, x10
+1000177ec: f1000529    	subs	x9, x9, #0x1
+
+================================================================
+SYMBOL PATTERN: scan_sequential_aos
+================================================================
+1000122a8: 1400001c    	b	0x100012318 <lpl::scan_sequential_aos(std::__1::vector<lpl::OrderRecordAoS, std::__1::allocator<lpl::OrderRecordAoS>> const&)>
+
+0000000100012318 <lpl::scan_sequential_aos(std::__1::vector<lpl::OrderRecordAoS, std::__1::allocator<lpl::OrderRecordAoS>> const&)>:
+100012318: a9402408    	ldp	x8, x9, [x0]
+10001231c: eb080129    	subs	x9, x9, x8
+100012320: 540000e0    	b.eq	0x10001233c <lpl::scan_sequential_aos(std::__1::vector<lpl::OrderRecordAoS, std::__1::allocator<lpl::OrderRecordAoS>> const&)+0x24>
+100012324: 9346fd29    	asr	x9, x9, #6
+100012328: f100113f    	cmp	x9, #0x4
+10001232c: 540000c2    	b.hs	0x100012344 <lpl::scan_sequential_aos(std::__1::vector<lpl::OrderRecordAoS, std::__1::allocator<lpl::OrderRecordAoS>> const&)+0x2c>
+100012330: d2800000    	mov	x0, #0x0                ; =0
+100012334: d280000a    	mov	x10, #0x0               ; =0
+100012338: 1400002a    	b	0x1000123e0 <lpl::scan_sequential_aos(std::__1::vector<lpl::OrderRecordAoS, std::__1::allocator<lpl::OrderRecordAoS>> const&)+0xc8>
+10001233c: d2800000    	mov	x0, #0x0                ; =0
+100012340: d65f03c0    	ret
+100012344: d280000b    	mov	x11, #0x0               ; =0
+100012348: d280000c    	mov	x12, #0x0               ; =0
+10001234c: d280000d    	mov	x13, #0x0               ; =0
+100012350: d280000e    	mov	x14, #0x0               ; =0
+100012354: 927ef52a    	and	x10, x9, #0xfffffffffffffffc
+100012358: 9102010f    	add	x15, x8, #0x80
+10001235c: aa0a03f0    	mov	x16, x10
+100012360: 3858c1f1    	ldurb	w17, [x15, #-0x74]
+100012364: 385cc1e0    	ldurb	w0, [x15, #-0x34]
+100012368: 394031e1    	ldrb	w1, [x15, #0xc]
+10001236c: 394131e2    	ldrb	w2, [x15, #0x4c]
+100012370: f85801e3    	ldur	x3, [x15, #-0x80]
+100012374: f85c01e4    	ldur	x4, [x15, #-0x40]
+100012378: f94001e5    	ldr	x5, [x15]
+10001237c: f94021e6    	ldr	x6, [x15, #0x40]
+100012380: 7100023f    	cmp	w17, #0x0
+100012384: 9a9f0071    	csel	x17, x3, xzr, eq
+100012388: 7100001f    	cmp	w0, #0x0
+10001238c: 9a9f0080    	csel	x0, x4, xzr, eq
+100012390: 7100003f    	cmp	w1, #0x0
+100012394: 9a9f00a1    	csel	x1, x5, xzr, eq
+100012398: 7100005f    	cmp	w2, #0x0
+10001239c: 9a9f00c2    	csel	x2, x6, xzr, eq
+1000123a0: b85881e3    	ldur	w3, [x15, #-0x78]
+1000123a4: b85c81e4    	ldur	w4, [x15, #-0x38]
+1000123a8: b94009e5    	ldr	w5, [x15, #0x8]
+1000123ac: b94049e6    	ldr	w6, [x15, #0x48]
+1000123b0: 9b032e2b    	madd	x11, x17, x3, x11
+1000123b4: 9b04300c    	madd	x12, x0, x4, x12
+1000123b8: 9b05342d    	madd	x13, x1, x5, x13
+1000123bc: 9b06384e    	madd	x14, x2, x6, x14
+1000123c0: 910401ef    	add	x15, x15, #0x100
+1000123c4: f1001210    	subs	x16, x16, #0x4
+1000123c8: 54fffcc1    	b.ne	0x100012360 <lpl::scan_sequential_aos(std::__1::vector<lpl::OrderRecordAoS, std::__1::allocator<lpl::OrderRecordAoS>> const&)+0x48>
+1000123cc: 8b0b018b    	add	x11, x12, x11
+1000123d0: 8b0d01cc    	add	x12, x14, x13
+1000123d4: 8b0b0180    	add	x0, x12, x11
+1000123d8: eb0a013f    	cmp	x9, x10
+1000123dc: 54000180    	b.eq	0x10001240c <lpl::scan_sequential_aos(std::__1::vector<lpl::OrderRecordAoS, std::__1::allocator<lpl::OrderRecordAoS>> const&)+0xf4>
+1000123e0: cb0a0129    	sub	x9, x9, x10
+1000123e4: 8b0a1908    	add	x8, x8, x10, lsl #6
+1000123e8: 91002108    	add	x8, x8, #0x8
+1000123ec: 3940110a    	ldrb	w10, [x8, #0x4]
+1000123f0: f85f810b    	ldur	x11, [x8, #-0x8]
+1000123f4: 7100015f    	cmp	w10, #0x0
+1000123f8: 9a9f016a    	csel	x10, x11, xzr, eq
+1000123fc: b844050b    	ldr	w11, [x8], #0x40
+100012400: 9b0b0140    	madd	x0, x10, x11, x0
+100012404: f1000529    	subs	x9, x9, #0x1
+100012408: 54ffff21    	b.ne	0x1000123ec <lpl::scan_sequential_aos(std::__1::vector<lpl::OrderRecordAoS, std::__1::allocator<lpl::OrderRecordAoS>> const&)+0xd4>
+10001240c: d65f03c0    	ret
+
+
+================================================================
+SYMBOL PATTERN: scan_sequential_soa
+================================================================
+100012480: 1400001c    	b	0x1000124f0 <lpl::scan_sequential_soa(lpl::OrderRecordsSoA const&)>
+
+00000001000124f0 <lpl::scan_sequential_soa(lpl::OrderRecordsSoA const&)>:
+1000124f0: a9402408    	ldp	x8, x9, [x0]
+1000124f4: eb08012d    	subs	x13, x9, x8
+1000124f8: 54000120    	b.eq	0x10001251c <lpl::scan_sequential_soa(lpl::OrderRecordsSoA const&)+0x2c>
+1000124fc: f9400c0a    	ldr	x10, [x0, #0x18]
+100012500: f9401809    	ldr	x9, [x0, #0x30]
+100012504: 9343fdab    	asr	x11, x13, #3
+100012508: f1001d7f    	cmp	x11, #0x7
+10001250c: 540000c8    	b.hi	0x100012524 <lpl::scan_sequential_soa(lpl::OrderRecordsSoA const&)+0x34>
+100012510: d2800000    	mov	x0, #0x0                ; =0
+100012514: d280000c    	mov	x12, #0x0               ; =0
+100012518: 140000e1    	b	0x10001289c <lpl::scan_sequential_soa(lpl::OrderRecordsSoA const&)+0x3ac>
+10001251c: d2800000    	mov	x0, #0x0                ; =0
+100012520: d65f03c0    	ret
+100012524: f100417f    	cmp	x11, #0x10
+100012528: 54000a22    	b.hs	0x10001266c <lpl::scan_sequential_soa(lpl::OrderRecordsSoA const&)+0x17c>
+10001252c: d280000c    	mov	x12, #0x0               ; =0
+100012530: d2800000    	mov	x0, #0x0                ; =0
+100012534: aa0c03f0    	mov	x16, x12
+100012538: 927df16c    	and	x12, x11, #0xfffffffffffffff8
+10001253c: 6f00e400    	movi.2d	v0, #0000000000000000
+100012540: 6f00e401    	movi.2d	v1, #0000000000000000
+100012544: 4e081c01    	mov.d	v1[0], x0
+100012548: cb0c020d    	sub	x13, x16, x12
+10001254c: 8b10094e    	add	x14, x10, x16, lsl #2
+100012550: 8b100d0f    	add	x15, x8, x16, lsl #3
+100012554: 8b100130    	add	x16, x9, x16
+100012558: 6f00e402    	movi.2d	v2, #0000000000000000
+10001255c: 6f00e403    	movi.2d	v3, #0000000000000000
+100012560: fc408604    	ldr	d4, [x16], #0x8
+100012564: 2f08a484    	ushll.8h	v4, v4, #0x0
+100012568: 4e609884    	cmeq.8h	v4, v4, #0
+10001256c: 0f10a485    	sshll.4s	v5, v4, #0x0
+100012570: 0f20a4a6    	sshll.2d	v6, v5, #0x0
+100012574: 4f20a4a5    	sshll2.2d	v5, v5, #0x0
+100012578: 4f10a484    	sshll2.4s	v4, v4, #0x0
+10001257c: 0f20a487    	sshll.2d	v7, v4, #0x0
+100012580: ad4045f0    	ldp	q16, q17, [x15]
+100012584: ad414df2    	ldp	q18, q19, [x15, #0x20]
+100012588: 4e321ce7    	and.16b	v7, v7, v18
+10001258c: 4e311ca5    	and.16b	v5, v5, v17
+100012590: acc149d1    	ldp	q17, q18, [x14], #0x20
+100012594: 2f20a634    	ushll.2d	v20, v17, #0x0
+100012598: 4e183e91    	mov.d	x17, v20[1]
+10001259c: 4e301cc6    	and.16b	v6, v6, v16
+1000125a0: 9e660280    	fmov	x0, d20
+1000125a4: 2f20a650    	ushll.2d	v16, v18, #0x0
+1000125a8: 6f20a631    	ushll2.2d	v17, v17, #0x0
+1000125ac: 4e183cc1    	mov.d	x1, v6[1]
+1000125b0: 9e6600c2    	fmov	x2, d6
+1000125b4: 9b007c40    	mul	x0, x2, x0
+1000125b8: 4e183ca2    	mov.d	x2, v5[1]
+1000125bc: 4e183e23    	mov.d	x3, v17[1]
+1000125c0: 9b117c31    	mul	x17, x1, x17
+1000125c4: 9b037c41    	mul	x1, x2, x3
+1000125c8: 9e6600a2    	fmov	x2, d5
+1000125cc: 9e660223    	fmov	x3, d17
+1000125d0: 4e183ce4    	mov.d	x4, v7[1]
+1000125d4: 9e670005    	fmov	d5, x0
+1000125d8: 9b037c40    	mul	x0, x2, x3
+1000125dc: 4e183e02    	mov.d	x2, v16[1]
+1000125e0: 9b027c82    	mul	x2, x4, x2
+1000125e4: 9e6600e3    	fmov	x3, d7
+1000125e8: 9e670006    	fmov	d6, x0
+1000125ec: 9e660200    	fmov	x0, d16
+1000125f0: 9b007c60    	mul	x0, x3, x0
+1000125f4: 4f20a484    	sshll2.2d	v4, v4, #0x0
+1000125f8: 4e331c84    	and.16b	v4, v4, v19
+1000125fc: 4e181e25    	mov.d	v5[1], x17
+100012600: 6f20a647    	ushll2.2d	v7, v18, #0x0
+100012604: 9e670010    	fmov	d16, x0
+100012608: 4e183c91    	mov.d	x17, v4[1]
+10001260c: 4e181c26    	mov.d	v6[1], x1
+100012610: 4e183ce0    	mov.d	x0, v7[1]
+100012614: 9b007e31    	mul	x17, x17, x0
+100012618: 9e660080    	fmov	x0, d4
+10001261c: 4e181c50    	mov.d	v16[1], x2
+100012620: 9e6600e1    	fmov	x1, d7
+100012624: 9b017c00    	mul	x0, x0, x1
+100012628: 9e670004    	fmov	d4, x0
+10001262c: 4e181e24    	mov.d	v4[1], x17
+100012630: 4ee38483    	add.2d	v3, v4, v3
+100012634: 4ee28602    	add.2d	v2, v16, v2
+100012638: 4ee084c0    	add.2d	v0, v6, v0
+10001263c: 4ee184a1    	add.2d	v1, v5, v1
+100012640: 910101ef    	add	x15, x15, #0x40
+100012644: b10021ad    	adds	x13, x13, #0x8
+100012648: 54fff8c1    	b.ne	0x100012560 <lpl::scan_sequential_soa(lpl::OrderRecordsSoA const&)+0x70>
+

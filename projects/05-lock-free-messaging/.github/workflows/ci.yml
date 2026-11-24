@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - {os: ubuntu-24.04, cxx: g++}
+          - {os: ubuntu-24.04, cxx: clang++}
+          - {os: macos-14, cxx: clang++}
+    runs-on: ${{ matrix.os }}
+    env:
+      CXX: ${{ matrix.cxx }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: cmake --build build -j
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+      - name: Example
+        run: build/examples/market_data_pipeline --quotes 500000
+      - name: Benchmark pipeline smoke test (numbers from shared CI runners are not meaningful)
+        run: LFM_BENCH_QUICK=1 scripts/run_benchmarks.sh ci-smoke && cat results/ci-smoke/summary.md
+
+  sanitizers:
+    runs-on: ubuntu-24.04
+    env:
+      CXX: clang++
+    steps:
+      - uses: actions/checkout@v4
+      # TSan needs fewer ASLR bits than recent Ubuntu kernels default to.
+      - run: sudo sysctl vm.mmap_rnd_bits=28
+      - name: ASan+UBSan and TSan
+        run: scripts/run_sanitizers.sh
+
+  format:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - run: pipx install clang-format==19.1.7
+      - run: scripts/check_format.sh

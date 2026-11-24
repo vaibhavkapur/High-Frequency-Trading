@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build clang-format python3
+
+      - name: Check formatting
+        run: ./scripts/check_format.sh
+
+      - name: Configure and build (Release)
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DLPL_WERROR=ON
+          cmake --build build -j
+
+      - name: Run unit, concurrency, and fuzz tests
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Run quick benchmark and report smoke test
+        run: |
+          ./build/benchmarks/bench_suite --quick --out-dir /tmp/lpl-smoke
+          ./build/benchmarks/bench_matching_ab --quick --out-dir /tmp/lpl-smoke
+          python3 scripts/analyze_results.py --results-dir /tmp/lpl-smoke --out-md /tmp/lpl-smoke/report.md
+
+  sanitizers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake ninja-build clang
+
+      - name: Run ASan + UBSan and TSan
+        run: ./scripts/run_sanitizers.sh

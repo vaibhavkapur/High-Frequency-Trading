@@ -1,0 +1,22 @@
+date_utc: 2026-11-24T01:38:47Z
+source_revision: not a git checkout
+source_dirty: 0 modified files
+os: Darwin 25.5.0 arm64
+os_version: macOS 26.5.1 (25F80)
+cpu: Apple M5
+cores_physical: 10
+cores_performance: 4
+cores_efficiency: 6
+memory_bytes: 17179869184
+l1d_bytes: 131072
+l2_bytes: 16777216
+power: Now drawing from 'Battery Power'
+affinity: none (macOS has no CPU pinning API; scheduler picks the core)
+governor: n/a (macOS)
+load_average: 16.72 13.80 8.56
+compiler: Apple clang version 21.0.0 (clang-2100.1.1.101)
+cmake: cmake version 4.5.1
+build_type: Release
+cxx_flags: -std=c++20 -O3 -DNDEBUG
+measured_commands_per_run: 2000000
+repetitions: 3

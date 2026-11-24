@@ -1,0 +1,23 @@
+{
+  "timestamp_utc": "2026-11-24T04:57:29Z",
+  "cpu_model": "Apple M5",
+  "architecture": "arm64",
+  "logical_cores": 10,
+  "physical_cores": 10,
+  "perf_cores": 4,
+  "eff_cores": 6,
+  "l1d_cache_bytes": 65536,
+  "l2_cache_bytes": 6291456,
+  "l3_cache_bytes": 0,
+  "cache_line_bytes": 128,
+  "os_name": "macOS 26.5.1",
+  "kernel_release": "25.5.0",
+  "compiler_id": "AppleClang",
+  "compiler_version": "21.0.0.21000101",
+  "build_type": "Release",
+  "cxx_flags": "-O3 -DNDEBUG",
+  "march_native": false,
+  "cpu_governor": "macOS DVFS (OS-managed)",
+  "turbo_status": "OS-managed (DVFS)",
+  "clock_overhead_ns": 19.17
+}

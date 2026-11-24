@@ -1,0 +1,82 @@
+$ itch_gen --out demo.itch --messages 500000 --symbols 40 --seed 7
+wrote demo.itch: 16248511 bytes, profile=balanced messages=500000 symbols=40 seed=7
+
+$ itch_replay demo.itch --depth 5 --show 2 --bbo-csv bbo.csv --trades-csv trades.csv \
+              --snapshot-csv snapshot.csv --summary-csv summary.csv
+file              demo.itch (16248511 bytes)
+framing           end=end at offset 16248511, zero-length frames=0
+messages          500086 (decoded 500086)
+decode rejects    unknown_type=0 truncated=0 oversized=0 invalid_field=0 empty=0
+by type           A=200220 B=362 C=4992 D=129806 E=39793 F=15181 H=402 I=5011 J=362 K=362 L=362 N=362 O=361 P=14813 Q=1009 R=40 S=6 U=45352 V=362 W=362 X=39842 Y=362 h=362
+book ops          adds=215401 reduces=84627 removes=129806 replaces=45352
+book anomalies    duplicate_order=0 unknown_order=0 over_reduce=0 locate_mismatch=0
+trades            60607 reports, 362 broken
+bbo updates       23112
+live orders       62927
+book digest       4c670e861ec5a796
+
+S00001 (locate 1)  spread 0.0200  imbalance -0.246  microprice 159.9375  volume 593873 (buy 188959 / sell 199514)
+     bid qty   orders          bid | ask          orders   ask qty   
+       13556       31     159.9300 | 159.9500     36       22404     
+        8362       23     159.9200 | 159.9600     30       15733     
+       19319       36     159.9100 | 159.9700     30       14498     
+        7904       14     159.9000 | 159.9800     29       17385     
+       11420       27     159.8900 | 159.9900     35       16213     
+
+S00002 (locate 2)  spread 0.0200  imbalance +0.078  microprice 256.7408  volume 593147 (buy 194397 / sell 197150)
+     bid qty   orders          bid | ask          orders   ask qty   
+       15466       31     256.7300 | 256.7500     30       13216     
+       18881       32     256.7200 | 256.7600     30       11980     
+       12662       28     256.7100 | 256.7700     26       14656     
+       15166       33     256.7000 | 256.7800     39       18930     
+       15117       31     256.6900 | 256.7900     29       12669     
+
+$ head -4 bbo.csv   # 23112 rows
+timestamp,locate,symbol,bid_px,bid_qty,ask_px,ask_qty
+34200083710532,20,S00020,,0,248.0200,600
+34200161832825,20,S00020,,0,,0
+34200184921699,31,S00031,,0,130.1700,600
+
+$ head -4 trades.csv   # 60607 rows
+timestamp,locate,symbol,kind,price,qty,match,aggressor,printable
+34200161832825,20,S00020,E,248.0200,600,1,B,Y
+34200404338517,31,S00031,E,130.1700,600,2,B,Y
+34200983978452,11,S00011,E,232.9500,216,3,S,Y
+
+$ head -4 snapshot.csv   # 400 rows
+locate,symbol,side,level,price,qty,orders
+1,S00001,B,0,159.9300,13556,31
+1,S00001,B,1,159.9200,8362,23
+1,S00001,B,2,159.9100,19319,36
+
+$ head -4 summary.csv   # 40 rows
+locate,symbol,bid_px,bid_qty,ask_px,ask_qty,spread,imbalance,microprice,trades,volume,buy_volume,sell_volume,hidden_volume,cross_volume
+1,S00001,159.9300,13556,159.9500,22404,0.0200,-0.246051,159.937539,1391,593873,188959,199514,205400,635000
+2,S00002,256.7300,15466,256.7500,13216,0.0200,0.078446,256.740784,1434,593147,194397,197150,201600,815000
+3,S00003,16.3700,12449,16.3900,13848,0.0200,-0.053200,16.379468,1422,594050,190604,198346,205100,725000
+
+$ itch_replay demo.itch --show 0   # second run: same digest
+book digest       4c670e861ec5a796
+
+$ scripts/crosscheck.py --gen itch_gen --replay itch_replay --messages 100000
+  bbo          7201 rows  match
+  trades      12205 rows  match
+  snapshot     1000 rows  match
+  counts         23 rows  match
+PASS balanced
+  bbo          4501 rows  match
+  trades       1970 rows  match
+  snapshot     1000 rows  match
+  counts         10 rows  match
+PASS add-heavy
+  bbo          4586 rows  match
+  trades        845 rows  match
+  snapshot     1000 rows  match
+  counts          8 rows  match
+PASS churn
+  bbo          6488 rows  match
+  trades      11874 rows  match
+  snapshot     1031 rows  match
+  counts         23 rows  match
+PASS corrupted
+crosscheck: all outputs identical

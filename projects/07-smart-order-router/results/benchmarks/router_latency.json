@@ -1,0 +1,6 @@
+[
+  {"name":"route_plan_only","venues":3,"depth":5,"warmup":20000,"samples":200000,"throughput_ops_per_sec":1381556.97,"mean_ns":722.45,"p50_ns":640.62,"p90_ns":989.56,"p99_ns":1533.89,"p999_ns":8984.42,"max_ns":111773.44},
+  {"name":"route_plan_only","venues":5,"depth":5,"warmup":20000,"samples":200000,"throughput_ops_per_sec":1008118.93,"mean_ns":990.69,"p50_ns":849.00,"p90_ns":1380.19,"p99_ns":2687.60,"p999_ns":12754.22,"max_ns":76838.56},
+  {"name":"route_plan_only","venues":8,"depth":5,"warmup":20000,"samples":200000,"throughput_ops_per_sec":1007478.43,"mean_ns":991.60,"p50_ns":973.94,"p90_ns":1028.69,"p99_ns":1328.15,"p999_ns":4087.36,"max_ns":18315.12},
+  {"name":"wire_decode_update_route","venues":3,"depth":5,"warmup":20000,"samples":200000,"throughput_ops_per_sec":1288353.00,"mean_ns":775.28,"p50_ns":763.06,"p90_ns":783.81,"p99_ns":955.69,"p999_ns":2315.13,"max_ns":5070.31}
+]

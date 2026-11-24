@@ -1,0 +1,6 @@
+# Python tooling and tests (the engine itself has no Python dependency).
+numpy
+pandas
+pyarrow
+matplotlib
+pytest

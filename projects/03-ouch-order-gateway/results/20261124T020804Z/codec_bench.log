@@ -1,0 +1,20 @@
+== codec
+codec_bench: 5000000 ops/loop, 9 timed loops, clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+operation                     bytes    min ns/op median ns/op
+encode EnterOrder                49         2.14         2.21
+decode EnterOrder                49         1.73         1.75
+encode ReplaceOrder              47         1.62         1.64
+decode ReplaceOrder              47         1.47         1.50
+encode CancelOrder               19         0.81         0.82
+decode CancelOrder               19         0.71         0.74
+encode Accepted                  66         2.53         2.54
+decode Accepted                  66         1.95         1.97
+encode Replaced                  80         2.75         2.79
+decode Replaced                  80         2.62         2.70
+encode Executed                  40         1.33         1.33
+decode Executed                  40         1.20         1.21
+encode Canceled                  28         1.01         1.03
+decode Canceled                  28         1.12         1.21
+encode Rejected                  24         0.97         0.98
+decode Rejected                  24         1.20         1.22
+deframe+decode Executed          43         2.50         2.62

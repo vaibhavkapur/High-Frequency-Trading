@@ -1,0 +1,23 @@
+function(lfm_add_test name)
+  add_executable(${name} ${name}.cpp)
+  target_link_libraries(${name} PRIVATE lfm::lfm lfm_build_flags)
+  add_test(NAME ${name} COMMAND ${name})
+  set_tests_properties(${name} PROPERTIES TIMEOUT 600)
+endfunction()
+
+lfm_add_test(spsc_basic_test)
+lfm_add_test(spsc_stress_test)
+lfm_add_test(mpsc_test)
+lfm_add_test(mpsc_model_check)
+lfm_add_test(endpoints_test)
+
+if(LFM_LIBFUZZER)
+  # Coverage-guided fuzzing: ./build/tests/fuzz_ops -max_total_time=60
+  add_executable(fuzz_ops fuzz_ops.cpp)
+  target_compile_definitions(fuzz_ops PRIVATE LFM_LIBFUZZER)
+  target_compile_options(fuzz_ops PRIVATE -fsanitize=fuzzer,address,undefined -g)
+  target_link_options(fuzz_ops PRIVATE -fsanitize=fuzzer,address,undefined)
+  target_link_libraries(fuzz_ops PRIVATE lfm::lfm lfm_build_flags)
+else()
+  lfm_add_test(fuzz_ops)
+endif()

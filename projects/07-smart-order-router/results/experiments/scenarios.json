@@ -1,0 +1,922 @@
+[
+  {
+    "scenario": "fee_inversion",
+    "policy": "naive_primary",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 289,
+    "partial_orders": 10,
+    "unfilled_orders": 1,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 189917,
+    "fill_ratio": 0.9698,
+    "gross_is_bps": 0.6068,
+    "fee_cost_bps": 0.2338,
+    "net_is_bps": 0.8406,
+    "total_fees_usd": 664.7095,
+    "median_parent_latency_us": 240.897,
+    "p99_parent_latency_us": 259.0914,
+    "children_sent": 300,
+    "children_filled": 289,
+    "children_cancelled": 11,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.0381,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 189917,
+        "fill_share": 1.0,
+        "children_sent": 300
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 0,
+        "fill_share": 0.0,
+        "children_sent": 0
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 0,
+        "fill_share": 0.0,
+        "children_sent": 0
+      }
+    ]
+  },
+  {
+    "scenario": "fee_inversion",
+    "policy": "naive_best_price",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 299,
+    "partial_orders": 1,
+    "unfilled_orders": 0,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 195735,
+    "fill_ratio": 0.9995,
+    "gross_is_bps": 0.3419,
+    "fee_cost_bps": 0.1245,
+    "net_is_bps": 0.4664,
+    "total_fees_usd": 364.7319,
+    "median_parent_latency_us": 247.4245,
+    "p99_parent_latency_us": 494.3712,
+    "children_sent": 712,
+    "children_filled": 676,
+    "children_cancelled": 36,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.0533,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 114131,
+        "fill_share": 0.5831,
+        "children_sent": 322
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 30306,
+        "fill_share": 0.1548,
+        "children_sent": 159
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 51298,
+        "fill_share": 0.2621,
+        "children_sent": 231
+      }
+    ]
+  },
+  {
+    "scenario": "fee_inversion",
+    "policy": "fee_aware",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 300,
+    "partial_orders": 0,
+    "unfilled_orders": 0,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 195834,
+    "fill_ratio": 1.0,
+    "gross_is_bps": 0.3807,
+    "fee_cost_bps": -0.022,
+    "net_is_bps": 0.3587,
+    "total_fees_usd": -64.5696,
+    "median_parent_latency_us": 248.0245,
+    "p99_parent_latency_us": 488.868,
+    "children_sent": 731,
+    "children_filled": 701,
+    "children_cancelled": 30,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.0428,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 39465,
+        "fill_share": 0.2015,
+        "children_sent": 171
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 99331,
+        "fill_share": 0.5072,
+        "children_sent": 310
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 57038,
+        "fill_share": 0.2913,
+        "children_sent": 250
+      }
+    ]
+  },
+  {
+    "scenario": "fee_inversion",
+    "policy": "smart_cost_aware",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 299,
+    "partial_orders": 1,
+    "unfilled_orders": 0,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 195666,
+    "fill_ratio": 0.9991,
+    "gross_is_bps": 0.3607,
+    "fee_cost_bps": 0.0287,
+    "net_is_bps": 0.3894,
+    "total_fees_usd": 84.039,
+    "median_parent_latency_us": 247.145,
+    "p99_parent_latency_us": 492.5453,
+    "children_sent": 661,
+    "children_filled": 634,
+    "children_cancelled": 27,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.0426,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 81971,
+        "fill_share": 0.4189,
+        "children_sent": 265
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 89035,
+        "fill_share": 0.455,
+        "children_sent": 268
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 24660,
+        "fill_share": 0.126,
+        "children_sent": 128
+      }
+    ]
+  },
+  {
+    "scenario": "stale_feed_trap",
+    "policy": "naive_primary",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 287,
+    "partial_orders": 5,
+    "unfilled_orders": 8,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 190684,
+    "fill_ratio": 0.9737,
+    "gross_is_bps": 0.7459,
+    "fee_cost_bps": 0.1978,
+    "net_is_bps": 0.9437,
+    "total_fees_usd": 572.052,
+    "median_parent_latency_us": 241.553,
+    "p99_parent_latency_us": 265.9124,
+    "children_sent": 300,
+    "children_filled": 287,
+    "children_cancelled": 13,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.0453,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 190684,
+        "fill_share": 1.0,
+        "children_sent": 300
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 0,
+        "fill_share": 0.0,
+        "children_sent": 0
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 0,
+        "fill_share": 0.0,
+        "children_sent": 0
+      }
+    ]
+  },
+  {
+    "scenario": "stale_feed_trap",
+    "policy": "naive_best_price",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 294,
+    "partial_orders": 6,
+    "unfilled_orders": 0,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 194095,
+    "fill_ratio": 0.9911,
+    "gross_is_bps": 0.3687,
+    "fee_cost_bps": 0.0954,
+    "net_is_bps": 0.4641,
+    "total_fees_usd": 281.6217,
+    "median_parent_latency_us": 890.633,
+    "p99_parent_latency_us": 1639.4742,
+    "children_sent": 716,
+    "children_filled": 574,
+    "children_cancelled": 142,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.2474,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 107307,
+        "fill_share": 0.5529,
+        "children_sent": 310
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 43855,
+        "fill_share": 0.2259,
+        "children_sent": 212
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 42933,
+        "fill_share": 0.2212,
+        "children_sent": 194
+      }
+    ]
+  },
+  {
+    "scenario": "stale_feed_trap",
+    "policy": "fee_aware",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 289,
+    "partial_orders": 7,
+    "unfilled_orders": 4,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 193020,
+    "fill_ratio": 0.9856,
+    "gross_is_bps": 0.3648,
+    "fee_cost_bps": 0.0573,
+    "net_is_bps": 0.4221,
+    "total_fees_usd": 168.1902,
+    "median_parent_latency_us": 899.1835,
+    "p99_parent_latency_us": 1573.7638,
+    "children_sent": 626,
+    "children_filled": 562,
+    "children_cancelled": 64,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.1139,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 57156,
+        "fill_share": 0.2961,
+        "children_sent": 209
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 46502,
+        "fill_share": 0.2409,
+        "children_sent": 141
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 89362,
+        "fill_share": 0.463,
+        "children_sent": 276
+      }
+    ]
+  },
+  {
+    "scenario": "stale_feed_trap",
+    "policy": "smart_cost_aware",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 293,
+    "partial_orders": 7,
+    "unfilled_orders": 0,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 194572,
+    "fill_ratio": 0.9936,
+    "gross_is_bps": 0.4242,
+    "fee_cost_bps": 0.0871,
+    "net_is_bps": 0.5113,
+    "total_fees_usd": 257.6568,
+    "median_parent_latency_us": 467.492,
+    "p99_parent_latency_us": 1317.8728,
+    "children_sent": 557,
+    "children_filled": 515,
+    "children_cancelled": 42,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.0816,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 106186,
+        "fill_share": 0.5457,
+        "children_sent": 288
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 52018,
+        "fill_share": 0.2673,
+        "children_sent": 131
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 36368,
+        "fill_share": 0.1869,
+        "children_sent": 138
+      }
+    ]
+  },
+  {
+    "scenario": "latency_race_depletion",
+    "policy": "naive_primary",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 290,
+    "partial_orders": 8,
+    "unfilled_orders": 2,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 189689,
+    "fill_ratio": 0.9686,
+    "gross_is_bps": 0.6958,
+    "fee_cost_bps": 0.0668,
+    "net_is_bps": 0.7626,
+    "total_fees_usd": 189.689,
+    "median_parent_latency_us": 161.3215,
+    "p99_parent_latency_us": 186.1767,
+    "children_sent": 300,
+    "children_filled": 290,
+    "children_cancelled": 10,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.0345,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 189689,
+        "fill_share": 1.0,
+        "children_sent": 300
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 0,
+        "fill_share": 0.0,
+        "children_sent": 0
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 0,
+        "fill_share": 0.0,
+        "children_sent": 0
+      }
+    ]
+  },
+  {
+    "scenario": "latency_race_depletion",
+    "policy": "naive_best_price",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 292,
+    "partial_orders": 6,
+    "unfilled_orders": 2,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 193460,
+    "fill_ratio": 0.9879,
+    "gross_is_bps": 0.4192,
+    "fee_cost_bps": 0.0668,
+    "net_is_bps": 0.486,
+    "total_fees_usd": 193.46,
+    "median_parent_latency_us": 4514.117,
+    "p99_parent_latency_us": 4730.187,
+    "children_sent": 1204,
+    "children_filled": 808,
+    "children_cancelled": 396,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.4901,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 80359,
+        "fill_share": 0.4154,
+        "children_sent": 351
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 99285,
+        "fill_share": 0.5132,
+        "children_sent": 505
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 13816,
+        "fill_share": 0.0714,
+        "children_sent": 348
+      }
+    ]
+  },
+  {
+    "scenario": "latency_race_depletion",
+    "policy": "fee_aware",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 292,
+    "partial_orders": 6,
+    "unfilled_orders": 2,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 193460,
+    "fill_ratio": 0.9879,
+    "gross_is_bps": 0.4192,
+    "fee_cost_bps": 0.0668,
+    "net_is_bps": 0.486,
+    "total_fees_usd": 193.46,
+    "median_parent_latency_us": 4514.117,
+    "p99_parent_latency_us": 4730.187,
+    "children_sent": 1204,
+    "children_filled": 808,
+    "children_cancelled": 396,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.4901,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 80359,
+        "fill_share": 0.4154,
+        "children_sent": 351
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 99285,
+        "fill_share": 0.5132,
+        "children_sent": 505
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 13816,
+        "fill_share": 0.0714,
+        "children_sent": 348
+      }
+    ]
+  },
+  {
+    "scenario": "latency_race_depletion",
+    "policy": "smart_cost_aware",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 296,
+    "partial_orders": 4,
+    "unfilled_orders": 0,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 195056,
+    "fill_ratio": 0.996,
+    "gross_is_bps": 0.5322,
+    "fee_cost_bps": 0.0668,
+    "net_is_bps": 0.599,
+    "total_fees_usd": 195.056,
+    "median_parent_latency_us": 880.392,
+    "p99_parent_latency_us": 4680.9082,
+    "children_sent": 506,
+    "children_filled": 466,
+    "children_cancelled": 40,
+    "children_rejected": 0,
+    "children_timed_out": 0,
+    "failovers_triggered": 0,
+    "cancel_to_fill_ratio": 0.0858,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 157643,
+        "fill_share": 0.8082,
+        "children_sent": 326
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 37366,
+        "fill_share": 0.1916,
+        "children_sent": 176
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 47,
+        "fill_share": 0.0002,
+        "children_sent": 4
+      }
+    ]
+  },
+  {
+    "scenario": "venue_failover",
+    "policy": "naive_primary",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 144,
+    "partial_orders": 2,
+    "unfilled_orders": 154,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 95992,
+    "fill_ratio": 0.4902,
+    "gross_is_bps": 0.6489,
+    "fee_cost_bps": 0.2002,
+    "net_is_bps": 0.8491,
+    "total_fees_usd": 287.976,
+    "median_parent_latency_us": 239.9695,
+    "p99_parent_latency_us": 266.3005,
+    "children_sent": 300,
+    "children_filled": 144,
+    "children_cancelled": 5,
+    "children_rejected": 151,
+    "children_timed_out": 0,
+    "failovers_triggered": 151,
+    "cancel_to_fill_ratio": 0.0347,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 95992,
+        "fill_share": 1.0,
+        "children_sent": 300
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 0,
+        "fill_share": 0.0,
+        "children_sent": 0
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 0,
+        "fill_share": 0.0,
+        "children_sent": 0
+      }
+    ]
+  },
+  {
+    "scenario": "venue_failover",
+    "policy": "naive_best_price",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 245,
+    "partial_orders": 54,
+    "unfilled_orders": 1,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 183603,
+    "fill_ratio": 0.9375,
+    "gross_is_bps": 0.3525,
+    "fee_cost_bps": 0.0187,
+    "net_is_bps": 0.3712,
+    "total_fees_usd": 51.414,
+    "median_parent_latency_us": 921.9635,
+    "p99_parent_latency_us": 1651.5592,
+    "children_sent": 1009,
+    "children_filled": 656,
+    "children_cancelled": 223,
+    "children_rejected": 130,
+    "children_timed_out": 0,
+    "failovers_triggered": 130,
+    "cancel_to_fill_ratio": 0.3399,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 48437,
+        "fill_share": 0.2638,
+        "children_sent": 285
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 79832,
+        "fill_share": 0.4348,
+        "children_sent": 363
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 55334,
+        "fill_share": 0.3014,
+        "children_sent": 361
+      }
+    ]
+  },
+  {
+    "scenario": "venue_failover",
+    "policy": "fee_aware",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 288,
+    "partial_orders": 11,
+    "unfilled_orders": 1,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 193716,
+    "fill_ratio": 0.9892,
+    "gross_is_bps": 0.4101,
+    "fee_cost_bps": -0.0298,
+    "net_is_bps": 0.3803,
+    "total_fees_usd": -86.565,
+    "median_parent_latency_us": 898.072,
+    "p99_parent_latency_us": 1629.5466,
+    "children_sent": 697,
+    "children_filled": 609,
+    "children_cancelled": 85,
+    "children_rejected": 3,
+    "children_timed_out": 0,
+    "failovers_triggered": 3,
+    "cancel_to_fill_ratio": 0.1396,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 24818,
+        "fill_share": 0.1281,
+        "children_sent": 114
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 115936,
+        "fill_share": 0.5985,
+        "children_sent": 327
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 52962,
+        "fill_share": 0.2734,
+        "children_sent": 256
+      }
+    ]
+  },
+  {
+    "scenario": "venue_failover",
+    "policy": "smart_cost_aware",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 293,
+    "partial_orders": 7,
+    "unfilled_orders": 0,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 194325,
+    "fill_ratio": 0.9923,
+    "gross_is_bps": 0.4714,
+    "fee_cost_bps": -0.0113,
+    "net_is_bps": 0.4601,
+    "total_fees_usd": -32.9631,
+    "median_parent_latency_us": 465.405,
+    "p99_parent_latency_us": 1492.0927,
+    "children_sent": 567,
+    "children_filled": 512,
+    "children_cancelled": 52,
+    "children_rejected": 3,
+    "children_timed_out": 0,
+    "failovers_triggered": 3,
+    "cancel_to_fill_ratio": 0.1016,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 52351,
+        "fill_share": 0.2694,
+        "children_sent": 143
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 117701,
+        "fill_share": 0.6057,
+        "children_sent": 293
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 24273,
+        "fill_share": 0.1249,
+        "children_sent": 131
+      }
+    ]
+  },
+  {
+    "scenario": "mixed_stress",
+    "policy": "naive_primary",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 227,
+    "partial_orders": 7,
+    "unfilled_orders": 66,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 151866,
+    "fill_ratio": 0.7755,
+    "gross_is_bps": 0.6563,
+    "fee_cost_bps": 0.2001,
+    "net_is_bps": 0.8564,
+    "total_fees_usd": 455.598,
+    "median_parent_latency_us": 241.725,
+    "p99_parent_latency_us": 265.8624,
+    "children_sent": 300,
+    "children_filled": 227,
+    "children_cancelled": 12,
+    "children_rejected": 61,
+    "children_timed_out": 0,
+    "failovers_triggered": 61,
+    "cancel_to_fill_ratio": 0.0529,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 151866,
+        "fill_share": 1.0,
+        "children_sent": 300
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 0,
+        "fill_share": 0.0,
+        "children_sent": 0
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 0,
+        "fill_share": 0.0,
+        "children_sent": 0
+      }
+    ]
+  },
+  {
+    "scenario": "mixed_stress",
+    "policy": "naive_best_price",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 267,
+    "partial_orders": 33,
+    "unfilled_orders": 0,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 188315,
+    "fill_ratio": 0.9616,
+    "gross_is_bps": 0.3578,
+    "fee_cost_bps": 0.0525,
+    "net_is_bps": 0.4104,
+    "total_fees_usd": 148.3554,
+    "median_parent_latency_us": 901.54,
+    "p99_parent_latency_us": 1636.7369,
+    "children_sent": 868,
+    "children_filled": 626,
+    "children_cancelled": 189,
+    "children_rejected": 53,
+    "children_timed_out": 0,
+    "failovers_triggered": 53,
+    "cancel_to_fill_ratio": 0.3019,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 80398,
+        "fill_share": 0.4269,
+        "children_sent": 304
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 70357,
+        "fill_share": 0.3736,
+        "children_sent": 303
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 37560,
+        "fill_share": 0.1995,
+        "children_sent": 261
+      }
+    ]
+  },
+  {
+    "scenario": "mixed_stress",
+    "policy": "fee_aware",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 281,
+    "partial_orders": 17,
+    "unfilled_orders": 2,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 191055,
+    "fill_ratio": 0.9756,
+    "gross_is_bps": 0.3932,
+    "fee_cost_bps": -0.0101,
+    "net_is_bps": 0.3831,
+    "total_fees_usd": -28.8072,
+    "median_parent_latency_us": 884.9215,
+    "p99_parent_latency_us": 1630.6702,
+    "children_sent": 751,
+    "children_filled": 623,
+    "children_cancelled": 125,
+    "children_rejected": 3,
+    "children_timed_out": 0,
+    "failovers_triggered": 3,
+    "cancel_to_fill_ratio": 0.2006,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 44574,
+        "fill_share": 0.2333,
+        "children_sent": 197
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 109023,
+        "fill_share": 0.5706,
+        "children_sent": 338
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 37458,
+        "fill_share": 0.1961,
+        "children_sent": 216
+      }
+    ]
+  },
+  {
+    "scenario": "mixed_stress",
+    "policy": "smart_cost_aware",
+    "seed": 42,
+    "parent_orders": 300,
+    "filled_orders": 293,
+    "partial_orders": 7,
+    "unfilled_orders": 0,
+    "risk_rejected_orders": 0,
+    "total_requested_qty": 195834,
+    "total_filled_qty": 194531,
+    "fill_ratio": 0.9933,
+    "gross_is_bps": 0.4289,
+    "fee_cost_bps": 0.0331,
+    "net_is_bps": 0.4619,
+    "total_fees_usd": 96.4695,
+    "median_parent_latency_us": 443.07,
+    "p99_parent_latency_us": 1547.1692,
+    "children_sent": 571,
+    "children_filled": 517,
+    "children_cancelled": 51,
+    "children_rejected": 3,
+    "children_timed_out": 0,
+    "failovers_triggered": 3,
+    "cancel_to_fill_ratio": 0.0986,
+    "venues": [
+      {
+        "name": "ARCA",
+        "fill_qty": 86518,
+        "fill_share": 0.4448,
+        "children_sent": 226
+      },
+      {
+        "name": "BATS_INV",
+        "fill_qty": 96406,
+        "fill_share": 0.4956,
+        "children_sent": 271
+      },
+      {
+        "name": "IEX_SIM",
+        "fill_qty": 11607,
+        "fill_share": 0.0597,
+        "children_sent": 74
+      }
+    ]
+  }
+]

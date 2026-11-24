@@ -1,0 +1,28 @@
+seq=1 sym=0 ACCEPTED id=1 side=B px=10000 qty=100
+seq=2 sym=0 ACCEPTED id=2 side=B px=10000 qty=50
+seq=3 sym=0 ACCEPTED id=3 side=B px=9995 qty=200
+seq=4 sym=0 ACCEPTED id=4 side=B px=9990 qty=300
+seq=5 sym=0 ACCEPTED id=5 side=S px=10010 qty=100
+seq=6 sym=0 ACCEPTED id=6 side=S px=10015 qty=100
+seq=7 sym=0 ACCEPTED id=7 side=S px=10000 qty=120
+seq=8 sym=0 TRADE taker=7 maker=1 side=S px=10000 qty=100 taker_leaves=20 maker_leaves=0
+seq=9 sym=0 TRADE taker=7 maker=2 side=S px=10000 qty=20 taker_leaves=0 maker_leaves=30
+seq=10 sym=0 ACCEPTED id=8 side=S px=9990 qty=250
+seq=11 sym=0 TRADE taker=8 maker=2 side=S px=10000 qty=30 taker_leaves=220 maker_leaves=0
+seq=12 sym=0 TRADE taker=8 maker=3 side=S px=9995 qty=200 taker_leaves=20 maker_leaves=0
+seq=13 sym=0 TRADE taker=8 maker=4 side=S px=9990 qty=20 taker_leaves=0 maker_leaves=280
+seq=14 sym=0 ACCEPTED id=9 side=B px=10010 qty=150
+seq=15 sym=0 TRADE taker=9 maker=5 side=B px=10010 qty=100 taker_leaves=50 maker_leaves=0
+seq=16 sym=0 REDUCED id=4 side=B px=9990 removed=180 leaves=100
+seq=17 sym=0 CANCELED id=4 side=B px=9990 qty=100
+seq=18 sym=0 REPLACED id=9 new_id=10 side=B px=10015 qty=30 removed=50
+seq=19 sym=0 TRADE taker=10 maker=6 side=B px=10015 qty=30 taker_leaves=0 maker_leaves=70
+seq=20 sym=1 ACCEPTED id=1 side=S px=500 qty=10
+seq=21 sym=1 ACCEPTED id=2 side=B px=500 qty=10
+seq=22 sym=1 TRADE taker=2 maker=1 side=B px=500 qty=10 taker_leaves=0 maker_leaves=0
+seq=23 sym=0 REJECTED id=20 reason=InvalidTick
+seq=24 sym=0 REJECTED id=21 reason=InvalidQuantity
+seq=25 sym=0 REJECTED id=22 reason=InvalidQuantity
+seq=26 sym=0 REJECTED id=6 reason=DuplicateOrderId
+seq=27 sym=0 REJECTED id=999 reason=UnknownOrderId
+seq=28 sym=7 REJECTED id=23 reason=UnknownSymbol

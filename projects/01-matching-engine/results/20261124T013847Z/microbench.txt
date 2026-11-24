@@ -1,0 +1,134 @@
+Unable to determine clock rate from sysctl: hw.cpufrequency: No such file or directory
+This does not affect benchmark measurements, only the metadata output.
+***WARNING*** Failed to set thread affinity. Estimated CPU frequency may be incorrect.
+2026-11-24T07:10:04+05:30
+Running build-bench/me_bench
+Run on (10 X 24 MHz CPU s)
+CPU Caches:
+  L1 Data 64 KiB
+  L1 Instruction 128 KiB
+  L2 Unified 6144 KiB (x10)
+Load Average: 9.78, 12.20, 8.39
+----------------------------------------------------------------------------------------------------------
+Benchmark                                                Time             CPU   Iterations UserCounters...
+----------------------------------------------------------------------------------------------------------
+BM_AddPassive<me::MapBook>/1000_mean                 36934 ns        36204 ns            3 items_per_second=28.4098M/s
+BM_AddPassive<me::MapBook>/1000_median               35827 ns        35074 ns            3 items_per_second=29.1952M/s
+BM_AddPassive<me::MapBook>/1000_stddev                3249 ns         3003 ns            3 items_per_second=2.26819M/s
+BM_AddPassive<me::MapBook>/1000_cv                    8.80 %          8.30 %             3 items_per_second=7.98%
+BM_AddPassive<me::MapBook>/10000_mean                41076 ns        39915 ns            3 items_per_second=26.0648M/s
+BM_AddPassive<me::MapBook>/10000_median              37013 ns        36242 ns            3 items_per_second=28.2545M/s
+BM_AddPassive<me::MapBook>/10000_stddev               7409 ns         6409 ns            3 items_per_second=3.83034M/s
+BM_AddPassive<me::MapBook>/10000_cv                  18.04 %         16.06 %             3 items_per_second=14.70%
+BM_AddPassive<me::MapBook>/100000_mean               38122 ns        37596 ns            3 items_per_second=27.335M/s
+BM_AddPassive<me::MapBook>/100000_median             37253 ns        36651 ns            3 items_per_second=27.9394M/s
+BM_AddPassive<me::MapBook>/100000_stddev              2936 ns         2806 ns            3 items_per_second=1.97645M/s
+BM_AddPassive<me::MapBook>/100000_cv                  7.70 %          7.46 %             3 items_per_second=7.23%
+BM_AddPassive<me::MapBook>/1000000_mean              82740 ns        73753 ns            3 items_per_second=14.6575M/s
+BM_AddPassive<me::MapBook>/1000000_median            85771 ns        79201 ns            3 items_per_second=12.9291M/s
+BM_AddPassive<me::MapBook>/1000000_stddev            28486 ns        19530 ns            3 items_per_second=4.40359M/s
+BM_AddPassive<me::MapBook>/1000000_cv                34.43 %         26.48 %             3 items_per_second=30.04%
+BM_AddPassive<me::PoolBook>/1000_mean                15377 ns        14990 ns            3 items_per_second=68.3755M/s
+BM_AddPassive<me::PoolBook>/1000_median              15355 ns        15109 ns            3 items_per_second=67.7722M/s
+BM_AddPassive<me::PoolBook>/1000_stddev                899 ns          550 ns            3 items_per_second=2.53736M/s
+BM_AddPassive<me::PoolBook>/1000_cv                   5.85 %          3.67 %             3 items_per_second=3.71%
+BM_AddPassive<me::PoolBook>/10000_mean               30201 ns        29385 ns            3 items_per_second=34.9479M/s
+BM_AddPassive<me::PoolBook>/10000_median             29005 ns        28399 ns            3 items_per_second=36.057M/s
+BM_AddPassive<me::PoolBook>/10000_stddev              2532 ns         1966 ns            3 items_per_second=2.25368M/s
+BM_AddPassive<me::PoolBook>/10000_cv                  8.39 %          6.69 %             3 items_per_second=6.45%
+BM_AddPassive<me::PoolBook>/100000_mean              85144 ns        68199 ns            3 items_per_second=16.2413M/s
+BM_AddPassive<me::PoolBook>/100000_median            74439 ns        62636 ns            3 items_per_second=16.3486M/s
+BM_AddPassive<me::PoolBook>/100000_stddev            41663 ns        23905 ns            3 items_per_second=5.34053M/s
+BM_AddPassive<me::PoolBook>/100000_cv                48.93 %         35.05 %             3 items_per_second=32.88%
+BM_AddPassive<me::PoolBook>/1000000_mean            100764 ns        90092 ns            3 items_per_second=12.1402M/s
+BM_AddPassive<me::PoolBook>/1000000_median           77931 ns        75925 ns            3 items_per_second=13.4871M/s
+BM_AddPassive<me::PoolBook>/1000000_stddev           43034 ns        30261 ns            3 items_per_second=3.46629M/s
+BM_AddPassive<me::PoolBook>/1000000_cv               42.71 %         33.59 %             3 items_per_second=28.55%
+BM_Cancel<me::MapBook>/1000_mean                     69032 ns        63588 ns            3 items_per_second=16.9598M/s
+BM_Cancel<me::MapBook>/1000_median                   67789 ns        63868 ns            3 items_per_second=16.0331M/s
+BM_Cancel<me::MapBook>/1000_stddev                   22695 ns        17226 ns            3 items_per_second=4.79749M/s
+BM_Cancel<me::MapBook>/1000_cv                       32.88 %         27.09 %             3 items_per_second=28.29%
+BM_Cancel<me::MapBook>/10000_mean                    66426 ns        64765 ns            3 items_per_second=15.813M/s
+BM_Cancel<me::MapBook>/10000_median                  66389 ns        64697 ns            3 items_per_second=15.8276M/s
+BM_Cancel<me::MapBook>/10000_stddev                    545 ns          921 ns            3 items_per_second=224.651k/s
+BM_Cancel<me::MapBook>/10000_cv                       0.82 %          1.42 %             3 items_per_second=1.42%
+BM_Cancel<me::MapBook>/100000_mean                  107228 ns       105065 ns            3 items_per_second=9.75589M/s
+BM_Cancel<me::MapBook>/100000_median                108262 ns       105749 ns            3 items_per_second=9.68329M/s
+BM_Cancel<me::MapBook>/100000_stddev                  3316 ns         3999 ns            3 items_per_second=375.075k/s
+BM_Cancel<me::MapBook>/100000_cv                      3.09 %          3.81 %             3 items_per_second=3.84%
+BM_Cancel<me::MapBook>/1000000_mean                 170201 ns       161070 ns            3 items_per_second=6.42605M/s
+BM_Cancel<me::MapBook>/1000000_median               171965 ns       162878 ns            3 items_per_second=6.28692M/s
+BM_Cancel<me::MapBook>/1000000_stddev                27762 ns        20157 ns            3 items_per_second=823.861k/s
+BM_Cancel<me::MapBook>/1000000_cv                    16.31 %         12.51 %             3 items_per_second=12.82%
+BM_Cancel<me::PoolBook>/1000_mean                    25816 ns        23256 ns            3 items_per_second=46.5226M/s
+BM_Cancel<me::PoolBook>/1000_median                  20653 ns        20469 ns            3 items_per_second=50.028M/s
+BM_Cancel<me::PoolBook>/1000_stddev                  10737 ns         7047 ns            3 items_per_second=12.4006M/s
+BM_Cancel<me::PoolBook>/1000_cv                      41.59 %         30.30 %             3 items_per_second=26.65%
+BM_Cancel<me::PoolBook>/10000_mean                   32910 ns        31972 ns            3 items_per_second=32.6302M/s
+BM_Cancel<me::PoolBook>/10000_median                 29911 ns        29226 ns            3 items_per_second=35.0369M/s
+BM_Cancel<me::PoolBook>/10000_stddev                  6443 ns         5570 ns            3 items_per_second=5.18492M/s
+BM_Cancel<me::PoolBook>/10000_cv                     19.58 %         17.42 %             3 items_per_second=15.89%
+BM_Cancel<me::PoolBook>/100000_mean                  44883 ns        44048 ns            3 items_per_second=23.2886M/s
+BM_Cancel<me::PoolBook>/100000_median                44771 ns        43473 ns            3 items_per_second=23.5547M/s
+BM_Cancel<me::PoolBook>/100000_stddev                 1988 ns         2295 ns            3 items_per_second=1.19246M/s
+BM_Cancel<me::PoolBook>/100000_cv                     4.43 %          5.21 %             3 items_per_second=5.12%
+BM_Cancel<me::PoolBook>/1000000_mean                 55934 ns        53993 ns            3 items_per_second=19.0007M/s
+BM_Cancel<me::PoolBook>/1000000_median               53483 ns        52554 ns            3 items_per_second=19.4847M/s
+BM_Cancel<me::PoolBook>/1000000_stddev                5040 ns         2900 ns            3 items_per_second=990.634k/s
+BM_Cancel<me::PoolBook>/1000000_cv                    9.01 %          5.37 %             3 items_per_second=5.21%
+BM_AggressiveMatch<me::MapBook>/1000_mean            27158 ns        26839 ns            3 items_per_second=38.1629M/s
+BM_AggressiveMatch<me::MapBook>/1000_median          26783 ns        26558 ns            3 items_per_second=38.5572M/s
+BM_AggressiveMatch<me::MapBook>/1000_stddev            663 ns          524 ns            3 items_per_second=736.183k/s
+BM_AggressiveMatch<me::MapBook>/1000_cv               2.44 %          1.95 %             3 items_per_second=1.93%
+BM_AggressiveMatch<me::MapBook>/10000_mean           28123 ns        27650 ns            3 items_per_second=37.1503M/s
+BM_AggressiveMatch<me::MapBook>/10000_median         27794 ns        27543 ns            3 items_per_second=37.1784M/s
+BM_AggressiveMatch<me::MapBook>/10000_stddev          2092 ns         1893 ns            3 items_per_second=2.53469M/s
+BM_AggressiveMatch<me::MapBook>/10000_cv              7.44 %          6.85 %             3 items_per_second=6.82%
+BM_AggressiveMatch<me::MapBook>/100000_mean          27817 ns        27460 ns            3 items_per_second=37.2916M/s
+BM_AggressiveMatch<me::MapBook>/100000_median        27906 ns        27527 ns            3 items_per_second=37.2004M/s
+BM_AggressiveMatch<me::MapBook>/100000_stddev          252 ns          187 ns            3 items_per_second=255.284k/s
+BM_AggressiveMatch<me::MapBook>/100000_cv             0.90 %          0.68 %             3 items_per_second=0.68%
+BM_AggressiveMatch<me::MapBook>/1000000_mean         29707 ns        28661 ns            3 items_per_second=35.7601M/s
+BM_AggressiveMatch<me::MapBook>/1000000_median       29884 ns        28851 ns            3 items_per_second=35.493M/s
+BM_AggressiveMatch<me::MapBook>/1000000_stddev        1805 ns         1045 ns            3 items_per_second=1.31771M/s
+BM_AggressiveMatch<me::MapBook>/1000000_cv            6.08 %          3.65 %             3 items_per_second=3.68%
+BM_AggressiveMatch<me::PoolBook>/1000_mean           16807 ns        10937 ns            3 items_per_second=100.214M/s
+BM_AggressiveMatch<me::PoolBook>/1000_median          9315 ns         9115 ns            3 items_per_second=112.34M/s
+BM_AggressiveMatch<me::PoolBook>/1000_stddev         13558 ns         3743 ns            3 items_per_second=28.9452M/s
+BM_AggressiveMatch<me::PoolBook>/1000_cv             80.67 %         34.23 %             3 items_per_second=28.88%
+BM_AggressiveMatch<me::PoolBook>/10000_mean          18706 ns        15094 ns            3 items_per_second=68.8674M/s
+BM_AggressiveMatch<me::PoolBook>/10000_median        14737 ns        13825 ns            3 items_per_second=74.0672M/s
+BM_AggressiveMatch<me::PoolBook>/10000_stddev         7090 ns         2356 ns            3 items_per_second=9.86853M/s
+BM_AggressiveMatch<me::PoolBook>/10000_cv            37.90 %         15.61 %             3 items_per_second=14.33%
+BM_AggressiveMatch<me::PoolBook>/100000_mean         12399 ns        11435 ns            3 items_per_second=89.6674M/s
+BM_AggressiveMatch<me::PoolBook>/100000_median       12367 ns        11676 ns            3 items_per_second=87.7004M/s
+BM_AggressiveMatch<me::PoolBook>/100000_stddev         106 ns          493 ns            3 items_per_second=3.96421M/s
+BM_AggressiveMatch<me::PoolBook>/100000_cv            0.85 %          4.31 %             3 items_per_second=4.42%
+BM_AggressiveMatch<me::PoolBook>/1000000_mean        15870 ns        14196 ns            3 items_per_second=72.4984M/s
+BM_AggressiveMatch<me::PoolBook>/1000000_median      15541 ns        14514 ns            3 items_per_second=70.5549M/s
+BM_AggressiveMatch<me::PoolBook>/1000000_stddev       2872 ns         1212 ns            3 items_per_second=6.40319M/s
+BM_AggressiveMatch<me::PoolBook>/1000000_cv          18.10 %          8.54 %             3 items_per_second=8.83%
+BM_Sweep<me::MapBook>/10000/8_mean                   56086 ns        50377 ns            3 items_per_second=20.3284M/s
+BM_Sweep<me::MapBook>/10000/8_median                 54544 ns        50240 ns            3 items_per_second=20.3823M/s
+BM_Sweep<me::MapBook>/10000/8_stddev                  2745 ns          548 ns            3 items_per_second=220.23k/s
+BM_Sweep<me::MapBook>/10000/8_cv                      4.89 %          1.09 %             3 items_per_second=1.08%
+BM_Sweep<me::MapBook>/10000/64_mean                  94249 ns        50078 ns            3 items_per_second=20.4723M/s
+BM_Sweep<me::MapBook>/10000/64_median                79156 ns        51086 ns            3 items_per_second=20.0445M/s
+BM_Sweep<me::MapBook>/10000/64_stddev                47795 ns         2078 ns            3 items_per_second=869.54k/s
+BM_Sweep<me::MapBook>/10000/64_cv                    50.71 %          4.15 %             3 items_per_second=4.25%
+BM_Sweep<me::MapBook>/10000/512_mean                 69674 ns        42135 ns            3 items_per_second=24.825M/s
+BM_Sweep<me::MapBook>/10000/512_median               50401 ns        38738 ns            3 items_per_second=26.4337M/s
+BM_Sweep<me::MapBook>/10000/512_stddev               44684 ns         7837 ns            3 items_per_second=4.2174M/s
+BM_Sweep<me::MapBook>/10000/512_cv                   64.13 %         18.60 %             3 items_per_second=16.99%
+BM_Sweep<me::PoolBook>/10000/8_mean                   9397 ns         8430 ns            3 items_per_second=122.099M/s
+BM_Sweep<me::PoolBook>/10000/8_median                 9043 ns         8545 ns            3 items_per_second=119.837M/s
+BM_Sweep<me::PoolBook>/10000/8_stddev                  643 ns          729 ns            3 items_per_second=10.8135M/s
+BM_Sweep<me::PoolBook>/10000/8_cv                     6.84 %          8.65 %             3 items_per_second=8.86%
+BM_Sweep<me::PoolBook>/10000/64_mean                  7941 ns         7372 ns            3 items_per_second=138.942M/s
+BM_Sweep<me::PoolBook>/10000/64_median                8164 ns         7455 ns            3 items_per_second=137.36M/s
+BM_Sweep<me::PoolBook>/10000/64_stddev                 402 ns          145 ns            3 items_per_second=2.76488M/s
+BM_Sweep<me::PoolBook>/10000/64_cv                    5.06 %          1.97 %             3 items_per_second=1.99%
+BM_Sweep<me::PoolBook>/10000/512_mean                 6128 ns         5983 ns            3 items_per_second=171.486M/s
+BM_Sweep<me::PoolBook>/10000/512_median               5977 ns         5803 ns            3 items_per_second=176.475M/s
+BM_Sweep<me::PoolBook>/10000/512_stddev                331 ns          331 ns            3 items_per_second=9.19487M/s
+BM_Sweep<me::PoolBook>/10000/512_cv                   5.40 %          5.53 %             3 items_per_second=5.36%

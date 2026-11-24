@@ -1,0 +1,18 @@
+operation,bytes,min_ns_per_op,median_ns_per_op,iters,reps
+encode EnterOrder,49,2.137,2.205,5000000,9
+decode EnterOrder,49,1.730,1.748,5000000,9
+encode ReplaceOrder,47,1.622,1.638,5000000,9
+decode ReplaceOrder,47,1.473,1.503,5000000,9
+encode CancelOrder,19,0.810,0.818,5000000,9
+decode CancelOrder,19,0.706,0.741,5000000,9
+encode Accepted,66,2.531,2.542,5000000,9
+decode Accepted,66,1.947,1.972,5000000,9
+encode Replaced,80,2.750,2.794,5000000,9
+decode Replaced,80,2.618,2.695,5000000,9
+encode Executed,40,1.329,1.335,5000000,9
+decode Executed,40,1.197,1.212,5000000,9
+encode Canceled,28,1.009,1.028,5000000,9
+decode Canceled,28,1.119,1.212,5000000,9
+encode Rejected,24,0.966,0.976,5000000,9
+decode Rejected,24,1.200,1.221,5000000,9
+deframe+decode Executed,43,2.499,2.616,5000000,9

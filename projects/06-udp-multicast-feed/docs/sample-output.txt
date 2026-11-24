@@ -1,0 +1,43 @@
+====================================================================
+ UDP Multicast Market Data Distribution & Recovery — Live Lab Demo
+====================================================================
+Multicast group:     239.255.1.10:50687 (iface 127.0.0.1)
+TCP Recovery Server: 127.0.0.1:52021 (retx_ring=100 pkts, checkpoint_interval=50 pkts)
+Socket buffers:      SNDBUF=2097152 B | RCVBUF=2097152 B
+Publishing 600 sequenced packets (4 events/packet = 2,400 market events)...
+
+Exchange Authoritative State: seq=600 | active_orders=618 | hash=0x32066b3046b48eeb
+
+--- Subscriber 1: Uninterrupted Reference ---
+  State:             LIVE | last_seq=600 | active_orders=618
+  Book Hash:         0x32066b3046b48eeb  [MATCHES EXCHANGE]
+  Datagrams/Applied: rx=605 applied_pkts=600 events=2400 heartbeats=5
+  Anomalies:         gaps=0 ooo=0 reordered_ok=0 dups=0 crc_err=0
+  Faults Injected:   dropped=0 reordered=0 dup=0 corrupt=0
+  TCP Recovery:      retx_req=0 retx_pkts=0 retx_unavail=0 snapshots=0 stale_discarded=0
+  E2E Latency (us):  p50=22.5 p99=170.9
+
+--- Subscriber 2: Loss/Reorder/Dup/Corrupt (TCP Retransmit) ---
+  State:             LIVE | last_seq=600 | active_orders=618
+  Book Hash:         0x32066b3046b48eeb  [MATCHES EXCHANGE]
+  Datagrams/Applied: rx=624 applied_pkts=600 events=2400 heartbeats=5
+  Anomalies:         gaps=60 ooo=163 reordered_ok=157 dups=34 crc_err=8
+  Faults Injected:   dropped=12 reordered=51 dup=31 corrupt=8
+  TCP Recovery:      retx_req=23 retx_pkts=23 retx_unavail=0 snapshots=0 stale_discarded=0
+  E2E Latency (us):  p50=24.1 p99=366.4 | Recovery (us): p50=32.6 max=647.0
+
+--- Subscriber 3: Induced 221-Packet Disconnect (TCP Snapshot+Incremental) ---
+  State:             LIVE | last_seq=600 | active_orders=618
+  Book Hash:         0x32066b3046b48eeb  [MATCHES EXCHANGE]
+  Datagrams/Applied: rx=384 applied_pkts=399 events=1596 heartbeats=5
+  Anomalies:         gaps=1 ooo=1 reordered_ok=1 dups=0 crc_err=0
+  Faults Injected:   dropped=221 reordered=0 dup=0 corrupt=0
+  TCP Recovery:      retx_req=2 retx_pkts=20 retx_unavail=1 snapshots=1 stale_discarded=0
+  E2E Latency (us):  p50=20.1 p99=123.5 | Recovery (us): p50=454.5 max=454.5
+
+--- Recovery Server Summary ---
+  Packets recorded: 600 | Evicted: 500 | Replay checkpoints: 13
+  Retransmit reqs:  25 (ok=24, unavail=1, pkts_sent=43)
+  Snapshot reqs:    1 (sent=1)
+
+Convergence Verification: ALL 3 SUBSCRIBERS MATCH EXCHANGE BOOK EXACTLY (PASS)

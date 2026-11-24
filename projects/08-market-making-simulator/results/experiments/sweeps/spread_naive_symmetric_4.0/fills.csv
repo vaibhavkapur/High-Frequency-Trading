@@ -1,0 +1,3 @@
+exchange_time_ns,order_id,side,fill_price_ticks,fill_price_dollars,fill_qty,liquidity,mid_at_fill_ticks,fee_dollars,raced_cancel,captured_half_spread_ticks,adv_sel_10ms_ticks,realized_10ms_ticks,adv_sel_100ms_ticks,realized_100ms_ticks,adv_sel_1s_ticks,realized_1s_ticks
+12308708043,956,BID,10017,100.170000,100,MAKER,10020.000000,0.200340,0,3.000000,0.000000,3.000000,3.000000,0.000000,7.000000,-4.000000
+35159036611,2687,BID,10030,100.300000,5,MAKER,10033.500000,0.010030,0,3.500000,0.500000,3.000000,3.500000,0.000000,-28.500000,32.000000

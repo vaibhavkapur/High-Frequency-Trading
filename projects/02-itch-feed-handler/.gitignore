@@ -1,0 +1,9 @@
+build*/
+compile_commands.json
+__pycache__/
+*.pyc
+.DS_Store
+# ITCH data is large and, for real Nasdaq files, licensed: never commit it.
+*.itch
+*.itch.gz
+*NASDAQ_ITCH50*

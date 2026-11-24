@@ -1,0 +1,16 @@
+label=randomids_live1m book=pool symbols=1 target_live=1000000 depth_levels=64 max_orders_per_book=4001024 ids=random seed=1
+warmup=4000000 measured=2000000  clock: granularity=41 ns, read cost=25.1 ns
+measured mix: accepted=899605 trades=211486 canceled=693299 reduced=76506 replaced=77203 rejected=253387
+end state: resting_orders=767964 bid_levels=59 ask_levels=61
+throughput: 4777003 commands/s (209.3 ns/command mean, 2211486 reports)
+allocations: 0 in measured window (0.0000 per command)
+latency per command, ns (includes one clock read, ~25 ns):
+  class                count      p50      p95      p99    p99.9        max      mean
+  all                2000000      125      292      375     3208     132333     141.2
+  add_passive         822079       83      167      209      417      64000      87.8
+  add_aggressive       77526       83      167      250      583      18417      88.7
+  cancel              693299      208      333      417     5167     132333     211.7
+  reduce               76506      208      292      375     5291      28625     212.7
+  replace              77203      250      375      541     5375      59500     249.8
+  reject              253387       83      167      209      375      19375      83.0
+command: build-bench/me_latency --book pool --label randomids_live1m --count 2000000 --warmup 4000000 --live 1000000 --random-ids

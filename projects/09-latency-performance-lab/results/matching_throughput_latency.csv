@@ -1,0 +1,17 @@
+variant,target_rate_kops,achieved_rate_kops,p50_ns,p99_ns,p999_ns
+engine_A_baseline,500.00,500.20,31.25,62.53,769.74
+engine_B_pooled_flat,500.00,500.20,20.81,36.44,528.71
+engine_A_baseline,1000.00,1000.38,28.62,65.15,804.70
+engine_B_pooled_flat,1000.00,1000.39,20.81,52.06,191.41
+engine_A_baseline,2000.00,2000.74,28.62,62.50,970.18
+engine_B_pooled_flat,2000.00,2000.75,18.19,36.44,604.24
+engine_A_baseline,4000.00,4001.40,28.69,232.12,1259.26
+engine_B_pooled_flat,4000.00,4001.45,18.19,28.62,582.00
+engine_A_baseline,6000.00,6001.91,28.62,44.25,52.06
+engine_B_pooled_flat,6000.00,6002.06,15.69,23.50,384.27
+engine_A_baseline,8000.00,8002.33,28.69,974.10,2011.81
+engine_B_pooled_flat,8000.00,8002.67,15.62,23.44,599.07
+engine_A_baseline,12000.00,12003.00,28.62,44.25,53.38
+engine_B_pooled_flat,12000.00,12003.75,15.69,23.50,26.06
+engine_A_baseline,0.00,31587.24,28.62,54.69,411.49
+engine_B_pooled_flat,0.00,65974.92,13.06,20.88,23.44

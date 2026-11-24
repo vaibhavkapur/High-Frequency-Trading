@@ -1,0 +1,156 @@
+== baseline_closed_loop
+gateway_bench [baseline_closed_loop]
+  config        orders=200000 warmup=20000 window=1 rate=0/s spin=0 nodelay=1 journal=none fault_rate=0.000 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 3.244 s, 180000 orders, 198368 requests sent (orders + cancels)
+  throughput    61154 requests/s, 55492 orders/s, 1133 risk rejects/s
+  submit->ack   n=180000 min=9.4 p50=15.3 p90=18.5 p99=25.7 p99.9=59.9 max=4843.3 mean=15.9 (us)
+  cpu           gateway thread 36.6% of wall, whole process 73.7% of one core
+  queue depth   mean 1.00, max 1 awaiting response; max send queue 0 bytes
+  faults        disconnects=0 duplicates=0 reorders=0 delays=0 (injected by simulator)
+  recovery      logins=1 uncertain=0 resends=0 duplicates_dropped=0 implicit_accepts=0 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== spin_closed_loop
+gateway_bench [spin_closed_loop]
+  config        orders=200000 warmup=20000 window=1 rate=0/s spin=1 nodelay=1 journal=none fault_rate=0.000 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 3.360 s, 180000 orders, 198368 requests sent (orders + cancels)
+  throughput    59031 requests/s, 53565 orders/s, 1093 risk rejects/s
+  submit->ack   n=180000 min=9.5 p50=15.8 p90=19.0 p99=28.2 p99.9=65.9 max=4093.8 mean=16.5 (us)
+  cpu           gateway thread 44.0% of wall, whole process 79.9% of one core
+  queue depth   mean 1.00, max 1 awaiting response; max send queue 0 bytes
+  faults        disconnects=0 duplicates=0 reorders=0 delays=0 (injected by simulator)
+  recovery      logins=1 uncertain=0 resends=0 duplicates_dropped=0 implicit_accepts=0 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== nagle_closed_loop
+gateway_bench [nagle_closed_loop]
+  config        orders=200000 warmup=20000 window=1 rate=0/s spin=0 nodelay=0 journal=none fault_rate=0.000 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 3.269 s, 180000 orders, 198368 requests sent (orders + cancels)
+  throughput    60673 requests/s, 55055 orders/s, 1124 risk rejects/s
+  submit->ack   n=180000 min=9.1 p50=15.3 p90=18.5 p99=29.9 p99.9=78.2 max=4344.3 mean=16.0 (us)
+  cpu           gateway thread 36.3% of wall, whole process 73.1% of one core
+  queue depth   mean 1.00, max 1 awaiting response; max send queue 0 bytes
+  faults        disconnects=0 duplicates=0 reorders=0 delays=0 (injected by simulator)
+  recovery      logins=1 uncertain=0 resends=0 duplicates_dropped=0 implicit_accepts=0 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== nagle_window8
+gateway_bench [nagle_window8]
+  config        orders=200000 warmup=20000 window=8 rate=0/s spin=0 nodelay=0 journal=none fault_rate=0.000 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 0.778 s, 180000 orders, 198368 requests sent (orders + cancels)
+  throughput    254919 requests/s, 231315 orders/s, 4721 risk rejects/s
+  submit->ack   n=180000 min=8.5 p50=27.3 p90=35.8 p99=46.4 p99.9=94.5 max=4265.0 mean=28.1 (us)
+  cpu           gateway thread 60.3% of wall, whole process 117.4% of one core
+  queue depth   mean 5.68, max 8 awaiting response; max send queue 0 bytes
+  faults        disconnects=0 duplicates=0 reorders=0 delays=0 (injected by simulator)
+  recovery      logins=1 uncertain=0 resends=0 duplicates_dropped=0 implicit_accepts=0 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== nodelay_window8
+gateway_bench [nodelay_window8]
+  config        orders=200000 warmup=20000 window=8 rate=0/s spin=0 nodelay=1 journal=none fault_rate=0.000 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 0.834 s, 180000 orders, 198368 requests sent (orders + cancels)
+  throughput    237791 requests/s, 215772 orders/s, 4404 risk rejects/s
+  submit->ack   n=180000 min=10.5 p50=21.8 p90=31.3 p99=71.0 p99.9=437.8 max=52949.5 mean=27.7 (us)
+  cpu           gateway thread 74.4% of wall, whole process 138.7% of one core
+  queue depth   mean 6.23, max 8 awaiting response; max send queue 0 bytes
+  faults        disconnects=0 duplicates=0 reorders=0 delays=0 (injected by simulator)
+  recovery      logins=1 uncertain=0 resends=0 duplicates_dropped=0 implicit_accepts=0 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== journal_buffered
+gateway_bench [journal_buffered]
+  config        orders=200000 warmup=20000 window=1 rate=0/s spin=0 nodelay=1 journal=buffered fault_rate=0.000 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 3.266 s, 180000 orders, 198368 requests sent (orders + cancels)
+  throughput    60737 requests/s, 55113 orders/s, 1125 risk rejects/s
+  submit->ack   n=180000 min=9.3 p50=15.1 p90=18.1 p99=25.5 p99.9=64.3 max=4340.8 mean=15.7 (us)
+  cpu           gateway thread 38.5% of wall, whole process 74.2% of one core
+  queue depth   mean 1.00, max 1 awaiting response; max send queue 0 bytes
+  faults        disconnects=0 duplicates=0 reorders=0 delays=0 (injected by simulator)
+  recovery      logins=1 uncertain=0 resends=0 duplicates_dropped=0 implicit_accepts=0 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== journal_flush
+gateway_bench [journal_flush]
+  config        orders=200000 warmup=20000 window=1 rate=0/s spin=0 nodelay=1 journal=flush fault_rate=0.000 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 4.503 s, 180000 orders, 198368 requests sent (orders + cancels)
+  throughput    44051 requests/s, 39972 orders/s, 816 risk rejects/s
+  submit->ack   n=180000 min=11.4 p50=17.1 p90=20.5 p99=30.0 p99.9=93.4 max=4827.2 mean=18.0 (us)
+  cpu           gateway thread 54.9% of wall, whole process 80.3% of one core
+  queue depth   mean 1.00, max 1 awaiting response; max send queue 0 bytes
+  faults        disconnects=0 duplicates=0 reorders=0 delays=0 (injected by simulator)
+  recovery      logins=1 uncertain=0 resends=0 duplicates_dropped=0 implicit_accepts=0 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== throughput_window64
+gateway_bench [throughput_window64]
+  config        orders=200000 warmup=20000 window=64 rate=0/s spin=0 nodelay=1 journal=none fault_rate=0.000 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 0.485 s, 180000 orders, 198372 requests sent (orders + cancels)
+  throughput    408649 requests/s, 370803 orders/s, 7568 risk rejects/s
+  submit->ack   n=180000 min=22.1 p50=81.9 p90=140.5 p99=191.8 p99.9=1503.0 max=5925.3 mean=89.5 (us)
+  cpu           gateway thread 96.9% of wall, whole process 176.3% of one core
+  queue depth   mean 38.17, max 64 awaiting response; max send queue 0 bytes
+  faults        disconnects=0 duplicates=0 reorders=0 delays=0 (injected by simulator)
+  recovery      logins=1 uncertain=0 resends=0 duplicates_dropped=0 implicit_accepts=0 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== throughput_window64_spin
+gateway_bench [throughput_window64_spin]
+  config        orders=200000 warmup=20000 window=64 rate=0/s spin=1 nodelay=1 journal=none fault_rate=0.000 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 0.484 s, 180000 orders, 198373 requests sent (orders + cancels)
+  throughput    409884 requests/s, 371921 orders/s, 7591 risk rejects/s
+  submit->ack   n=180000 min=21.8 p50=81.8 p90=138.8 p99=184.5 p99.9=1538.9 max=3775.3 mean=89.0 (us)
+  cpu           gateway thread 97.2% of wall, whole process 175.9% of one core
+  queue depth   mean 38.14, max 64 awaiting response; max send queue 0 bytes
+  faults        disconnects=0 duplicates=0 reorders=0 delays=0 (injected by simulator)
+  recovery      logins=1 uncertain=0 resends=0 duplicates_dropped=0 implicit_accepts=0 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== rate_20k_per_s
+gateway_bench [rate_20k_per_s]
+  config        orders=200000 warmup=20000 window=1024 rate=20000/s spin=0 nodelay=1 journal=none fault_rate=0.000 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 9.000 s, 180000 orders, 198368 requests sent (orders + cancels)
+  throughput    22041 requests/s, 20000 orders/s, 408 risk rejects/s
+  submit->ack   n=180000 min=18.2 p50=62.1 p90=104.9 p99=464.6 p99.9=16313.2 max=39258.2 mean=148.0 (us)
+  cpu           gateway thread 16.4% of wall, whole process 30.2% of one core
+  queue depth   mean 9.68, max 896 awaiting response; max send queue 0 bytes
+  faults        disconnects=0 duplicates=0 reorders=0 delays=0 (injected by simulator)
+  recovery      logins=1 uncertain=0 resends=0 duplicates_dropped=0 implicit_accepts=0 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== faults_0pct
+gateway_bench [faults_0pct]
+  config        orders=200000 warmup=20000 window=16 rate=0/s spin=0 nodelay=1 journal=none fault_rate=0.000 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 0.523 s, 180000 orders, 198369 requests sent (orders + cancels)
+  throughput    379104 requests/s, 343999 orders/s, 7021 risk rejects/s
+  submit->ack   n=180000 min=13.0 p50=30.5 p90=40.5 p99=63.2 p99.9=240.0 max=5390.8 mean=31.7 (us)
+  cpu           gateway thread 96.3% of wall, whole process 179.1% of one core
+  queue depth   mean 11.83, max 16 awaiting response; max send queue 0 bytes
+  faults        disconnects=0 duplicates=0 reorders=0 delays=0 (injected by simulator)
+  recovery      logins=1 uncertain=0 resends=0 duplicates_dropped=0 implicit_accepts=0 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== faults_1pct
+gateway_bench [faults_1pct]
+  config        orders=200000 warmup=20000 window=16 rate=0/s spin=0 nodelay=1 journal=none fault_rate=0.010 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 10.101 s, 180000 orders, 198368 requests sent (orders + cancels)
+  throughput    19638 requests/s, 17820 orders/s, 364 risk rejects/s
+  submit->ack   n=179276 min=23.5 p50=129.5 p90=1493.5 p99=3100.9 p99.9=104630.5 max=336258.0 mean=794.9 (us)
+  cpu           gateway thread 20.6% of wall, whole process 36.5% of one core
+  queue depth   mean 11.55, max 16 awaiting response; max send queue 802 bytes
+  faults        disconnects=2363 duplicates=3748 reorders=3810 delays=3788 (injected by simulator)
+  recovery      logins=2364 uncertain=33500 resends=37808 duplicates_dropped=3748 implicit_accepts=799 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT
+== faults_5pct
+gateway_bench [faults_5pct]
+  config        orders=200000 warmup=20000 window=16 rate=0/s spin=0 nodelay=1 journal=none fault_rate=0.050 seed=1
+  build         clang 21.0.0 (clang-2100.1.1.101), release (NDEBUG)
+  timed section 25.517 s, 180000 orders, 198368 requests sent (orders + cancels)
+  throughput    7774 requests/s, 7054 orders/s, 144 risk rejects/s
+  submit->ack   n=176600 min=19.4 p50=1476.8 p90=4259.9 p99=7666.7 p99.9=17792.6 max=112415.7 mean=2088.3 (us)
+  cpu           gateway thread 15.6% of wall, whole process 24.9% of one core
+  queue depth   mean 11.80, max 16 awaiting response; max send queue 802 bytes
+  faults        disconnects=14173 duplicates=17932 reorders=18013 delays=18709 (injected by simulator)
+  recovery      logins=14174 uncertain=132602 resends=226768 duplicates_dropped=17932 implicit_accepts=3784 anomalies=0
+  final state   200000 orders, 0 mismatches vs exchange, invariants ok => CONSISTENT

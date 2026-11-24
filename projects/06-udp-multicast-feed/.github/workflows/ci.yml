@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure & Build (Release, -Werror)
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DMDF_WERROR=ON
+          cmake --build build -j
+
+      - name: Run Tests (Release)
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Run Live Demo
+        run: ./build/mdf_demo
+
+      - name: Build & Test (ASan + UBSan)
+        run: |
+          cmake -S . -B build-asan -DCMAKE_BUILD_TYPE=Debug -DMDF_SANITIZE=address,undefined -DMDF_WERROR=ON
+          cmake --build build-asan -j
+          ctest --test-dir build-asan --output-on-failure
+
+      - name: Build & Test (TSan)
+        run: |
+          cmake -S . -B build-tsan -DCMAKE_BUILD_TYPE=Debug -DMDF_SANITIZE=thread -DMDF_WERROR=ON
+          cmake --build build-tsan -j
+          ctest --test-dir build-tsan --output-on-failure
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install clang-format
+        run: sudo apt-get update && sudo apt-get install -y clang-format
+      - name: Check formatting
+        run: ./scripts/check_format.sh

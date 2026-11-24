@@ -1,0 +1,24 @@
+{
+  "label": "randomids_live1m",
+  "book": "pool",
+  "workload": {"seed": 1, "symbols": 1, "target_live": 1000000, "depth_levels": 64, "random_ids": true, "add_pm": 600, "cancel_pm": 300, "reduce_pm": 50, "replace_pm": 50, "aggressive_pm": 100},
+  "max_orders_per_book": 4001024,
+  "warmup_commands": 4000000,
+  "measured_commands": 2000000,
+  "clock": {"granularity_ns": 41, "read_cost_ns": 26.97},
+  "measured_mix": {"accepted": 899605, "trades": 211486, "canceled": 693299, "reduced": 76506, "replaced": 77203, "rejected": 253387, "reports": 2211486},
+  "end_state": {"resting_orders": 767964, "bid_levels": 59, "ask_levels": 61},
+  "throughput_commands_per_sec": 6060335,
+  "elapsed_seconds": 0.330015,
+  "allocations": 0,
+  "allocations_per_command": 0.000000,
+  "latency_ns": {
+    "all": {"count": 2000000, "p50": 125, "p95": 333, "p99": 417, "p99_9": 750, "max": 6366792, "mean": 182.69},
+    "add_passive": {"count": 822079, "p50": 83, "p95": 167, "p99": 250, "p99_9": 417, "max": 6366792, "mean": 115.89},
+    "add_aggressive": {"count": 77526, "p50": 83, "p95": 208, "p99": 292, "p99_9": 542, "max": 1214583, "mean": 116.41},
+    "cancel": {"count": 693299, "p50": 209, "p95": 375, "p99": 459, "p99_9": 1750, "max": 5179583, "mean": 274.68},
+    "reduce": {"count": 76506, "p50": 209, "p95": 334, "p99": 417, "p99_9": 2292, "max": 2743125, "mean": 307.42},
+    "replace": {"count": 77203, "p50": 250, "p95": 417, "p99": 584, "p99_9": 2833, "max": 128875, "mean": 284.23},
+    "reject": {"count": 253387, "p50": 83, "p95": 167, "p99": 250, "p99_9": 375, "max": 1330208, "mean": 99.38}
+  }
+}

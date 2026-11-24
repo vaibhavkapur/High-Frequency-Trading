@@ -1,0 +1,5 @@
+# Python analytics, plotting, and test dependencies (the C++20 simulator has zero Python dependency).
+numpy
+pandas
+matplotlib
+pytest

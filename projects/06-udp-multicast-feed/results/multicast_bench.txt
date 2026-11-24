@@ -1,0 +1,27 @@
+==============================================================================
+ UDP Multicast Market Data Benchmarks (Localhost IPv4 Multicast + TCP Lab)
+==============================================================================
+
+[1] Batching Tradeoff (events/datagram vs throughput & e2e latency)
+ev/pkt    pkts/s       events/s      p50_us    p99_us    p999_us   gaps    cpu_ms    match
+1         142045       142045        11.6      1599.9    1930.0    0       115.6     OK
+4         160539       642154        9.3       82.5      334.1     0       101.0     OK
+16        111541       1784652       10.6      64.2      296.6     0       158.0     OK
+32        73225        2343201       14.7      152.8     666.5     0       248.1     OK
+
+[2] Socket Buffer & Polling Mode Tradeoff (unpaced 8000-packet burst, 8 events/pkt)
+config                   rcvbuf_B  pkts/s      p50_us    p99_us    gaps   retx_pkt  cpu_ms    match
+rcvbuf_64k_blocking_b1   65536     108823      284.5     2557.3    30     506       86.2      OK
+rcvbuf_2m_blocking_b1    2097152   114433      10.7      371.4     0      0         81.1      OK
+rcvbuf_2m_blocking_b32   2097152   128203      9.5       39.8      0      0         73.5      OK
+rcvbuf_2m_nonblock_b32   2097152   122848      10.2      30.6      0      0         89.6      OK
+
+[3] Injected Packet Loss & Recovery Latency (2000 packets, 4 events/pkt)
+scenario            dropped   gaps    retx_pkt  snaps   rec_p50_us  rec_p99_us  rec_max_us  match
+loss_0.0pct         0         0       0         0       0.0         0.0         0.0         OK
+loss_0.5pct         17        17      17        0       73.9        374.4       374.4       OK
+loss_2.0pct         44        40      44        0       116.7       917.4       917.4       OK
+loss_5.0pct         104       83      104       0       101.2       3615.6      3615.6      OK
+disconnect_250pkts  250       1       24        1       408.2       408.2       408.2       OK
+
+Wrote raw CSV results to 06-udp-multicast-feed/results/

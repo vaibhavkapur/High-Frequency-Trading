@@ -1,0 +1,16 @@
+# Hand-written fixture used in docs/design.md to walk through one fill.
+# ts_ns is nanoseconds; prices are integer ticks; side is B/S.
+ts_ns,symbol,type,order_id,side,price,qty
+1000000,DEMO,A,1,B,9999,10
+1000000,DEMO,A,2,S,10001,10
+1500000,DEMO,A,3,B,9999,5
+2000000,DEMO,A,4,S,10002,20
+3000000,DEMO,E,1,,,10
+3200000,DEMO,C,3,,,2
+3500000,DEMO,E,3,,,3
+4000000,DEMO,A,5,B,9999,7
+5000000,DEMO,E,5,,,4
+6000000,DEMO,D,5,,,
+7000000,DEMO,A,6,B,9998,10
+8000000,DEMO,E,2,,,6
+9000000,DEMO,A,7,S,10003,1

@@ -1,0 +1,43 @@
+# Sample session for a 2-symbol engine with tick size 5 and lot size 10.
+#
+#   build/me_cli replay --text-in --text --symbols 2 --tick 5 --lot 10 --depth 5 \
+#       --in examples/sample_session.txt --out -
+#
+# Formats:  N <sym> <id> <B|S> <price> <qty>     C <sym> <id>
+#           R <sym> <id> <new_qty>               X <sym> <id> <new_id> <price> <qty>
+
+# Build a book on symbol 0: three bid levels, two ask levels.
+N 0 1 B 10000 100
+N 0 2 B 10000 50
+N 0 3 B 9995 200
+N 0 4 B 9990 300
+N 0 5 S 10010 100
+N 0 6 S 10015 100
+
+# Time priority: a sell for 120 at 10000 fills order 1 fully, then 20 of order 2.
+N 0 7 S 10000 120
+
+# Multi-level sweep: a sell for 250 at 9990 takes the rest of 10000, then 9995, then 9990.
+N 0 8 S 9990 250
+
+# Marketable buy that only partly fills: takes all of 10010, rests 50 at 10010.
+N 0 9 B 10010 150
+
+# Reduce keeps priority; cancel removes only what is left.
+R 0 4 100
+C 0 4
+
+# Cancel/replace: the bid moves up to cross the 10015 ask and trades as a new order.
+X 0 9 10 10015 30
+
+# Symbol 1 is an independent book: same order id, no interaction with symbol 0.
+N 1 1 S 500 10
+N 1 2 B 500 10
+
+# Rejections: bad tick, bad lot, zero quantity, duplicate id, unknown id, unknown symbol.
+N 0 20 B 10001 10
+N 0 21 B 10000 15
+N 0 22 B 10000 0
+N 0 6 S 10020 10
+C 0 999
+N 7 23 B 10000 10

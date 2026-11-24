@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y cmake ninja-build clang clang-format libsqlite3-dev
+
+      - name: Check formatting
+        run: |
+          find include src tests benchmarks -name '*.hpp' -o -name '*.cpp' | xargs clang-format --dry-run --Werror
+
+      - name: Build and test (Release + -Werror)
+        run: |
+          cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release -DXARB_WERROR=ON
+          cmake --build build
+          ctest --test-dir build --output-on-failure
+
+      - name: Build and test (ASan + UBSan)
+        run: |
+          cmake -S . -B build-asan -G Ninja -DCMAKE_BUILD_TYPE=Debug -DXARB_WERROR=ON -DXARB_SANITIZE="address,undefined"
+          cmake --build build-asan
+          ctest --test-dir build-asan --output-on-failure
+
+      - name: Build and test (ThreadSanitizer)
+        run: |
+          cmake -S . -B build-tsan -G Ninja -DCMAKE_BUILD_TYPE=Debug -DXARB_WERROR=ON -DXARB_SANITIZE="thread"
+          cmake --build build-tsan
+          ctest --test-dir build-tsan -R spsc_concurrent_ingestion --output-on-failure
+
+      - name: CLI determinism & Python analytics check
+        run: |
+          ./build/xarb generate --out /tmp/ci_feed.xarb --binary --steps 1000 --seed 42
+          ./build/xarb replay --feed /tmp/ci_feed.xarb --out-dir /tmp/ci_run1 > /tmp/run1.txt
+          ./build/xarb replay --feed /tmp/ci_feed.xarb --out-dir /tmp/ci_run2 > /tmp/run2.txt
+          grep "run hash" /tmp/run1.txt > /tmp/h1.txt
+          grep "run hash" /tmp/run2.txt > /tmp/h2.txt
+          diff -u /tmp/h1.txt /tmp/h2.txt
+          python3 scripts/analyze_results.py --run-dir /tmp/ci_run1

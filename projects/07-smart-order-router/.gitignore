@@ -1,0 +1,12 @@
+build*/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+compile_commands.json
+.DS_Store
+# Keep curated benchmark and experiment results under version control.
+results/*
+!results/README.md
+!results/benchmarks/
+!results/experiments/

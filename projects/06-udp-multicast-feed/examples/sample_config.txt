@@ -1,0 +1,13 @@
+# Sample two-terminal run configuration for UDP Multicast Market Data Lab
+#
+# Terminal 1 (Subscriber):
+#   ./build/mdf_subscriber --group 239.255.0.1 --port 30001 --iface 127.0.0.1 \
+#     --recovery-host 127.0.0.1 --recovery-port 30002 --channel 1 \
+#     --target-seq 1000 --drop-prob 0.02
+#
+# Terminal 2 (Publisher + TCP Recovery Server):
+#   ./build/mdf_publisher --group 239.255.0.1 --port 30001 --iface 127.0.0.1 \
+#     --recovery-port 30002 --channel 1 --packets 1000 --batch 4 --interval-us 100
+#
+# Optional packet capture (Terminal 3):
+#   ./scripts/capture_tcpdump.sh 30001 30002

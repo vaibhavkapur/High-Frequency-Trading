@@ -1,0 +1,16 @@
+label=symbols256_live100k_oversized book=map symbols=256 target_live=100000 depth_levels=64 max_orders_per_book=200000 ids=sequential seed=1
+warmup=500000 measured=2000000  clock: granularity=41 ns, read cost=18.1 ns
+measured mix: accepted=899666 trades=200192 canceled=697860 reduced=76136 replaced=77767 rejected=248571
+end state: resting_orders=77719 bid_levels=14282 ask_levels=14298
+throughput: 6787378 commands/s (147.3 ns/command mean, 2200192 reports)
+allocations: 1906720 in measured window (0.9534 per command)
+latency per command, ns (includes one clock read, ~18 ns):
+  class                count      p50      p95      p99    p99.9        max      mean
+  all                2000000      125      250      417      959      69709     139.1
+  add_passive         822692      125      209      333      750      69709     133.1
+  add_aggressive       76974      125      375      542     1250      24458     163.3
+  cancel              697860      125      250      417     1000      42417     160.2
+  reduce               76136      125      209      375      792      17375     132.0
+  replace              77767      250      500      750     1917      32833     295.6
+  reject              248571       42      125      208      375      31125      45.4
+command: build-bench/me_latency --book map --label symbols256_live100k_oversized --count 2000000 --warmup 500000 --live 100000 --symbols 256 --max-orders 200000

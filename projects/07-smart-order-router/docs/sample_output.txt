@@ -1,0 +1,37 @@
+=== Multi-Venue Smart Order Router Demo ===
+NOTE: Educational simulated execution engine (not a regulatory NBBO router).
+
+[1] Consolidated BBO (stale IEX_SIM excluded):
+    Raw Best Bid: $149.9900 | Raw Best Ask: $150.0000 (ARCA)
+    Fee-Adjusted Best Ask: $149.9992 (BATS_INV wins via -$0.0018 rebate)
+
+[2] Submitted Parent DEMO-PARENT-001 (BUY 400 @ $150.05 IOC) -> 2 child orders:
+    -> Child #1 to ARCA qty=300 limit=$150.0000
+    -> Child #2 to BATS_INV qty=100 limit=$150.0010
+
+[3] After ARCA partial fill (150/300 + duplicate exec ignored) & IOC cancel:
+    Automatic reroute emitted 1 child order(s):
+    -> Rerouted Child #3 to BATS_INV qty=150 limit=$150.0010
+    Parent final state: FILLED | filled=400/400 | avg_px=$150.0006 | net_fees=$0.0000 | net_IS=0.38 bps
+    Duplicate exec reports safely ignored: 1
+
+[4] Duplicate client_order_id submission:
+    State=REJECTED | RiskReason=DUPLICATE_CLIENT_ORDER_ID
+
+[5] Multi-Policy Backtest Comparison (scenario=mixed_stress, 200 parent orders, seed=42):
+Policy                 Fill%    GrossIS    FeeBps     NetIS  Cxl/Fill  Failover  MedLat(us)  VenueShares
+-------------------------------------------------------------------------------------------------------------------
+naive_primary          79.2%       0.68      0.20      0.88      0.04        41       241.5  ARCA:100% BATS_INV:0% IEX_SIM:0%
+naive_best_price       96.1%       0.37      0.05      0.42      0.31        34       907.9  ARCA:42% BATS_INV:38% IEX_SIM:21%
+fee_aware              97.8%       0.39     -0.01      0.38      0.17         3       882.7  ARCA:21% BATS_INV:57% IEX_SIM:22%
+smart_cost_aware       99.2%       0.46      0.03      0.49      0.10         3       446.6  ARCA:44% BATS_INV:52% IEX_SIM:4%
+
+Audit log (15 events) written to /Users/vaibhavkapur/Desktop/hft-projects/07-smart-order-router/results/demo_audit.jsonl
+
+=== Sample Structured Audit Log (first 6 JSONL entries) ===
+{"seq":1,"ts_ns":10000000000,"event":"PARENT_SUBMITTED","parent_id":1,"child_id":0,"venue_id":255,"client_order_id":"DEMO-PARENT-001","detail":"BUY qty=400 limit=$150.0500 tif=IOC"}
+{"seq":2,"ts_ns":10000000000,"event":"RISK_APPROVED","parent_id":1,"child_id":0,"venue_id":255,"client_order_id":"DEMO-PARENT-001","detail":"approved"}
+{"seq":3,"ts_ns":10000000000,"event":"ROUTE_DECISION","parent_id":1,"child_id":0,"venue_id":255,"client_order_id":"DEMO-PARENT-001","detail":"planned=400/400 ref_mid=$149.9950 exp_cost=1.48bps | slices=[ARCA:300@150.0000(raw=0.33,fee=0.20,lat=0.14,miss=0.78,pfill=0.69,tot=1.45bps), BATS_INV:100@150.0010(raw=0.40,fee=-0.12,lat=0.24,miss=1.03,pfill=0.59,tot=1.55bps)] | venues=[ARCA:ELIGIBLE, BATS_INV:ELIGIBLE, IEX_SIM:STALE_QUOTE(age_ms=12.00)]"}
+{"seq":4,"ts_ns":10000000000,"event":"CHILD_SENT","parent_id":1,"child_id":1,"venue_id":0,"client_order_id":"DEMO-PARENT-001","detail":"qty=300 limit=$150.0000 exp_cost=1.45bps"}
+{"seq":5,"ts_ns":10000000000,"event":"CHILD_SENT","parent_id":1,"child_id":2,"venue_id":1,"client_order_id":"DEMO-PARENT-001","detail":"qty=100 limit=$150.0010 exp_cost=1.55bps"}
+{"seq":6,"ts_ns":10000250000,"event":"CHILD_FILL","parent_id":1,"child_id":1,"venue_id":0,"client_order_id":"DEMO-PARENT-001","detail":"exec_id=9001 qty=150 px=$150.0000 fee=$0.4500 parent_rem=250"}

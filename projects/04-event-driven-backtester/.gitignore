@@ -1,0 +1,12 @@
+build*/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+compile_commands.json
+# Run outputs are reproducible from the commands in docs/; only curated
+# benchmark and experiment results are kept under version control.
+results/*
+!results/README.md
+!results/benchmarks/
+!results/experiments/

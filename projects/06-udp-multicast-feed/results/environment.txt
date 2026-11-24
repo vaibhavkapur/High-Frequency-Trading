@@ -1,0 +1,6 @@
+timestamp_utc=2026-11-24T04:58:45Z
+os_kernel=Darwin 25.5.0 arm64
+cpu_model=Apple M5
+cpu_cores=10
+compiler=Apple clang version 21.0.0 (clang-2100.1.1.101)
+cmake_build_type=Release

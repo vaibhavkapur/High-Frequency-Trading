@@ -1,0 +1,5 @@
+config,req_rcvbuf,actual_rcvbuf,non_blocking,recv_batch,packets,elapsed_ms,pkts_per_sec,p50_us,p99_us,p999_us,gaps,retx_pkts,snapshots,kernel_udp_drop_delta,cpu_ms,hash_match
+rcvbuf_64k_blocking_b1,65536,65536,0,1,8000,73.5138,108823,284.542,2557.29,2803.21,30,506,0,NA,86.152,1
+rcvbuf_2m_blocking_b1,2097152,2097152,0,1,8000,69.91,114433,10.666,371.417,1038.33,0,0,0,NA,81.129,1
+rcvbuf_2m_blocking_b32,2097152,2097152,0,32,8000,62.4012,128203,9.5,39.75,207.334,0,0,0,NA,73.468,1
+rcvbuf_2m_nonblock_b32,2097152,2097152,1,32,8000,65.1211,122848,10.25,30.583,178,0,0,0,NA,89.605,1

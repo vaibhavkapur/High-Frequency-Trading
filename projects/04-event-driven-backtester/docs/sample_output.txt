@@ -1,0 +1,80 @@
+### build + test
+100% tests passed out of 65
+
+Total Test time (real) =   0.69 sec
+
+### 13-event fixture with full event trace
+feed             examples/data/tiny_l3.csv (13 events, 1 instruments)
+strategy         ladder
+simulated span   0.008 s
+dispatched       40 events in 0.000 s wall (0.28 M events/s)
+orders           sent 2, risk-rejected 0, exch-rejected 0, cancels 0 (0 too late)
+fills            2 (2 maker / 0 taker), fill ratio 0.5000
+pnl net / gross  2.00 / 2.00 (fees 0.00)
+turnover         39996.00
+max drawdown     2.00
+gross exposure   avg 23749.50, max 40000.00
+event hash       57e44e11aa2209a8
+reports          results/tiny_demo/
+--- results/tiny_demo/events.log (first 12 lines)
+1000000 FEED DEMO A id=1 side=B px=9999 qty=10
+1000000 FEED DEMO A id=2 side=S px=10001 qty=10
+1100000 MD_OBSERVED DEMO A exch_ts=1000000
+1100000 MD_OBSERVED DEMO A exch_ts=1000000
+1300000 ORDER_ARRIVE id=1 DEMO side=B px=9999 qty=4
+1300000 EXCH_ACK id=1 px=0 qty=0 leaves=4
+1300000 ORDER_ARRIVE id=2 DEMO side=S px=10001 qty=4
+1300000 EXCH_ACK id=2 px=0 qty=0 leaves=4
+1500000 FEED DEMO A id=3 side=B px=9999 qty=5
+1500000 REPORT_OBSERVED id=1 ACK exch_ts=1300000
+1500000 REPORT_OBSERVED id=2 ACK exch_ts=1300000
+1600000 MD_OBSERVED DEMO A exch_ts=1500000
+
+### market-making baseline on the synthetic L3 sample
+feed             examples/data/sample_l3.csv (20000 events, 1 instruments)
+strategy         market_maker
+simulated span   33.847 s
+dispatched       54785 events in 0.002 s wall (25.72 M events/s)
+orders           sent 3099, risk-rejected 0, exch-rejected 3, cancels 3065 (416 too late)
+fills            534 (534 maker / 0 taker), fill ratio 0.1480
+pnl net / gross  5628.46 / 5172.00 (fees -456.46)
+turnover         45645916.00
+max drawdown     118.01
+gross exposure   avg 85824.07, max 358722.00
+markout 1000000   maker +0.6694 ticks/lot (4585 lots), taker +0.0000 (0 lots)
+markout 100000000 maker +1.1467 ticks/lot (4565 lots), taker +0.0000 (0 lots)
+markout 1000000000 maker +1.2321 ticks/lot (4483 lots), taker +0.0000 (0 lots)
+event hash       90de3f2736369387
+reports          results/sample_market_maker/
+
+### imbalance-taking baseline
+feed             examples/data/sample_l3.csv (20000 events, 1 instruments)
+strategy         imbalance
+simulated span   33.847 s
+dispatched       51288 events in 0.002 s wall (28.59 M events/s)
+orders           sent 2556, risk-rejected 0, exch-rejected 0, cancels 0 (0 too late)
+fills            1064 (0 maker / 1064 taker), fill ratio 0.3852
+pnl net / gross  -4541.61 / -3120.00 (fees 1421.61)
+turnover         47386854.00
+max drawdown     4566.09
+gross exposure   avg 147548.59, max 200130.00
+markout 1000000   maker +0.0000 ticks/lot (0 lots), taker -1.1367 (4760 lots)
+markout 100000000 maker +0.0000 ticks/lot (0 lots), taker -0.7572 (4702 lots)
+markout 1000000000 maker +0.0000 ticks/lot (0 lots), taker -0.8513 (4598 lots)
+event hash       3ea4229e61266f67
+reports          results/sample_imbalance/
+
+### determinism: same input + seed + config -> same event hash
+run 1: 90de3f2736369387
+run 2: 90de3f2736369387
+
+### independent recomputation of the report from the fill tape
+metric                         engine     recomputed
+fills                             534            534 
+qty_filled                       4585           4585 
+maker_fills                       534            534 
+fees                         -456.459       -456.459 
+pnl_net                       5628.46        5628.46 
+max_drawdown                  118.012        118.012 
+final_positions                                match
+wrote results/sample_market_maker/equity.png

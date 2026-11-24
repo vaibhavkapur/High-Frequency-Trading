@@ -1,0 +1,16 @@
+date_utc:      2026-11-24T01:46:41Z
+command:       MESSAGES=5000000 SYMBOLS=500 SEED=1 RUNS=15 scripts/run_benchmarks.sh
+source_rev:    not a git checkout
+uname:         Darwin 25.5.0 arm64
+os:            macOS 26.5.1 (25F80)
+cpu:           Apple M5
+cores:         10 physical / 10 logical (performance: 4, efficiency: 6)
+memory_bytes:  17179869184
+power:         Now drawing from 'Battery Power'
+affinity:      none (macOS has no thread pinning API); itch_bench requests QOS_CLASS_USER_INTERACTIVE
+governor:      n/a (macOS)
+compiler:      /usr/bin/c++
+compiler_ver:  Apple clang version 21.0.0 (clang-2100.1.1.101)
+build_type:    Release (flags are recorded per row in bench.jsonl)
+warmup:        1 untimed pass per configuration, then 15 timed passes; median reported
+dataset:       synthetic, itch_gen --messages 5000000 --symbols 500 --seed 1, profiles: balanced add-heavy churn

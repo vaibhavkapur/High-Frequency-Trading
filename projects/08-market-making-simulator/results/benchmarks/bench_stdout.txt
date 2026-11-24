@@ -1,0 +1,8 @@
+Benchmark dataset: 154223 events (120s simulated high_vol_burst, seed=202601, runs=7)
+
+Configuration                       Throughput   Mean(ns)    p50(ns)    p99(ns)  p99.9(ns)
+------------------------------------------------------------------------------------------
+flat_array + inventory_aware           6.58 M/s       34.9       35.2       43.0       46.9
+std_map + inventory_aware              5.25 M/s       46.0       44.2       63.8      149.6
+flat_array + naive_symmetric           8.75 M/s       34.2       33.8       37.8       48.7
+std_map + naive_symmetric              6.76 M/s       44.6       44.2       57.3       65.3

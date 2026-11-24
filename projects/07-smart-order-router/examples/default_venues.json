@@ -1,0 +1,102 @@
+{
+  "venues": [
+    {
+      "id": 0,
+      "name": "ARCA",
+      "enabled": true,
+      "taker_fee_per_share_ticks": 30,
+      "maker_fee_per_share_ticks": -20,
+      "base_one_way_latency_ns": 120000,
+      "latency_jitter_ns": 15000,
+      "stale_timeout_ns": 5000000,
+      "base_fill_prob": 0.94,
+      "latency_decay_per_ms": 0.16,
+      "depletion_sensitivity": 0.25,
+      "tick_size": 100,
+      "lot_size": 1,
+      "min_order_qty": 1,
+      "max_child_qty": 5000,
+      "max_active_children": 64,
+      "max_parent_share": 1.0,
+      "priority": 0
+    },
+    {
+      "id": 1,
+      "name": "BATS_INV",
+      "enabled": true,
+      "taker_fee_per_share_ticks": -18,
+      "maker_fee_per_share_ticks": 22,
+      "base_one_way_latency_ns": 220000,
+      "latency_jitter_ns": 25000,
+      "stale_timeout_ns": 5000000,
+      "base_fill_prob": 0.89,
+      "latency_decay_per_ms": 0.20,
+      "depletion_sensitivity": 0.30,
+      "tick_size": 100,
+      "lot_size": 1,
+      "min_order_qty": 1,
+      "max_child_qty": 3000,
+      "max_active_children": 64,
+      "max_parent_share": 1.0,
+      "priority": 1
+    },
+    {
+      "id": 2,
+      "name": "IEX_SIM",
+      "enabled": true,
+      "taker_fee_per_share_ticks": 9,
+      "maker_fee_per_share_ticks": 0,
+      "base_one_way_latency_ns": 450000,
+      "latency_jitter_ns": 40000,
+      "stale_timeout_ns": 5000000,
+      "base_fill_prob": 0.84,
+      "latency_decay_per_ms": 0.24,
+      "depletion_sensitivity": 0.35,
+      "tick_size": 100,
+      "lot_size": 1,
+      "min_order_qty": 1,
+      "max_child_qty": 2000,
+      "max_active_children": 64,
+      "max_parent_share": 1.0,
+      "priority": 2
+    }
+  ],
+  "router": {
+    "policy": "smart_cost_aware",
+    "adverse_selection_bps_per_ms": 0.8,
+    "miss_penalty_bps": 2.5,
+    "stale_age_weight": 0.5,
+    "check_limit_on_effective_price": false,
+    "respect_staleness": true,
+    "respect_venue_health": true,
+    "allow_partial_sweep": true,
+    "max_reroute_attempts": 3
+  },
+  "risk": {
+    "max_order_qty": 50000,
+    "max_order_notional_usd": 5000000.0,
+    "max_net_position_qty": 100000,
+    "max_gross_position_qty": 200000,
+    "max_open_notional_usd": 10000000.0,
+    "max_orders_per_second": 1000,
+    "max_price_collar_bps": 500.0
+  },
+  "health": {
+    "degraded_reject_threshold": 1,
+    "circuit_open_reject_threshold": 3,
+    "circuit_open_timeout_threshold": 2,
+    "recovery_cooldown_ns": 5000000000
+  },
+  "simulation": {
+    "scenario": "mixed_stress",
+    "seed": 42,
+    "num_parent_orders": 200,
+    "min_parent_qty": 100,
+    "max_parent_qty": 1200,
+    "initial_mid_ticks": 1500000,
+    "liquidity_scale": 1.0,
+    "latency_scale": 1.0,
+    "fee_scale": 1.0,
+    "depletion_rate": 0.35
+  }
+}

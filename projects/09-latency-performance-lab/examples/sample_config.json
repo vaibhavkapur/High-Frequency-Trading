@@ -1,0 +1,23 @@
+{
+  "description": "Default reproducible experiment profile for 09-latency-performance-lab",
+  "microbenchmarks": {
+    "warmup_rounds": 3,
+    "repetitions": 7,
+    "samples_per_rep": 25,
+    "pin_core": 0,
+    "suites": [
+      "aos_soa",
+      "order_book",
+      "allocator",
+      "dispatch",
+      "branch_sharing",
+      "spsc"
+    ]
+  },
+  "matching_ab": {
+    "num_orders": 200000,
+    "interleaved_repetitions": 7,
+    "latency_batch_size": 32,
+    "pin_core": 0
+  }
+}

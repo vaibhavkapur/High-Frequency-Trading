@@ -1,0 +1,2 @@
+add_executable(market_data_pipeline market_data_pipeline.cpp)
+target_link_libraries(market_data_pipeline PRIVATE lfm::lfm lfm_build_flags)

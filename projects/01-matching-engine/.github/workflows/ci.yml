@@ -1,0 +1,56 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  format:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: clang-format
+        run: CLANG_FORMAT=clang-format-18 scripts/check_format.sh
+
+  build-test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { name: gcc-release, os: ubuntu-24.04, cxx: g++-13, type: Release, sanitize: "" }
+          - { name: clang-release, os: ubuntu-24.04, cxx: clang++-18, type: Release, sanitize: "" }
+          - { name: clang-asan-ubsan, os: ubuntu-24.04, cxx: clang++-18, type: Debug, sanitize: "address,undefined" }
+          - { name: gcc-asan-ubsan, os: ubuntu-24.04, cxx: g++-13, type: Debug, sanitize: "address,undefined" }
+          - { name: macos-release, os: macos-14, cxx: clang++, type: Release, sanitize: "" }
+    name: ${{ matrix.name }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: >
+          cmake -S . -B build
+          -DCMAKE_BUILD_TYPE=${{ matrix.type }}
+          -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
+          -DME_SANITIZE=${{ matrix.sanitize }}
+          -DME_WERROR=ON
+      - name: Build
+        run: cmake --build build -j 4
+      - name: Test
+        run: ctest --test-dir build --output-on-failure -j 4
+      - name: Benchmark smoke test
+        if: matrix.type == 'Release'
+        run: |
+          build/me_latency --book pool --count 200000 --warmup 50000
+          build/me_bench --benchmark_min_time=0.01s --benchmark_filter='/1000$'
+
+  fuzz:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build libFuzzer target
+        run: |
+          cmake -S . -B build-fuzz -DCMAKE_BUILD_TYPE=RelWithDebInfo -DCMAKE_CXX_COMPILER=clang++-18 \
+            -DME_BUILD_FUZZERS=ON -DME_BUILD_TESTS=OFF -DME_BUILD_BENCHMARKS=OFF
+          cmake --build build-fuzz -j 4 --target me_fuzz_engine
+      - name: Fuzz for 60 seconds
+        run: build-fuzz/me_fuzz_engine -max_total_time=60 -max_len=4000

@@ -1,0 +1,11 @@
+{
+  "events": 44577,
+  "wall_time_sec": 0.8112,
+  "events_per_sec": 54954.5510,
+  "book_updates_per_sec": 54937.2918,
+  "proc_p50_ns": 8041.0000,
+  "proc_p99_ns": 26750.0000,
+  "proc_p999_ns": 81801.8080,
+  "binary_decode_events_per_sec": 306012.0168,
+  "jsonl_decode_events_per_sec": 160336.0646
+}

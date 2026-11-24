@@ -1,0 +1,16 @@
+label=levels_4096_live100k book=pool symbols=1 target_live=100000 depth_levels=4096 max_orders_per_book=401024 ids=sequential seed=1
+warmup=500000 measured=2000000  clock: granularity=41 ns, read cost=21.1 ns
+measured mix: accepted=899666 trades=203133 canceled=694675 reduced=76258 replaced=77375 rejected=252026
+end state: resting_orders=77354 bid_levels=3747 ask_levels=3773
+throughput: 11907506 commands/s (84.0 ns/command mean, 2203133 reports)
+allocations: 0 in measured window (0.0000 per command)
+latency per command, ns (includes one clock read, ~21 ns):
+  class                count      p50      p95      p99    p99.9        max      mean
+  all                2000000       83      209      292      542    1059875      95.0
+  add_passive         825559       42      125      208      458    1059875      70.8
+  add_aggressive       74107       42      125      167      250      22166      52.4
+  cancel              694675      125      250      333      666     595083     133.8
+  reduce               76258      125      250      333      625      19625     131.1
+  replace              77375      167      292      416      958      26500     171.9
+  reject              252026       42      125      167      250      28125      45.3
+command: build-bench/me_latency --book pool --label levels_4096_live100k --count 2000000 --warmup 500000 --live 100000 --depth-levels 4096

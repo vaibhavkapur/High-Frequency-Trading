@@ -1,0 +1,48 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-14]
+        build: [Release, Sanitize]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Configure
+        run: |
+          if [ "${{ matrix.build }}" = "Sanitize" ]; then
+            cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DHFTBT_SANITIZE=ON -DHFTBT_WERROR=ON
+          else
+            cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DHFTBT_WERROR=ON
+          fi
+      - name: Build
+        run: cmake --build build -j
+      - name: C++ tests
+        run: ctest --test-dir build --output-on-failure
+      - name: Python tests (CLI end-to-end + tooling)
+        if: matrix.build == 'Release'
+        run: |
+          pip install -r requirements.txt
+          python -m pytest tests/python -q
+      - name: Benchmark smoke run (not a measurement)
+        if: matrix.build == 'Release'
+        run: build/bench_replay --events 100000 --reps 1 --only strategy/
+
+  format:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install clang-format==23.1.5
+      - run: scripts/format.sh --check

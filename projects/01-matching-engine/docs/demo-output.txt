@@ -1,0 +1,130 @@
+
+$ cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+CMake Warning (author) at /opt/homebrew/share/cmake/Modules/FetchContent.cmake:1386 (message):
+  The DOWNLOAD_EXTRACT_TIMESTAMP option was not given and policy CMP0135 is
+  not set.  The policy's OLD behavior will be used.  When using a URL
+  download, the timestamps of extracted files should preferably be that of
+  the time of extraction, otherwise code that depends on the extracted
+  contents might not be rebuilt if the URL changes.  The OLD behavior
+  preserves the timestamps from the archive instead, but this is usually not
+  what you want.  Update your project to the NEW behavior or specify the
+  DOWNLOAD_EXTRACT_TIMESTAMP option with a value of true to avoid this
+  robustness issue.
+Call Stack (most recent call first):
+  CMakeLists.txt:52 (FetchContent_Declare)
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+CMake Warning (author) at /opt/homebrew/share/cmake/Modules/FetchContent.cmake:1386 (message):
+  The DOWNLOAD_EXTRACT_TIMESTAMP option was not given and policy CMP0135 is
+  not set.  The policy's OLD behavior will be used.  When using a URL
+  download, the timestamps of extracted files should preferably be that of
+  the time of extraction, otherwise code that depends on the extracted
+  contents might not be rebuilt if the URL changes.  The OLD behavior
+  preserves the timestamps from the archive instead, but this is usually not
+  what you want.  Update your project to the NEW behavior or specify the
+  DOWNLOAD_EXTRACT_TIMESTAMP option with a value of true to avoid this
+  robustness issue.
+Call Stack (most recent call first):
+  CMakeLists.txt:87 (FetchContent_Declare)
+This warning is for project developers.  Use -Wno-author to suppress it.
+
+-- Google Benchmark version: v1.9.1, normalized to 1.9.1
+-- Enabling additional flags: -DINCLUDE_DIRECTORIES=/Users/vaibhavkapur/Desktop/hft-projects/01-matching-engine/build/_deps/googlebenchmark-src/include
+-- Performing Test HAVE_THREAD_SAFETY_ATTRIBUTES -- success
+-- Performing Test HAVE_STD_REGEX -- success
+-- Performing Test HAVE_GNU_POSIX_REGEX -- failed to compile
+-- Performing Test HAVE_POSIX_REGEX -- success
+-- Performing Test HAVE_STEADY_CLOCK -- success
+-- Performing Test HAVE_PTHREAD_AFFINITY -- failed to compile
+-- Configuring done (1.2s)
+-- Generating done (0.1s)
+-- Build files have been written to: /Users/vaibhavkapur/Desktop/hft-projects/01-matching-engine/build
+
+$ cmake --build build -j
+[  4%] Built target me_alloc_counter
+[ 10%] Built target me_support
+[ 14%] Built target gtest
+[ 18%] Built target me_cli
+[ 27%] Built target gmock
+[ 27%] Built target me_latency
+[ 31%] Built target gtest_main
+[ 35%] Built target gmock_main
+[ 50%] Built target me_alloc_tests
+[ 81%] Built target benchmark
+[ 91%] Built target me_tests
+[ 95%] Built target benchmark_main
+[100%] Built target me_bench
+
+$ ctest --test-dir build | tail -3
+100% tests passed out of 116
+
+Total Test time (real) =   1.25 sec
+
+$ build/me_cli replay --text-in --text --symbols 2 --tick 5 --lot 10 --depth 5 --in examples/sample_session.txt --out -
+seq=1 sym=0 ACCEPTED id=1 side=B px=10000 qty=100
+seq=2 sym=0 ACCEPTED id=2 side=B px=10000 qty=50
+seq=3 sym=0 ACCEPTED id=3 side=B px=9995 qty=200
+seq=4 sym=0 ACCEPTED id=4 side=B px=9990 qty=300
+seq=5 sym=0 ACCEPTED id=5 side=S px=10010 qty=100
+seq=6 sym=0 ACCEPTED id=6 side=S px=10015 qty=100
+seq=7 sym=0 ACCEPTED id=7 side=S px=10000 qty=120
+seq=8 sym=0 TRADE taker=7 maker=1 side=S px=10000 qty=100 taker_leaves=20 maker_leaves=0
+seq=9 sym=0 TRADE taker=7 maker=2 side=S px=10000 qty=20 taker_leaves=0 maker_leaves=30
+seq=10 sym=0 ACCEPTED id=8 side=S px=9990 qty=250
+seq=11 sym=0 TRADE taker=8 maker=2 side=S px=10000 qty=30 taker_leaves=220 maker_leaves=0
+seq=12 sym=0 TRADE taker=8 maker=3 side=S px=9995 qty=200 taker_leaves=20 maker_leaves=0
+seq=13 sym=0 TRADE taker=8 maker=4 side=S px=9990 qty=20 taker_leaves=0 maker_leaves=280
+seq=14 sym=0 ACCEPTED id=9 side=B px=10010 qty=150
+seq=15 sym=0 TRADE taker=9 maker=5 side=B px=10010 qty=100 taker_leaves=50 maker_leaves=0
+seq=16 sym=0 REDUCED id=4 side=B px=9990 removed=180 leaves=100
+seq=17 sym=0 CANCELED id=4 side=B px=9990 qty=100
+seq=18 sym=0 REPLACED id=9 new_id=10 side=B px=10015 qty=30 removed=50
+seq=19 sym=0 TRADE taker=10 maker=6 side=B px=10015 qty=30 taker_leaves=0 maker_leaves=70
+seq=20 sym=1 ACCEPTED id=1 side=S px=500 qty=10
+seq=21 sym=1 ACCEPTED id=2 side=B px=500 qty=10
+seq=22 sym=1 TRADE taker=2 maker=1 side=B px=500 qty=10 taker_leaves=0 maker_leaves=0
+seq=23 sym=0 REJECTED id=20 reason=InvalidTick
+seq=24 sym=0 REJECTED id=21 reason=InvalidQuantity
+seq=25 sym=0 REJECTED id=22 reason=InvalidQuantity
+seq=26 sym=0 REJECTED id=6 reason=DuplicateOrderId
+seq=27 sym=0 REJECTED id=999 reason=UnknownOrderId
+seq=28 sym=7 REJECTED id=23 reason=UnknownSymbol
+book=pool commands=20 reports=28 accepted=11 rejected=6 trades=8 canceled=1 reduced=1 replaced=1 traded_qty=510
+elapsed=0.002s (9488 commands/s end to end, including file I/O)
+symbol 0: 1 resting orders; price x qty (orders), best first
+  asks: 10015 x 70 (1)
+  bids: (empty)
+symbol 1: 0 resting orders; price x qty (orders), best first
+  asks: (empty)
+  bids: (empty)
+
+$ build/me_cli gen --out /var/folders/g_/j9s29m557kb9v1v8llg48ht80000gn/T/tmp.7BlDwmndyi/commands.bin --count 1000000 --seed 42 --symbols 4 --live 20000
+generated 1000000 commands (40000000 bytes)
+
+$ build/me_cli replay --book pool --symbols 4 --in /var/folders/g_/j9s29m557kb9v1v8llg48ht80000gn/T/tmp.7BlDwmndyi/commands.bin --out /var/folders/g_/j9s29m557kb9v1v8llg48ht80000gn/T/tmp.7BlDwmndyi/reports.pool.bin --depth 3
+book=pool commands=1000000 reports=1106298 accepted=460252 rejected=126232 trades=106298 canceled=337686 reduced=37426 replaced=38404 traded_qty=2712843
+elapsed=0.393s (2542843 commands/s end to end, including file I/O)
+symbol 0: 3704 resting orders; price x qty (orders), best first
+  asks: 100001 x 47 (1) 100005 x 59 (2) 100006 x 208 (5)
+  bids: 99997 x 63 (2) 99996 x 80 (2) 99995 x 18 (1)
+symbol 1: 3825 resting orders; price x qty (orders), best first
+  asks: 99999 x 2 (1) 100005 x 52 (1) 100006 x 242 (6)
+  bids: 99995 x 47 (1) 99993 x 188 (6) 99992 x 1367 (31)
+symbol 2: 3841 resting orders; price x qty (orders), best first
+  asks: 100007 x 551 (12) 100008 x 1171 (26) 100009 x 1384 (28)
+  bids: 100003 x 54 (1) 100002 x 47 (1) 100001 x 31 (1)
+symbol 3: 3810 resting orders; price x qty (orders), best first
+  asks: 100006 x 389 (11) 100007 x 931 (21) 100008 x 1029 (21)
+  bids: 99997 x 103 (2) 99996 x 67 (1) 99995 x 40 (1)
+
+$ build/me_cli replay --book map --symbols 4 --in /var/folders/g_/j9s29m557kb9v1v8llg48ht80000gn/T/tmp.7BlDwmndyi/commands.bin --out /var/folders/g_/j9s29m557kb9v1v8llg48ht80000gn/T/tmp.7BlDwmndyi/reports.map.bin
+book=map commands=1000000 reports=1106298 accepted=460252 rejected=126232 trades=106298 canceled=337686 reduced=37426 replaced=38404 traded_qty=2712843
+elapsed=0.376s (2656162 commands/s end to end, including file I/O)
+
+$ cmp /var/folders/g_/j9s29m557kb9v1v8llg48ht80000gn/T/tmp.7BlDwmndyi/reports.pool.bin /var/folders/g_/j9s29m557kb9v1v8llg48ht80000gn/T/tmp.7BlDwmndyi/reports.map.bin
+report streams are byte-identical
+
+$ build/me_cli dump --in reports.pool.bin | tail -3
+seq=1106296 sym=1 REJECTED id=503466 reason=UnknownOrderId
+seq=1106297 sym=2 CANCELED id=500982 side=B px=99969 qty=79
+seq=1106298 sym=0 ACCEPTED id=510249 side=B px=99955 qty=35

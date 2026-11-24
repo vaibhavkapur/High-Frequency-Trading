@@ -1,0 +1,39 @@
+{
+  "scenario": "baseline_5ms_limit_ioc",
+  "run_hash": "ba162e6c2f9815db",
+  "total_signals": 24314,
+  "signal_breakdown": {
+    "insufficient_edge_after_fees": 13300,
+    "actionable": 112,
+    "cooldown_active": 1255,
+    "insufficient_funding": 6672,
+    "below_min_profit": 2489,
+    "stale_quote": 4,
+    "venue_not_synced": 482
+  },
+  "mean_gross_bps_all_crosses": 21.083681153450843,
+  "mean_net_bps_actionable": 21.45908089285714,
+  "trade_outcomes": {
+    "one_legged_unhedged": 54,
+    "rejected_unfunded": 17,
+    "both_missed_expired": 1,
+    "both_filled_profitable": 40
+  },
+  "net_pnl_quote": 2994.1444819999992,
+  "total_fees_quote": 3021.5252859999996,
+  "total_slippage_vs_expected_quote": 1156.7762329999998,
+  "sqlite_verified": true,
+  "accounting_invariants_ok": true
+}
+
+Latency Sweep Summary:
+Latency(ms) | Signals | Profit | 1-Leg | Missed |   Fill% |     FP% |    Net PnL
+----------------------------------------------------------------------------------
+        0.0 |     494 |    448 |     0 |      0 |  90.69% |   0.00% |   21884.99
+        1.0 |     402 |    240 |    96 |      0 |  59.70% |  28.57% |   13886.41
+        2.0 |     402 |    240 |    96 |      0 |  59.70% |  28.57% |   13886.41
+        5.0 |     112 |     40 |    54 |      1 |  35.71% |  57.89% |    2994.14
+       10.0 |      88 |     11 |    56 |      5 |  12.50% |  84.72% |    1249.21
+       25.0 |      86 |      1 |    49 |     20 |   1.16% |  98.57% |     194.62
+       50.0 |      58 |      0 |    31 |     16 |   0.00% | 100.00% |     164.45
+      100.0 |      95 |      0 |    37 |     32 |   0.00% | 100.00% |    -276.66

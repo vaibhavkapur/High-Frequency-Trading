@@ -1,0 +1,14 @@
+{
+  "router": {
+    "policy": "fee_aware",
+    "respect_staleness": true,
+    "respect_venue_health": true
+  },
+  "simulation": {
+    "scenario": "fee_inversion",
+    "seed": 101,
+    "num_parent_orders": 300,
+    "min_parent_qty": 100,
+    "max_parent_qty": 1000
+  }
+}

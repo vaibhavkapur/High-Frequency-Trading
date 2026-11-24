@@ -1,0 +1,71 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: linux-gcc-release
+            os: ubuntu-24.04
+            cxx: g++
+            build_type: Release
+            sanitize: ""
+          - name: linux-clang-release
+            os: ubuntu-24.04
+            cxx: clang++
+            build_type: Release
+            sanitize: ""
+          - name: linux-clang-asan-ubsan
+            os: ubuntu-24.04
+            cxx: clang++
+            build_type: Debug
+            sanitize: address,undefined
+          - name: macos-clang-release
+            os: macos-14
+            cxx: clang++
+            build_type: Release
+            sanitize: ""
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: >
+          cmake -S . -B build
+          -DCMAKE_CXX_COMPILER=${{ matrix.cxx }}
+          -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          -DITCH_SANITIZE=${{ matrix.sanitize }}
+          -DITCH_WERROR=ON
+      - name: Build
+        run: cmake --build build -j
+      - name: Test
+        run: ctest --test-dir build --output-on-failure
+      - name: Demo (end-to-end smoke test)
+        if: matrix.sanitize == ''
+        run: scripts/demo.sh
+
+  fuzz-smoke:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build fuzzer
+        run: |
+          cmake -S . -B build-fuzz -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+                -DITCH_BUILD_FUZZERS=ON -DITCH_BUILD_TESTS=OFF -DITCH_BUILD_BENCHMARKS=OFF
+          cmake --build build-fuzz -j --target fuzz_feed
+      - name: Fuzz for 60 seconds
+        run: ./build-fuzz/fuzz_feed -max_len=4096 -max_total_time=60
+
+  format:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install clang-format 18
+        run: pip install clang-format==18.1.8
+      - name: Check formatting
+        run: scripts/format.sh --check

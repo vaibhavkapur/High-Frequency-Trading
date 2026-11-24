@@ -1,0 +1,23 @@
+add_executable(test_equivalence test_equivalence.cpp)
+target_link_libraries(test_equivalence PRIVATE lpl::lpl lpl_build_flags)
+add_test(NAME equivalence COMMAND test_equivalence)
+
+add_executable(test_concurrency test_concurrency.cpp)
+target_link_libraries(test_concurrency PRIVATE lpl::lpl lpl_build_flags)
+add_test(NAME concurrency COMMAND test_concurrency)
+
+add_executable(test_harness_and_stats test_harness_and_stats.cpp)
+target_link_libraries(test_harness_and_stats PRIVATE lpl::lpl lpl_build_flags)
+add_test(NAME harness_and_stats COMMAND test_harness_and_stats)
+
+if(LPL_LIBFUZZER)
+  add_executable(fuzz_matching test_matching_fuzz.cpp)
+  target_compile_definitions(fuzz_matching PRIVATE LPL_USE_LIBFUZZER=1)
+  target_compile_options(fuzz_matching PRIVATE -fsanitize=fuzzer,address,undefined -g)
+  target_link_options(fuzz_matching PRIVATE -fsanitize=fuzzer,address,undefined)
+  target_link_libraries(fuzz_matching PRIVATE lpl::lpl lpl_build_flags)
+else()
+  add_executable(test_matching_fuzz test_matching_fuzz.cpp)
+  target_link_libraries(test_matching_fuzz PRIVATE lpl::lpl lpl_build_flags)
+  add_test(NAME matching_fuzz COMMAND test_matching_fuzz)
+endif()

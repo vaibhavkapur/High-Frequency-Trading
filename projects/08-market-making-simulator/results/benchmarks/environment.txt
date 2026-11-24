@@ -1,0 +1,10 @@
+timestamp_utc=2026-11-24T04:57:54Z
+os=Darwin 25.5.0 arm64
+cpu=Apple M5
+cores_logical=10
+cores_physical=10
+mem_bytes=17179869184
+compiler=Apple clang version 21.0.0 (clang-2100.1.1.101)
+build_type=Release (-O3 -DNDEBUG)
+git_rev=unversioned
+command=/Users/vaibhavkapur/Desktop/hft-projects/08-market-making-simulator/build/bench_sim --duration 120 --runs 7 --out-csv /Users/vaibhavkapur/Desktop/hft-projects/08-market-making-simulator/results/benchmarks/bench_results.csv

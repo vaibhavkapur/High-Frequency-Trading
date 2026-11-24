@@ -1,0 +1,61 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [g++-13, clang++-18]
+        config:
+          - { name: release, build_type: Release, sanitize: "" }
+          - { name: asan-ubsan, build_type: RelWithDebInfo, sanitize: "address,undefined" }
+          - { name: tsan, build_type: RelWithDebInfo, sanitize: "thread" }
+    name: ${{ matrix.compiler }} / ${{ matrix.config.name }}
+    env:
+      CXX: ${{ matrix.compiler }}
+      UBSAN_OPTIONS: halt_on_error=1:print_stacktrace=1
+      TSAN_OPTIONS: halt_on_error=1
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: >
+          cmake -S . -B build
+          -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }}
+          -DOUCH_SANITIZE=${{ matrix.config.sanitize }}
+          -DOUCH_WERROR=ON
+      - name: Build
+        run: cmake --build build -j
+      - name: Test
+        run: ctest --test-dir build --output-on-failure -j 4
+      - name: Demo runs end to end
+        run: ./build/ouch_demo "$RUNNER_TEMP/demo.journal"
+
+  format:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: clang-format
+        run: CLANG_FORMAT=clang-format-18 scripts/check_format.sh
+
+  fuzz-smoke:
+    runs-on: ubuntu-24.04
+    env:
+      CXX: clang++-18
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build fuzzers
+        run: |
+          cmake -S . -B build-fuzz -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+                -DOUCH_BUILD_FUZZERS=ON -DOUCH_BUILD_TESTS=OFF \
+                -DOUCH_BUILD_BENCHMARKS=OFF -DOUCH_BUILD_EXAMPLES=OFF
+          cmake --build build-fuzz -j
+      - name: Run each fuzzer for 30 seconds
+        run: |
+          for f in fuzz_decode fuzz_frames fuzz_oms; do
+            ./build-fuzz/$f -max_total_time=30 -max_len=512
+          done
