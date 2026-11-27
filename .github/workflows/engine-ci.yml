@@ -9,7 +9,7 @@ on:
 
 defaults:
   run:
-    working-directory: High-Frequency-Trading-Engine
+    working-directory: projects/11-high-frequency-trading-engine
 
 jobs:
   engine-build-and-test:
@@ -87,4 +87,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: hft-bench-linux-artifacts
-          path: High-Frequency-Trading-Engine/integration/results/ci_linux/
+          path: projects/11-high-frequency-trading-engine/integration/results/ci_linux/

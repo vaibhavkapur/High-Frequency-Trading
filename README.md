@@ -1,8 +1,6 @@
 # High Frequency Trading
 
-Ten C++20 projects explore how an order moves through an exchange, how market data reaches a trader, and how to measure execution strategies and system latency.
-
-The [High-Frequency Trading Engine](High-Frequency-Trading-Engine/) combines all ten projects into a single simulator. Its README includes build instructions and a deterministic replay demo.
+Eleven C++20 projects explore how an order moves through an exchange, how market data reaches a trader, and how to measure execution strategies and system latency.
 
 ## Getting started
 
@@ -33,3 +31,4 @@ Each project builds independently. Run its README commands from its directory un
 - [08 · Market-Making Simulator](projects/08-market-making-simulator/) — Compares quoting strategies under inventory constraints and measures fills and adverse selection.
 - [09 · Latency Performance Lab](projects/09-latency-performance-lab/) — Measures how memory layout, allocation, and concurrency affect latency in microbenchmarks and a matching engine.
 - [10 · Cross-Exchange Arbitrage](projects/10-cross-exchange-arbitrage/) — Scans synthetic venue feeds for price differences and simulates whether trades remain profitable after fees and execution delay.
+- [11 · High-Frequency Trading Engine](projects/11-high-frequency-trading-engine/) — Combines projects 01–10 into a single simulator with deterministic replay and end-to-end benchmarks.

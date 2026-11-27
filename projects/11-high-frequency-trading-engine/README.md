@@ -14,7 +14,7 @@ Requires CMake 3.20+ and a C++20 compiler. CMake uses the ten modules in the rep
 
 ```bash
 git clone https://github.com/vaibhavkapur/High-Frequency-Trading.git
-cd High-Frequency-Trading/High-Frequency-Trading-Engine
+cd High-Frequency-Trading/projects/11-high-frequency-trading-engine
 
 cmake -S engine -B build/engine -DCMAKE_BUILD_TYPE=Release
 cmake --build build/engine --parallel
@@ -101,7 +101,7 @@ The ten standalone projects live in [`vaibhavkapur/High-Frequency-Trading`](http
 ## Repository Layout
 
 ```text
-High-Frequency-Trading-Engine/
+projects/11-high-frequency-trading-engine/
 ├── README.md
 ├── plan.md                             # Integration roadmap and acceptance criteria
 ├── engine/
@@ -120,7 +120,7 @@ High-Frequency-Trading-Engine/
 │   └── results/apple_m5_release/       # Raw benchmark CSV/JSON, provenance, and generated summary
 ├── scripts/                            # build_all.sh, run_demo.sh, run_benchmarks.sh, summarize_benchmarks.py
 ├── docs/                               # integration-audit, contracts, architecture, failure-modes, performance-report, showcase
-└── ../.github/workflows/engine-ci.yml            # Multi-compiler Release, ASan+UBSan, TSan, and non-gating perf CI
+└── ../../.github/workflows/engine-ci.yml            # Multi-compiler Release, ASan+UBSan, TSan, and non-gating perf CI
 ```
 
 ## Tests
