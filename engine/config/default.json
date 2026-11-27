@@ -1,0 +1,60 @@
+{
+  "contract_version": "1.0",
+  "default_mode": "deterministic",
+  "instruments": [
+    {
+      "id": 0,
+      "symbol": "AAPL",
+      "tick_size_price4": 100,
+      "lot_size": 1,
+      "currency": "USD"
+    },
+    {
+      "id": 1,
+      "symbol": "MSFT",
+      "tick_size_price4": 100,
+      "lot_size": 1,
+      "currency": "USD"
+    }
+  ],
+  "venues": [
+    {
+      "id": 0,
+      "name": "ARCA_SIM",
+      "maker_fee_bps_x100": -20,
+      "taker_fee_bps_x100": 30,
+      "md_latency_ns": 50000,
+      "order_latency_ns": 80000,
+      "response_latency_ns": 60000,
+      "stale_threshold_ns": 50000000
+    },
+    {
+      "id": 1,
+      "name": "BATS_INV",
+      "maker_fee_bps_x100": 20,
+      "taker_fee_bps_x100": -15,
+      "md_latency_ns": 60000,
+      "order_latency_ns": 90000,
+      "response_latency_ns": 70000,
+      "stale_threshold_ns": 50000000
+    },
+    {
+      "id": 2,
+      "name": "IEX_SIM",
+      "maker_fee_bps_x100": 0,
+      "taker_fee_bps_x100": 9,
+      "md_latency_ns": 180000,
+      "order_latency_ns": 220000,
+      "response_latency_ns": 180000,
+      "stale_threshold_ns": 50000000
+    }
+  ],
+  "risk": {
+    "max_order_qty_lots": 200,
+    "max_order_notional_usd": 500000,
+    "max_long_position_lots": 500,
+    "max_short_position_lots": 500,
+    "max_open_orders": 64,
+    "max_price_band_bps": 500
+  }
+}

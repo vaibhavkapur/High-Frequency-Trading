@@ -1,0 +1,49 @@
+{
+  "scenarios": [
+    {
+      "name": "single-venue",
+      "mode": "deterministic",
+      "description": "Phase 2 MVP: deterministic L3 fixture -> delayed view -> risk -> Project 01 matching -> OMS -> exact fixed-point ledger with golden checksum."
+    },
+    {
+      "name": "itch-replay",
+      "mode": "deterministic",
+      "description": "Project 02 ITCH 5.0 synthetic stream -> canonical book (cross-checked against reference ITCH BBO) -> full deterministic execution loop."
+    },
+    {
+      "name": "fault-recovery",
+      "mode": "deterministic",
+      "description": "Phase 3 fault matrix: duplicate fills, delayed acks, dropped response, disconnect/reconnect reconciliation, Project 03 binary EventLog replay."
+    },
+    {
+      "name": "multicast-recovery",
+      "mode": "network-lab",
+      "description": "Phase 4: Project 06 MDF1/MDR1 multicast protocol with injected drops, corruption, duplication, reordering, retransmit & snapshot convergence."
+    },
+    {
+      "name": "spsc-pipeline",
+      "mode": "network-lab",
+      "description": "Phase 4: Project 05 wait-free SPSC queue two-thread pipeline verifying zero-loss book convergence and overflow contracts."
+    },
+    {
+      "name": "ouch-tcp",
+      "mode": "network-lab",
+      "description": "Phase 3/4: Project 03 OUCH/SoupBinTCP Gateway over loopback TCP to ExchangeSim backed by Project 01 PoolBook with disconnect recovery."
+    },
+    {
+      "name": "multi-venue-mm",
+      "mode": "deterministic",
+      "description": "Phase 5: Project 08 InventoryAware MarketMaker plugin across 3 venues & 2 instruments (walk-forward synthetic in-sample vs out-of-sample)."
+    },
+    {
+      "name": "multi-venue-sor",
+      "mode": "deterministic",
+      "description": "Phase 5: Project 07 SmartOrderRouter splitting and failing over across 3 venues with independent fee schedules and latencies."
+    },
+    {
+      "name": "paper-arb",
+      "mode": "deterministic",
+      "description": "Phase 7: Project 10 paper-only cross-exchange arbitrage demonstrating both profitable crosses and gross-positive/net-infeasible negative cases."
+    }
+  ]
+}

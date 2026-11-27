@@ -1,0 +1,8 @@
+{
+  "tick_to_decision": {"count": 500, "min_ns": 125.00, "p50_ns": 333.00, "p95_ns": 584.00, "p99_ns": 1125.00, "p999_ns": 2938.79, "max_ns": 3583.00, "mean_ns": 370.50, "stddev_ns": 242.17},
+  "order_submit_to_ack": {"count": 500, "min_ns": 83.00, "p50_ns": 125.00, "p95_ns": 208.00, "p99_ns": 791.42, "p999_ns": 3023.37, "max_ns": 4458.00, "mean_ns": 154.27, "stddev_ns": 218.65},
+  "order_submit_to_fill": {"count": 500, "min_ns": 83.00, "p50_ns": 166.50, "p95_ns": 250.00, "p99_ns": 875.84, "p999_ns": 4752.33, "max_ns": 6166.00, "mean_ns": 194.32, "stddev_ns": 319.95},
+  "pool_vs_map_checksum_match": true,
+  "direct_vs_spsc_checksum_match": true,
+  "spsc_drops": 0
+}
