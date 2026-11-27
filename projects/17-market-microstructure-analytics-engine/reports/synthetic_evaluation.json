@@ -1,0 +1,241 @@
+{
+  "schema_version": "mmae.v1",
+  "backend": "python-stdlib",
+  "polars_installed": false,
+  "features_csv": "projects/17-market-microstructure-analytics-engine/build/demo_artifacts/synthetic_features_optimized.csv",
+  "features_sha256": "181463891f6270ad5a04bd4306a94ef1fe276c94891a9efe18268889ef7d8d4c",
+  "config": {
+    "horizons_ms": [
+      50,
+      100,
+      250,
+      500
+    ],
+    "train_fraction": 0.7,
+    "ridge_lambda": 0.0001,
+    "stale_threshold_ns": 1000000000,
+    "tick_size": 0.01
+  },
+  "split": {
+    "train_fraction": 0.7,
+    "train_end_ts_ns": 1700000018075000000,
+    "embargo_ns": 500000000,
+    "test_start_ts_ns": 1700000018575000000
+  },
+  "coverage": {
+    "total_feature_rows": 5243,
+    "valid_book_rows": 4580,
+    "valid_book_ratio": 0.8735456799542247,
+    "gap_flagged_rows": 2,
+    "stale_rows": 0,
+    "crossed_rows": 0,
+    "locked_rows": 0,
+    "total_trades": 1200,
+    "classified_trades": 1113,
+    "ambiguous_trades": 87,
+    "classified_trade_coverage": 0.9275,
+    "ambiguous_trade_ratio": 0.0725
+  },
+  "replay_gaps": [
+    {
+      "expected_seq": 1829,
+      "observed_seq": 1834,
+      "missing_count": 5,
+      "prev_event_ts_ns": 1700000008996000000,
+      "observed_event_ts_ns": 1700000009001000000,
+      "resolved_by_snapshot": true,
+      "resolved_seq": 1835
+    },
+    {
+      "expected_seq": 4042,
+      "observed_seq": 4047,
+      "missing_count": 5,
+      "prev_event_ts_ns": 1700000020121000000,
+      "observed_event_ts_ns": 1700000020126000000,
+      "resolved_by_snapshot": true,
+      "resolved_seq": 4048
+    }
+  ],
+  "price_response_by_horizon": {
+    "50ms": {
+      "horizon_ms": 50,
+      "n_classified_trades_evaluated": 1107,
+      "trade_horizon_coverage": 0.9946091644204852,
+      "mean_response_ticks": 0.29042457091237095,
+      "std_response_ticks": 0.8840450863468942,
+      "se_response_ticks": 0.026570553667864757,
+      "mean_response_bps": 0.29035204799228825,
+      "buy_mean_response_ticks": 0.25594149908591646,
+      "sell_mean_response_ticks": 0.32410714285713993
+    },
+    "100ms": {
+      "horizon_ms": 100,
+      "n_classified_trades_evaluated": 1100,
+      "trade_horizon_coverage": 0.9883198562443846,
+      "mean_response_ticks": 0.4845454545454632,
+      "std_response_ticks": 1.309563504412933,
+      "se_response_ticks": 0.039484825302551145,
+      "mean_response_bps": 0.4844546128007454,
+      "buy_mean_response_ticks": 0.41391941391942266,
+      "sell_mean_response_ticks": 0.5541516245487454
+    },
+    "250ms": {
+      "horizon_ms": 250,
+      "n_classified_trades_evaluated": 1082,
+      "trade_horizon_coverage": 0.97214734950584,
+      "mean_response_ticks": 0.9103512014787474,
+      "std_response_ticks": 2.4260199256196215,
+      "se_response_ticks": 0.07375317706433165,
+      "mean_response_bps": 0.9101742305317231,
+      "buy_mean_response_ticks": 0.703327171903896,
+      "sell_mean_response_ticks": 1.1173752310536027
+    },
+    "500ms": {
+      "horizon_ms": 500,
+      "n_classified_trades_evaluated": 1047,
+      "trade_horizon_coverage": 0.9407008086253369,
+      "mean_response_ticks": 1.123686723973249,
+      "std_response_ticks": 3.931321566997626,
+      "se_response_ticks": 0.12149690867945358,
+      "mean_response_bps": 1.1232886820269898,
+      "buy_mean_response_ticks": 0.8071017274472002,
+      "sell_mean_response_ticks": 1.4372623574144512
+    }
+  },
+  "adverse_selection_by_horizon": {
+    "50ms": {
+      "horizon_ms": 50,
+      "n_trades": 1107,
+      "mean_effective_half_spread_ticks": 0.99457994579947,
+      "mean_realized_half_spread_ticks": 0.7041553748871132,
+      "mean_adverse_selection_ticks": 0.29042457091237095,
+      "adverse_selection_share_of_eff_spread": 0.29200726612169914,
+      "max_decomposition_identity_residual": 0.0
+    },
+    "100ms": {
+      "horizon_ms": 100,
+      "n_trades": 1100,
+      "mean_effective_half_spread_ticks": 0.9950000000000087,
+      "mean_realized_half_spread_ticks": 0.510454545454564,
+      "mean_adverse_selection_ticks": 0.4845454545454632,
+      "adverse_selection_share_of_eff_spread": 0.48698035632709447,
+      "max_decomposition_identity_residual": 0.0
+    },
+    "250ms": {
+      "horizon_ms": 250,
+      "n_trades": 1082,
+      "mean_effective_half_spread_ticks": 0.9953789279112838,
+      "mean_realized_half_spread_ticks": 0.08502772643255484,
+      "mean_adverse_selection_ticks": 0.9103512014787474,
+      "adverse_selection_share_of_eff_spread": 0.9145775301764126,
+      "max_decomposition_identity_residual": 0.0
+    },
+    "500ms": {
+      "horizon_ms": 500,
+      "n_trades": 1047,
+      "mean_effective_half_spread_ticks": 0.9947468958930386,
+      "mean_realized_half_spread_ticks": -0.12893982808019067,
+      "mean_adverse_selection_ticks": 1.123686723973249,
+      "adverse_selection_share_of_eff_spread": 1.1296207393182707,
+      "max_decomposition_identity_residual": 0.0
+    }
+  },
+  "oos_predictive_by_horizon": {
+    "50ms": {
+      "horizon_ms": 50,
+      "n_train": 3192,
+      "n_embargo_excluded": 85,
+      "n_test": 1268,
+      "event_horizon_coverage": 0.8668701125309937,
+      "oos_r2_vs_zero_baseline": 0.22672503012319545,
+      "oos_r2_vs_test_mean": 0.22618726430556824,
+      "oos_pearson_r": 0.47736731689707834,
+      "oos_spearman_ic": 0.45648163270592207,
+      "oos_directional_accuracy_nonzero": 0.8325434439178515,
+      "oos_rmse_ticks": 0.7497455948562199,
+      "oos_mae_ticks": 0.6176851673406693,
+      "naive_zero_rmse_ticks": 0.8526031765459271,
+      "naive_zero_mae_ticks": 0.5721608832807658,
+      "standardized_coefficients": {
+        "intercept": -0.011121553884710127,
+        "obi_l1": 1.097134235037423,
+        "obi_k": 0.05953672290382614,
+        "ofi_window": 0.04072387652682477,
+        "rolling_trade_flow_imbalance": -0.0794503114474393,
+        "microprice_offset_ticks": -0.7308144672390083
+      }
+    },
+    "100ms": {
+      "horizon_ms": 100,
+      "n_train": 3181,
+      "n_embargo_excluded": 85,
+      "n_test": 1247,
+      "event_horizon_coverage": 0.8607667366011825,
+      "oos_r2_vs_zero_baseline": 0.3177636389687273,
+      "oos_r2_vs_test_mean": 0.31733188489795017,
+      "oos_pearson_r": 0.5655304953523417,
+      "oos_spearman_ic": 0.5555617172139105,
+      "oos_directional_accuracy_nonzero": 0.8356807511737089,
+      "oos_rmse_ticks": 1.0930390134874484,
+      "oos_mae_ticks": 0.8787215924539419,
+      "naive_zero_rmse_ticks": 1.323330225955933,
+      "naive_zero_mae_ticks": 0.9963913392140942,
+      "standardized_coefficients": {
+        "intercept": -0.024363407733416234,
+        "obi_l1": 1.8899919091914001,
+        "obi_k": 0.2211947188864526,
+        "ofi_window": 0.06109050807356782,
+        "rolling_trade_flow_imbalance": -0.09328546869055139,
+        "microprice_offset_ticks": -1.3814529718562922
+      }
+    },
+    "250ms": {
+      "horizon_ms": 250,
+      "n_train": 3159,
+      "n_embargo_excluded": 85,
+      "n_test": 1198,
+      "event_horizon_coverage": 0.8472248712569139,
+      "oos_r2_vs_zero_baseline": 0.30663029684459686,
+      "oos_r2_vs_test_mean": 0.3041706155408661,
+      "oos_pearson_r": 0.5609681802702311,
+      "oos_spearman_ic": 0.5837403243140796,
+      "oos_directional_accuracy_nonzero": 0.775092936802974,
+      "oos_rmse_ticks": 2.1919914054372724,
+      "oos_mae_ticks": 1.7444763781532857,
+      "naive_zero_rmse_ticks": 2.632427483792978,
+      "naive_zero_mae_ticks": 2.177378964941495,
+      "standardized_coefficients": {
+        "intercept": -0.09116809116808733,
+        "obi_l1": 2.9066983614166424,
+        "obi_k": 0.7129360254858075,
+        "ofi_window": 0.24771673979039358,
+        "rolling_trade_flow_imbalance": -0.14600021682397818,
+        "microprice_offset_ticks": -2.4051638193052467
+      }
+    },
+    "500ms": {
+      "horizon_ms": 500,
+      "n_train": 3126,
+      "n_embargo_excluded": 85,
+      "n_test": 1115,
+      "event_horizon_coverage": 0.8251001335113485,
+      "oos_r2_vs_zero_baseline": 0.2013123403388497,
+      "oos_r2_vs_test_mean": 0.17786186347079702,
+      "oos_pearson_r": 0.4788680344712144,
+      "oos_spearman_ic": 0.515246065349661,
+      "oos_directional_accuracy_nonzero": 0.7217741935483871,
+      "oos_rmse_ticks": 3.7729174776197425,
+      "oos_mae_ticks": 3.142279405462638,
+      "naive_zero_rmse_ticks": 4.221714101541687,
+      "naive_zero_mae_ticks": 3.452017937219642,
+      "standardized_coefficients": {
+        "intercept": -0.28598848368522806,
+        "obi_l1": 3.344226407403443,
+        "obi_k": 0.27515376920016565,
+        "ofi_window": 0.009639078891839764,
+        "rolling_trade_flow_imbalance": 0.4620643674232815,
+        "microprice_offset_ticks": -2.186875690675306
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+name: Order Book Compression Engine CI
+
+on:
+  push:
+    paths:
+      - 'projects/16-order-book-compression-engine/**'
+  pull_request:
+    paths:
+      - 'projects/16-order-book-compression-engine/**'
+
+jobs:
+  build-and-validate:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: projects/16-order-book-compression-engine
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure CMake (Release, warnings as errors)
+        run: |
+          cmake -S . -B build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DOBCE_WARNINGS_AS_ERRORS=ON
+
+      - name: Build all targets
+        run: cmake --build build --parallel
+
+      - name: Run unit, integration, resilience, and operational tests
+        run: ctest --test-dir build --verbose --output-on-failure
+
+      - name: Run reproducible CLI demo
+        run: ./build/obce_cli demo --events 10000 --seed 20261127 --checkpoint 256 --schema 2
+
+      - name: Run benchmark smoke verification
+        run: ./build/obce_bench --events 10000 --json /tmp/ci_bench.json --csv /tmp/ci_bench.csv

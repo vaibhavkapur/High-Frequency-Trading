@@ -1,0 +1,13 @@
+{
+  "schema_version": "ptsp.v1",
+  "scenario_name": "reference_drift",
+  "sync_sample_count": 60,
+  "packet_count": 30,
+  "true_initial_offset_ns": 12500,
+  "true_drift_ppb": 150.0,
+  "true_final_offset_ns": 21350,
+  "python_raw_offset_mae_ns": 3.7833,
+  "python_min_rtt_ns": 1577,
+  "expected_orderer_state": "HEALTHY",
+  "expected_packets_emitted": 30
+}

@@ -1,0 +1,36 @@
+{
+  "schema_version": "ptsp.v1",
+  "software_adapter": {
+  "schema_version": "ptsp.v1",
+  "adapter_name": "software_clock_adapter",
+  "platform": "Darwin (macOS)",
+  "capture_method": "USERSPACE_CLOCK",
+  "error_source": "MEASURED",
+  "available": true,
+  "hardware_timestamping_supported": false,
+  "status_code": "OK",
+  "status_message": "POSIX software clock available (measured userspace read overhead; not NIC HW PTP)",
+  "clock_resolution_ns": 1000,
+  "median_read_latency_ns": 0,
+  "p99_read_latency_ns": 1000,
+  "measured_realtime_vs_monotonic_jitter_ns": 500,
+  "probe_samples": 250
+}
+,
+  "linux_ptp_hw_adapter": {
+  "schema_version": "ptsp.v1",
+  "adapter_name": "linux_ptp_hw_adapter",
+  "platform": "Darwin (macOS)",
+  "capture_method": "HARDWARE_NIC_PTP",
+  "error_source": "MEASURED",
+  "available": false,
+  "hardware_timestamping_supported": false,
+  "status_code": "HARDWARE_TIMESTAMP_UNAVAILABLE",
+  "status_message": "Linux PTP / SO_TIMESTAMPING NIC hardware timestamping is unavailable on platform Darwin (macOS) (refusing to fabricate hardware timestamps)",
+  "clock_resolution_ns": 0,
+  "median_read_latency_ns": 0,
+  "p99_read_latency_ns": 0,
+  "measured_realtime_vs_monotonic_jitter_ns": 0,
+  "probe_samples": 0
+}
+}

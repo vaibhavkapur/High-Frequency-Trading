@@ -1,0 +1,15 @@
+=== Order Book Compression Engine Demo ===
+Workload:              l3_order_flow (synthetic, seed=20261127, events=10000)
+Schema version:        v2 (price_decimals=8)
+Checkpoint interval:   256 (40 checkpoints)
+Optional zstd adapter: unavailable (built without libzstd)
+------------------------------------------
+Reference binary:      593792 bytes (59.38 bytes/event)
+Delta+Varint stream:   123314 bytes (12.33 bytes/event)
+Compression ratio:     4.82x vs reference binary
+Input digest (CRC32C): 0x1756E2FE
+Decoded digest:        0x1756E2FE (MATCH=YES)
+Random-access seek:    seq_id=5001 found after scanning 138 events (3 frames)
+Corrupt-frame strict:  rejected with CRC_MISMATCH
+Corrupt-frame resync:  recovered 9745/10000 events (resync_recoveries=1)
+Encoder diagnostics:   {"frames_processed":198,"checkpoint_frames":40,"delta_frames":157,"events_processed":10000,"sequence_gaps_detected":0,"missing_events_estimated":0,"crc_errors":0,"corrupt_frames_skipped":0,"resync_recoveries":0,"schema_v1_upgrades":0,"bytes_processed":123314}

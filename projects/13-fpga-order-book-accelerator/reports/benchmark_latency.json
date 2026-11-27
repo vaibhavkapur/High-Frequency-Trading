@@ -1,0 +1,15 @@
+{
+  "schema_version": "fpga-ob.v1",
+  "measurement_type": "simulated_cycle_count_and_host_simulation_time",
+  "physical_hardware_timing_measured": false,
+  "clock_assumptions_note": "250 MHz (4.0 ns) and 300 MHz (3.333 ns) figures are analytical projections from simulated cycle counts, not physical FPGA timing closure.",
+  "seed": 20261127,
+  "warmup_events": 2000,
+  "measured_events": 100000,
+  "config": {"price_base": 10000, "num_levels": 64, "max_active_levels": 32},
+  "variants": [
+    {"variant":"baseline_fsm_unpipelined","events":100000,"total_cycles":300000,"first_event_latency_cycles":3,"cycles_per_event":3.000000,"host_sim_ms":1.995166,"host_events_per_sec":50121142.802153,"projected_250mhz_latency_ns":12.000000,"projected_250mhz_meps":83.333333,"projected_300mhz_latency_ns":10.000000,"projected_300mhz_meps":100.000000,"final_best_bid":10063,"final_best_ask":10001},
+    {"variant":"pipelined_tree_1lane","events":100000,"total_cycles":100003,"first_event_latency_cycles":3,"cycles_per_event":1.000030,"host_sim_ms":13.229667,"host_events_per_sec":7558769.241886,"projected_250mhz_latency_ns":12.000000,"projected_250mhz_meps":249.992500,"projected_300mhz_latency_ns":10.000000,"projected_300mhz_meps":299.991000,"final_best_bid":10063,"final_best_ask":10001},
+    {"variant":"pipelined_tree_2lane","events":100000,"total_cycles":50003,"first_event_latency_cycles":3,"cycles_per_event":0.500030,"host_sim_ms":6.958833,"host_events_per_sec":14370225.582364,"projected_250mhz_latency_ns":12.000000,"projected_250mhz_meps":499.970002,"projected_300mhz_latency_ns":10.000000,"projected_300mhz_meps":599.964002,"final_best_bid":10063,"final_best_ask":10001}
+  ]
+}

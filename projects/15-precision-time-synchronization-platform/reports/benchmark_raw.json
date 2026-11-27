@@ -1,0 +1,45 @@
+{
+  "schema_version": "ptsp.v1",
+  "latency_error_source": "MEASURED",
+  "input_stream_source": "SYNTHETIC_FIXTURE",
+  "clock_source": "std::chrono::steady_clock (CLOCK_MONOTONIC)",
+  "platform": "Darwin arm64",
+  "compiler": "Clang 21.0.0",
+  "build_mode": "Release (-O3 -DNDEBUG)",
+  "window_size": 32,
+  "benchmarks": [
+    {
+      "benchmark": "baseline_ols_estimator_update",
+      "warmup_ops": 2000,
+      "measured_ops": 20000,
+      "mean_ns": 207.90,
+      "p50_ns": 208,
+      "p95_ns": 250,
+      "p99_ns": 250,
+      "max_ns": 625,
+      "throughput_mops": 4.81
+    },
+    {
+      "benchmark": "robust_sync_estimator_update",
+      "warmup_ops": 2000,
+      "measured_ops": 20000,
+      "mean_ns": 1284.10,
+      "p50_ns": 1250,
+      "p95_ns": 1750,
+      "p99_ns": 1875,
+      "max_ns": 34250,
+      "throughput_mops": 0.78
+    },
+    {
+      "benchmark": "fail_closed_orderer_ingest",
+      "warmup_ops": 2000,
+      "measured_ops": 20000,
+      "mean_ns": 92.54,
+      "p50_ns": 83,
+      "p95_ns": 125,
+      "p99_ns": 125,
+      "max_ns": 459,
+      "throughput_mops": 10.81
+    }
+  ]
+}

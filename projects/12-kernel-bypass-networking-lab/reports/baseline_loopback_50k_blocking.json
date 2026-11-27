@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "run_id": "baseline_loopback_50k_posix_udp_blocking_6063f8a1",
+  "config_hash": "6063f8a1f9212689",
+  "timestamp_utc": "2026-11-27T15:31:22Z",
+  "scenario_name": "baseline_loopback_50k",
+  "backend": "posix_udp_blocking",
+  "execution_status": "MEASURED",
+  "is_simulated": false,
+  "status": {
+    "code": "OK",
+    "message": ""
+  },
+  "capability": {
+    "backend": "posix_udp_blocking",
+    "compiled": true,
+    "os_supported": true,
+    "runtime_available": true,
+    "status": "AVAILABLE",
+    "reason_code": "OK",
+    "reason": "Standard POSIX UDP socket with poll() + non-blocking drain."
+  },
+  "clock": {
+    "name": "CLOCK_MONOTONIC_RAW",
+    "api": "POSIX clock_gettime",
+    "nominal_resolution_ns": 42,
+    "measured_call_overhead_ns": 16,
+    "is_monotonic": true,
+    "same_host_domain_required": true,
+    "notes": "macOS Darwin monotonic raw clock (mach_continuous/mach_absolute backed); valid for same-host one-way latency only. Cross-host requires PTP/hardware timestamps."
+  },
+  "pinning": {
+    "sender": {
+      "requested": true,
+      "applied": false,
+      "requested_cpu": 0,
+      "mechanism": "macos_unpinned_advisory",
+      "detail": "macOS Darwin kernel does not support strict CPU core pinning via POSIX affinity; requested cpu_id=0 recorded as advisory only."
+    },
+    "receiver": {
+      "requested": true,
+      "applied": false,
+      "requested_cpu": 1,
+      "mechanism": "macos_unpinned_advisory",
+      "detail": "macOS Darwin kernel does not support strict CPU core pinning via POSIX affinity; requested cpu_id=1 recorded as advisory only."
+    }
+  },
+  "config": {
+    "feed_id": 1,
+    "seed": 20261127,
+    "packet_bytes": 64,
+    "warmup_packets": 2000,
+    "measured_packets": 25000,
+    "target_pps": 50000,
+    "pacing_mode": "constant_rate",
+    "burst_size": 1,
+    "burst_interval_us": 1000,
+    "batch_size": 64,
+    "drain_timeout_ms": 300,
+    "bind_ip": "127.0.0.1",
+    "target_ip": "127.0.0.1",
+    "interface_name": "lo0",
+    "rx_queue_id": 0,
+    "ring_capacity": 65536,
+    "socket_rcvbuf_bytes": 4194304,
+    "socket_sndbuf_bytes": 4194304
+  },
+  "throughput": {
+    "expected_warmup_sent": 2000,
+    "expected_measured_sent": 25000,
+    "actual_packets_sent": 27000,
+    "send_errors": 0,
+    "measured_duration_ns": 499979959,
+    "achieved_send_pps": 50002.004,
+    "achieved_recv_pps": 50002.004,
+    "achieved_recv_mbps": 25.601
+  },
+  "sequence": {
+    "total_valid_data_packets": 27000,
+    "unique_received": 27000,
+    "warmup_received": 2000,
+    "measured_received": 25000,
+    "burst_packets": 0,
+    "gaps_events": 0,
+    "missing_within_highest": 0,
+    "inferred_total_lost": 0,
+    "loss_ratio": 0.000000,
+    "out_of_order": 0,
+    "duplicates": 0,
+    "too_old_out_of_window": 0,
+    "checksum_errors": 0,
+    "decode_errors": 0,
+    "ring_drops": 0,
+    "eos_packets": 3,
+    "first_seq": 1,
+    "highest_seq": 27000,
+    "last_seq": 27000,
+    "accounting_invariant_holds": true,
+    "sequence_accounting_verified": true
+  },
+  "latency_ns": {
+    "count": 25000,
+    "warmup_ignored": 2000,
+    "negative_clamped": 0,
+    "exact_quantiles": true,
+    "min": 4875,
+    "mean": 14203.984,
+    "stddev": 3046.965,
+    "p50": 13875,
+    "p95": 16833,
+    "p99": 27166,
+    "p99_9": 48708,
+    "max": 83666
+  }
+}

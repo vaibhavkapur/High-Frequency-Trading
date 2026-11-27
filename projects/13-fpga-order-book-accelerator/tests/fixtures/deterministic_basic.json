@@ -1,0 +1,23 @@
+{
+  "name": "deterministic_basic_v1",
+  "schema_version": "fpga-ob.v1",
+  "config": {
+    "price_base": 10000,
+    "num_levels": 64,
+    "max_active_levels": 32
+  },
+  "events": [
+    {"seq_no": 1,  "timestamp_ns": 100, "opcode": "ADD",     "side": "BID", "price": 10010, "qty": 100},
+    {"seq_no": 2,  "timestamp_ns": 104, "opcode": "ADD",     "side": "ASK", "price": 10015, "qty": 200},
+    {"seq_no": 3,  "timestamp_ns": 108, "opcode": "ADD",     "side": "BID", "price": 10012, "qty": 50},
+    {"seq_no": 4,  "timestamp_ns": 112, "opcode": "ADD",     "side": "BID", "price": 10012, "qty": 75},
+    {"seq_no": 5,  "timestamp_ns": 116, "opcode": "ADD",     "side": "ASK", "price": 10014, "qty": 80},
+    {"seq_no": 6,  "timestamp_ns": 120, "opcode": "CANCEL",  "side": "BID", "price": 10012, "qty": 25},
+    {"seq_no": 7,  "timestamp_ns": 124, "opcode": "EXECUTE", "side": "ASK", "price": 10014, "qty": 30},
+    {"seq_no": 8,  "timestamp_ns": 128, "opcode": "EXECUTE", "side": "ASK", "price": 10014, "qty": 50},
+    {"seq_no": 9,  "timestamp_ns": 132, "opcode": "CANCEL",  "side": "BID", "price": 10012, "qty": 100},
+    {"seq_no": 10, "timestamp_ns": 136, "opcode": "NOP",     "side": "BID", "price": 0,     "qty": 0},
+    {"seq_no": 11, "timestamp_ns": 140, "opcode": "ADD",     "side": "BID", "price": 10016, "qty": 40},
+    {"seq_no": 12, "timestamp_ns": 144, "opcode": "CANCEL",  "side": "BID", "price": 10016, "qty": 40}
+  ]
+}

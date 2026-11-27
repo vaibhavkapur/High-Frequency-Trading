@@ -1,0 +1,22 @@
+# Yosys Synthesis Script — FPGA Order Book Accelerator
+# Usage: yosys -s scripts/synth_yosys.ys
+# Produces generic gate-level resource estimates (LUTs/FFs/muxes).
+# Note: Synthesis resource counts are tool estimates, not measured physical silicon timing.
+
+read_verilog -sv rtl/order_book_pkg.sv
+read_verilog -sv rtl/bbo_tree.sv
+read_verilog -sv rtl/price_level_bank.sv
+read_verilog -sv rtl/order_book_top.sv
+
+hierarchy -check -top order_book_top
+proc
+opt
+fsm
+opt
+memory
+opt
+techmap
+opt
+
+stat -json
+stat

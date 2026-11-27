@@ -1,0 +1,32 @@
+{
+  "workload": {
+    "schema_version": 1,
+    "scenario_name": "linux_af_xdp_template",
+    "feed_id": 1,
+    "seed": 20261127,
+    "packet_bytes": 64,
+    "warmup_packets": 5000,
+    "measured_packets": 100000,
+    "target_pps": 100000,
+    "pacing_mode": "constant_rate",
+    "burst_size": 1,
+    "burst_interval_us": 1000,
+    "drain_timeout_ms": 500,
+    "batch_size": 64,
+    "backend": "af_xdp"
+  },
+  "topology": {
+    "bind_ip": "10.0.0.2",
+    "target_ip": "10.0.0.2",
+    "port": 9000,
+    "interface_name": "eth0",
+    "rx_queue_id": 0,
+    "sender_cpu": 2,
+    "receiver_cpu": 4,
+    "pin_threads": true,
+    "strict_pinning": true,
+    "socket_rcvbuf_bytes": 8388608,
+    "socket_sndbuf_bytes": 8388608,
+    "ring_capacity": 65536
+  }
+}

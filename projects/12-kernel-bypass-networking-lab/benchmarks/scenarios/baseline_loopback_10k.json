@@ -1,0 +1,32 @@
+{
+  "workload": {
+    "schema_version": 1,
+    "scenario_name": "baseline_loopback_10k",
+    "feed_id": 1,
+    "seed": 20261127,
+    "packet_bytes": 64,
+    "warmup_packets": 1000,
+    "measured_packets": 10000,
+    "target_pps": 10000,
+    "pacing_mode": "constant_rate",
+    "burst_size": 1,
+    "burst_interval_us": 1000,
+    "drain_timeout_ms": 250,
+    "batch_size": 32,
+    "backend": "posix_udp_blocking"
+  },
+  "topology": {
+    "bind_ip": "127.0.0.1",
+    "target_ip": "127.0.0.1",
+    "port": 0,
+    "interface_name": "lo0",
+    "rx_queue_id": 0,
+    "sender_cpu": 0,
+    "receiver_cpu": 1,
+    "pin_threads": true,
+    "strict_pinning": false,
+    "socket_rcvbuf_bytes": 4194304,
+    "socket_sndbuf_bytes": 4194304,
+    "ring_capacity": 65536
+  }
+}

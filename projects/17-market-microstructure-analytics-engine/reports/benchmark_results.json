@@ -1,0 +1,44 @@
+{
+  "schema_version": "mmae.v1",
+  "clock_source": "std::chrono::steady_clock",
+  "compiler": "Apple LLVM 21.0.0 (clang-2100.1.1.101)",
+  "cpp_standard": 202002,
+  "seed": 20261127,
+  "total_events": 120000,
+  "warmup_events": 20000,
+  "measured_events": 100000,
+  "logical_parity_verified": true,
+  "speedup_optimized_vs_baseline": 1.636,
+  "variants": {
+    "baseline": {
+      "elapsed_ms": 21.790,
+      "throughput_events_per_sec": 4589226.167,
+      "latency_ns": {
+        "mean": 189.625,
+        "p50": 167.000,
+        "p95": 375.000,
+        "p99": 1000.000,
+        "p999": 1833.001
+      },
+      "accepted_events": 120000,
+      "total_trades": 14219,
+      "checksum_ofi": 135.000,
+      "checksum_signed_qty": -402
+    },
+    "optimized": {
+      "elapsed_ms": 13.316,
+      "throughput_events_per_sec": 7510044.685,
+      "latency_ns": {
+        "mean": 110.405,
+        "p50": 83.000,
+        "p95": 250.000,
+        "p99": 792.000,
+        "p999": 1459.000
+      },
+      "accepted_events": 120000,
+      "total_trades": 14219,
+      "checksum_ofi": 135.000,
+      "checksum_signed_qty": -402
+    }
+  }
+}

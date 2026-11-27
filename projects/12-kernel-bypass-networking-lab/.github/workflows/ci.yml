@@ -1,0 +1,52 @@
+name: Kernel Bypass Networking Lab CI
+
+on:
+  push:
+    paths:
+      - 'projects/12-kernel-bypass-networking-lab/**'
+  pull_request:
+    paths:
+      - 'projects/12-kernel-bypass-networking-lab/**'
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, macos-15]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: projects/12-kernel-bypass-networking-lab
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Configure CMake (Release)
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build targets
+        run: |
+          cmake --build build -j
+
+      - name: Generate canonical deterministic fixture
+        run: |
+          ./build/kbnl_bench --generate-fixture fixtures/deterministic_feed_v1.bin
+
+      - name: Run CTest suite (unit, domain, boundary, loopback integration)
+        run: |
+          ctest --test-dir build --output-on-failure
+
+      - name: Run reproducible benchmark suite and acceptance verifier
+        run: |
+          bash scripts/run_benchmarks.sh
+
+      - name: Compile check Linux AF_XDP feature gate (headers only)
+        if: runner.os == 'Linux'
+        run: |
+          cmake -S . -B build-xdp -DCMAKE_BUILD_TYPE=Release -DKBNL_ENABLE_AF_XDP=ON
+          cmake --build build-xdp -j
+          ctest --test-dir build-xdp -R "protocol_and_config|domain_sequence_and_ring|adapters_and_failures" --output-on-failure

@@ -1,0 +1,15 @@
+# Canonical deterministic small event fixture (schema v1.0.0)
+# 12 synthetic events across symbols 0..2 exercising ADD, MODIFY, CANCEL, TRADE, and empty-side cancel no-op
+seq_id,symbol_id,event_type,side,price_ticks,quantity,order_id,flags
+1,0,ADD,BID,1000000,100,5001,0
+2,0,ADD,ASK,1000020,150,5002,0
+3,0,ADD,BID,1000005,50,5003,0
+4,0,TRADE,BID,1000020,40,5004,0
+5,0,CANCEL,BID,1000005,20,5005,0
+6,1,ADD,BID,2000000,200,5006,0
+7,1,MODIFY,BID,2000010,250,5007,0
+8,1,TRADE,ASK,2000010,100,5008,0
+9,1,CANCEL,ASK,0,50,5009,0
+10,2,ADD,ASK,500000,80,5010,0
+11,2,TRADE,BID,500000,80,5011,0
+12,2,CANCEL,ASK,0,10,5012,0

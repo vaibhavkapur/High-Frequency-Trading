@@ -1,0 +1,8 @@
+{
+  "baseline_features": "projects/17-market-microstructure-analytics-engine/build/demo_artifacts/synthetic_features_baseline.csv",
+  "optimized_features": "projects/17-market-microstructure-analytics-engine/build/demo_artifacts/synthetic_features_optimized.csv",
+  "baseline_sha256": "181463891f6270ad5a04bd4306a94ef1fe276c94891a9efe18268889ef7d8d4c",
+  "optimized_sha256": "181463891f6270ad5a04bd4306a94ef1fe276c94891a9efe18268889ef7d8d4c",
+  "exact_byte_match": true,
+  "row_count": 5243
+}

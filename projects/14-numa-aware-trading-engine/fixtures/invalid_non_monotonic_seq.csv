@@ -1,0 +1,5 @@
+# Invalid fixture: non-monotonic sequence ID (seq_id 2 repeated)
+seq_id,symbol_id,event_type,side,price_ticks,quantity,order_id,flags
+1,0,ADD,BID,1000000,100,7001,0
+2,0,ADD,ASK,1000010,100,7002,0
+2,0,TRADE,BID,1000010,50,7003,0

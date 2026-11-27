@@ -1,0 +1,3 @@
+# schema_version=ptsp.v1
+seq,epoch_id,reference_domain,local_domain,reference_clock_id,local_clock_id,capture_method,error_source,t1_ns,t2_ns,t3_ns,t4_ns,true_offset_ns,true_drift_ppb,true_asymmetry_ns
+1,0,TAI,MONOTONIC_RAW,gm-0,loc-0,SYNTHETIC_FIXTURE,SYNTHETIC_FIXTURE,1700000000000000000,1700000000000001000,1700000000000001500,1700000000000000100,,,

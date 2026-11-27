@@ -1,0 +1,32 @@
+{
+  "workload": {
+    "schema_version": 1,
+    "scenario_name": "valid_burst_fixture",
+    "feed_id": 2,
+    "seed": 20261127,
+    "packet_bytes": 128,
+    "warmup_packets": 256,
+    "measured_packets": 2048,
+    "target_pps": 25000,
+    "pacing_mode": "burst",
+    "burst_size": 32,
+    "burst_interval_us": 1500,
+    "drain_timeout_ms": 250,
+    "batch_size": 64,
+    "backend": "posix_udp_busy_poll"
+  },
+  "topology": {
+    "bind_ip": "127.0.0.1",
+    "target_ip": "127.0.0.1",
+    "port": 0,
+    "interface_name": "lo0",
+    "rx_queue_id": 0,
+    "sender_cpu": -1,
+    "receiver_cpu": -1,
+    "pin_threads": false,
+    "strict_pinning": false,
+    "socket_rcvbuf_bytes": 4194304,
+    "socket_sndbuf_bytes": 4194304,
+    "ring_capacity": 65536
+  }
+}

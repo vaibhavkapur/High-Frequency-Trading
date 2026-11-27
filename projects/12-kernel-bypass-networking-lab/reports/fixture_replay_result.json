@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "run_id": "fixture_replay_v1",
+  "config_hash": "85853ed4a73ab77a",
+  "timestamp_utc": "2026-11-27T13:28:31Z",
+  "scenario_name": "deterministic_fixture_replay",
+  "backend": "fixture_replay",
+  "execution_status": "FIXTURE_VERIFICATION",
+  "is_simulated": false,
+  "status": {
+    "code": "OK",
+    "message": ""
+  },
+  "capability": {
+    "backend": "",
+    "compiled": false,
+    "os_supported": false,
+    "runtime_available": false,
+    "status": "",
+    "reason_code": "OK",
+    "reason": ""
+  },
+  "clock": {
+    "name": "CLOCK_MONOTONIC_RAW",
+    "api": "POSIX clock_gettime",
+    "nominal_resolution_ns": 42,
+    "measured_call_overhead_ns": 18,
+    "is_monotonic": true,
+    "same_host_domain_required": true,
+    "notes": "macOS Darwin monotonic raw clock (mach_continuous/mach_absolute backed); valid for same-host one-way latency only. Cross-host requires PTP/hardware timestamps."
+  },
+  "pinning": {
+    "sender": {
+      "requested": false,
+      "applied": false,
+      "requested_cpu": -1,
+      "mechanism": "",
+      "detail": ""
+    },
+    "receiver": {
+      "requested": false,
+      "applied": false,
+      "requested_cpu": -1,
+      "mechanism": "",
+      "detail": ""
+    }
+  },
+  "config": {
+    "feed_id": 1,
+    "seed": 20261127,
+    "packet_bytes": 64,
+    "warmup_packets": 1000,
+    "measured_packets": 10000,
+    "target_pps": 10000,
+    "pacing_mode": "constant_rate",
+    "burst_size": 1,
+    "burst_interval_us": 1000,
+    "batch_size": 32,
+    "drain_timeout_ms": 250,
+    "bind_ip": "127.0.0.1",
+    "target_ip": "127.0.0.1",
+    "interface_name": "lo0",
+    "rx_queue_id": 0,
+    "ring_capacity": 65536,
+    "socket_rcvbuf_bytes": 4194304,
+    "socket_sndbuf_bytes": 4194304
+  },
+  "throughput": {
+    "expected_warmup_sent": 0,
+    "expected_measured_sent": 0,
+    "actual_packets_sent": 12,
+    "send_errors": 0,
+    "measured_duration_ns": 0,
+    "achieved_send_pps": 0.000,
+    "achieved_recv_pps": 0.000,
+    "achieved_recv_mbps": 0.000
+  },
+  "sequence": {
+    "total_valid_data_packets": 11,
+    "unique_received": 10,
+    "warmup_received": 2,
+    "measured_received": 8,
+    "burst_packets": 0,
+    "gaps_events": 3,
+    "missing_within_highest": 2,
+    "inferred_total_lost": 2,
+    "loss_ratio": 0.166667,
+    "out_of_order": 1,
+    "duplicates": 1,
+    "too_old_out_of_window": 0,
+    "checksum_errors": 1,
+    "decode_errors": 1,
+    "ring_drops": 0,
+    "eos_packets": 1,
+    "first_seq": 1,
+    "highest_seq": 12,
+    "last_seq": 12,
+    "accounting_invariant_holds": true,
+    "sequence_accounting_verified": true
+  },
+  "latency_ns": {
+    "count": 8,
+    "warmup_ignored": 2,
+    "negative_clamped": 0,
+    "exact_quantiles": true,
+    "min": 1000,
+    "mean": 1837.500,
+    "stddev": 684.392,
+    "p50": 1800,
+    "p95": 3000,
+    "p99": 3000,
+    "p99_9": 3000,
+    "max": 3000
+  }
+}

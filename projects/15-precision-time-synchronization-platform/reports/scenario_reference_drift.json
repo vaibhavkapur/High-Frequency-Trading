@@ -1,0 +1,44 @@
+{
+  "schema_version": "ptsp.v1",
+  "scenario_name": "reference_drift",
+  "run_fingerprint": "5c2e35aa6b220ad3",
+  "error_source": "SYNTHETIC_FIXTURE",
+  "sync_sample_count": 60,
+  "packet_count": 30,
+  "baseline_estimator": {
+    "mae_offset_ns": 1.8421,
+    "max_abs_offset_error_ns": 4,
+    "mae_drift_ppb": 0.1422,
+    "samples_processed": 60,
+    "samples_accepted": 60,
+    "domain_errors": 0
+  },
+  "robust_estimator": {
+    "mae_offset_ns": 1.8596,
+    "max_abs_offset_error_ns": 4,
+    "steady_state_max_error_ns": 4,
+    "mae_drift_ppb": 0.1424,
+    "envelope_coverage_ratio": 1.0000,
+    "samples_processed": 60,
+    "samples_accepted": 60,
+    "outliers_rejected": 0,
+    "steps_detected": 0,
+    "restarts_detected": 0,
+    "domain_errors": 0
+  },
+  "orderer": {
+    "final_state": "HEALTHY",
+    "halt_code": "OK",
+    "halt_message": "",
+    "packets_ingested": 30,
+    "packets_emitted": 30,
+    "packets_reordered": 0,
+    "domain_mismatches": 0,
+    "invalid_packets": 0,
+    "skew_violations": 0,
+    "causal_violations": 0,
+    "ambiguity_halts": 0,
+    "buffer_overflows": 0,
+    "rejected_while_halted": 0
+  }
+}

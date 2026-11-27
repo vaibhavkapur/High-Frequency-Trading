@@ -1,0 +1,8 @@
+# Boundary fixture: max valid symbol_id (63), min/large quantities, full cancel clearing book, zero-price cancel
+seq_id,symbol_id,event_type,side,price_ticks,quantity,order_id,flags
+1,63,ADD,BID,1,1,9001,0
+2,63,ADD,ASK,2,429496729,9002,0
+3,63,CANCEL,BID,0,0,9003,0
+4,63,CANCEL,BID,0,1,9004,0
+5,0,ADD,BID,999999999,1000,9005,1
+6,0,TRADE,ASK,999999999,1000,9006,0

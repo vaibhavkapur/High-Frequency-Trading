@@ -1,0 +1,9 @@
+{
+  "schema_version": "fpga-ob.v1",
+  "seed": 20261127,
+  "config": {"price_base": 10000, "num_levels": 64, "max_active_levels": 32},
+  "legal_1lane": {"events": 25000, "mismatches": 0, "unexpected_errors": 0, "cycles": 25003, "cycles_per_event": 1.00012, "diagnostics": {"cycles_total":25003,"reset_cycles":1,"events_accepted":25000,"events_committed":25000,"events_rejected":0,"backpressure_stalls":0,"dual_lane_cycles":0,"max_active_bid_levels":32,"max_active_ask_levels":32,"errors":{"unsupported_schema":0,"unsupported_flags":0,"unsupported_opcode":0,"invalid_side":0,"price_oob":0,"zero_qty":0,"full_capacity":0,"overflow_qty":0,"overflow_orders":0,"invalid_cancel":0,"invalid_execute":0}}},
+  "legal_2lane": {"events": 25000, "mismatches": 0, "unexpected_errors": 0, "cycles": 12503, "cycles_per_event": 0.50012, "diagnostics": {"cycles_total":12503,"reset_cycles":1,"events_accepted":25000,"events_committed":25000,"events_rejected":0,"backpressure_stalls":0,"dual_lane_cycles":12500,"max_active_bid_levels":32,"max_active_ask_levels":32,"errors":{"unsupported_schema":0,"unsupported_flags":0,"unsupported_opcode":0,"invalid_side":0,"price_oob":0,"zero_qty":0,"full_capacity":0,"overflow_qty":0,"overflow_orders":0,"invalid_cancel":0,"invalid_execute":0}}},
+  "mixed_adversarial": {"events": 10000, "mismatches": 0, "cycles": 8336, "backpressure_stalls": 1642, "mid_stream_resets": 3, "last_epoch_diagnostics": {"cycles_total":2048,"reset_cycles":4,"events_accepted":2500,"events_committed":1047,"events_rejected":1453,"backpressure_stalls":399,"dual_lane_cycles":854,"max_active_bid_levels":32,"max_active_ask_levels":32,"errors":{"unsupported_schema":47,"unsupported_flags":36,"unsupported_opcode":123,"invalid_side":42,"price_oob":123,"zero_qty":60,"full_capacity":203,"overflow_qty":6,"overflow_orders":0,"invalid_cancel":402,"invalid_execute":411}}},
+  "passed": true
+}

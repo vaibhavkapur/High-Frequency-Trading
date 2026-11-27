@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mmae-analytics"
+version = "0.1.0"
+description = "Chronological evaluation, price response, adverse selection, and fixture tooling for the Market Microstructure Analytics Engine"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+polars = [
+    "polars==1.17.1",
+]
+dev = [
+    "pytest==8.3.4",
+]
+
+[project.scripts]
+mmae-eval = "mmae_analytics.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["python"]

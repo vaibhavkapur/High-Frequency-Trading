@@ -1,0 +1,50 @@
+{
+  "schema_version": "fpga-ob.v1",
+  "generated_utc": "2026-11-27T13:29:16.929118+00:00",
+  "os": "macOS-26.5.1-arm64-arm-64bit",
+  "machine": "arm64",
+  "python": "3.9.6",
+  "tools": {
+    "cmake": {
+      "installed": true,
+      "path": "/opt/homebrew/bin/cmake",
+      "version": "cmake version 4.5.1"
+    },
+    "clang++": {
+      "installed": true,
+      "path": "/usr/bin/clang++",
+      "version": "Apple clang version 21.0.0 (clang-2100.1.1.101)"
+    },
+    "g++": {
+      "installed": true,
+      "path": "/usr/bin/g++",
+      "version": "Apple clang version 21.0.0 (clang-2100.1.1.101)"
+    },
+    "verilator": {
+      "installed": false,
+      "path": null,
+      "version": null
+    },
+    "yosys": {
+      "installed": false,
+      "path": null,
+      "version": null
+    },
+    "cocotb-config": {
+      "installed": false,
+      "path": null,
+      "version": null
+    }
+  },
+  "operational_checks": {
+    "missing_config_exit_code": 2,
+    "missing_config_stderr": "{\"error\":\"CONFIG_MISSING_OR_INVALID\",\"message\":\"Unable to open file: tests/fixtures/does_not_exist.json\"}",
+    "demo_fixture_exit_code": 0
+  },
+  "optional_eda_status": {
+    "verilator_rtl_sim": "NOT_RUN (verilator not installed)",
+    "cocotb_rtl_testbench": "NOT_RUN (verilator/cocotb not installed)",
+    "yosys_synthesis_estimate": "NOT_RUN (yosys not installed)",
+    "physical_fpga_hardware_timing": "NOT_RUN (no FPGA target hardware attached)"
+  }
+}

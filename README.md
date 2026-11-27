@@ -1,12 +1,12 @@
 # High Frequency Trading
 
-Eleven C++20 projects explore how an order moves through an exchange, how market data reaches a trader, and how to measure execution strategies and system latency.
+Seventeen C++20 and hardware/systems projects explore how an order moves through an exchange, how market data reaches a trader, and how low-latency networking, hardware acceleration, memory placement, time synchronization, compression, and microstructure analytics work in practice.
 
 ## Getting started
 
 ```bash
-git clone https://github.com/vaibhavkapur/High-Frequency-Trading.git
-cd High-Frequency-Trading/projects/01-matching-engine
+git clone https://github.com/vaibhavkapur/Trading-High-Frequency.git
+cd Trading-High-Frequency/projects/01-matching-engine
 ```
 
 To build the matching engine and run its tests, use a C++20 compiler and CMake 3.20 or later. CMake can download GoogleTest and Google Benchmark during configuration.
@@ -32,3 +32,11 @@ Each project builds independently. Run its README commands from its directory un
 - [09 · Latency Performance Lab](projects/09-latency-performance-lab/) — Measures how memory layout, allocation, and concurrency affect latency in microbenchmarks and a matching engine.
 - [10 · Cross-Exchange Arbitrage](projects/10-cross-exchange-arbitrage/) — Scans synthetic venue feeds for price differences and simulates whether trades remain profitable after fees and execution delay.
 - [11 · High-Frequency Trading Engine](projects/11-high-frequency-trading-engine/) — Combines projects 01–10 into a single simulator with deterministic replay and end-to-end benchmarks.
+- [12 · Kernel Bypass Networking Lab](projects/12-kernel-bypass-networking-lab/) — Benchmarks POSIX UDP receive paths against feature-gated Linux AF_XDP and DPDK adapters with deterministic sequence and latency accounting.
+- [13 · FPGA Order Book Accelerator](projects/13-fpga-order-book-accelerator/) — Models a pipelined SystemVerilog L2 order-book accelerator and binary BBO reduction tree verified against C++20 and Python reference models.
+- [14 · NUMA-Aware Trading Engine](projects/14-numa-aware-trading-engine/) — Measures how thread pinning, first-touch allocation, and NUMA memory policies affect throughput and tail latency in a lock-free trading pipeline.
+- [15 · Precision Time Synchronization Platform](projects/15-precision-time-synchronization-platform/) — Tracks timestamp provenance, estimates clock offset and drift under faults, probes Linux PTP hardware capabilities, and enforces fail-closed causal ordering.
+- [16 · Order Book Compression Engine](projects/16-order-book-compression-engine/) — Compresses L2/L3 order-book streams with bitmask delta/varint encoding, periodic seekable checkpoints, CRC32C integrity checks, and schema evolution.
+- [17 · Market Microstructure Analytics Engine](projects/17-market-microstructure-analytics-engine/) — Reconstructs causal L2/L3 order books, classifies trades with explicit ambiguity tracking, and evaluates short-horizon price response and adverse selection.
+
+Each project README links to its architecture, contracts, operator runbook, and validation evidence.

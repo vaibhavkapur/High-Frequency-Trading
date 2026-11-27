@@ -1,0 +1,41 @@
+name: PTSP CI
+
+on:
+  push:
+    paths:
+      - "projects/15-precision-time-synchronization-platform/**"
+  pull_request:
+    paths:
+      - "projects/15-precision-time-synchronization-platform/**"
+  workflow_dispatch:
+
+jobs:
+  build-and-validate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: projects/15-precision-time-synchronization-platform
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate deterministic fixtures
+        run: python3 scripts/generate_fixtures.py
+
+      - name: Configure and build (Release)
+        run: |
+          cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+          cmake --build build -j
+
+      - name: Run full validation suite (CTest + Python + Reproducibility + Benchmarks)
+        run: python3 scripts/validate_all.py
+
+      - name: Upload reports artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ptsp-reports-${{ matrix.os }}
+          path: projects/15-precision-time-synchronization-platform/reports/

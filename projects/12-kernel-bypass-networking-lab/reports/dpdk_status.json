@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "timestamp_utc": "2026-11-27T13:28:31Z",
+  "execution_status": "NOT_RUN",
+  "is_simulated": false,
+  "capability": {
+    "backend": "dpdk",
+    "compiled": false,
+    "os_supported": false,
+    "runtime_available": false,
+    "status": "NOT_RUN",
+    "reason_code": "UNSUPPORTED_PLATFORM",
+    "reason": "DPDK user-space PMD path requires Linux with hugepages and VFIO/UIO NIC binding; host OS is non-Linux."
+  },
+  "clock": {
+    "name": "CLOCK_MONOTONIC_RAW",
+    "api": "POSIX clock_gettime",
+    "nominal_resolution_ns": 42,
+    "measured_call_overhead_ns": 18,
+    "is_monotonic": true,
+    "same_host_domain_required": true,
+    "notes": "macOS Darwin monotonic raw clock (mach_continuous/mach_absolute backed); valid for same-host one-way latency only. Cross-host requires PTP/hardware timestamps."
+  }
+}

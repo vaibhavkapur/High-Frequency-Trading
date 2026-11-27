@@ -1,0 +1,31 @@
+{
+  "fixtures": [
+    {
+      "file": "fixtures/valid_l2_l3_v1.jsonl",
+      "schema_version": 1,
+      "event_count": 8,
+      "reference_record_bytes": 47,
+      "reference_batch_size": 4,
+      "expected_reference_stream_bytes": 448,
+      "expected_frames": 2,
+      "notes": "24-byte stream header + 2 * (20-byte frame header + 4*47 payload + 4-byte CRC32C) = 448 bytes"
+    },
+    {
+      "file": "fixtures/valid_l2_l3_v2.jsonl",
+      "schema_version": 2,
+      "event_count": 5,
+      "reference_record_bytes": 59,
+      "reference_batch_size": 64,
+      "expected_reference_stream_bytes": 343,
+      "expected_frames": 1,
+      "notes": "24-byte stream header + 1 * (20-byte frame header + 5*59 payload + 4-byte CRC32C) = 343 bytes; includes negative fixed-point price_ticks=-50000000"
+    },
+    {
+      "file": "fixtures/invalid_events.jsonl",
+      "schema_version": 2,
+      "event_count": 7,
+      "expected_all_rejected_with": "INVALID_EVENT",
+      "notes": "Covers seq_id=0, symbol_id=0, negative quantity, L3 order_id=0, L3 side=NONE, L2/L3 scope-event mismatches"
+    }
+  ]
+}

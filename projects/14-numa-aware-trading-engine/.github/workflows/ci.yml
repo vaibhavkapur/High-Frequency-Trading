@@ -1,0 +1,57 @@
+name: numa-aware-trading-engine CI
+
+on:
+  push:
+    paths:
+      - "projects/14-numa-aware-trading-engine/**"
+  pull_request:
+    paths:
+      - "projects/14-numa-aware-trading-engine/**"
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            install_numa: true
+          - os: macos-latest
+            install_numa: false
+
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: projects/14-numa-aware-trading-engine
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install libnuma (Linux)
+        if: matrix.install_numa
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libnuma-dev numactl
+
+      - name: Configure (Release)
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        run: cmake --build build -j
+
+      - name: Run unit and integration tests
+        run: ctest --test-dir build --output-on-failure
+
+      - name: Validate fixtures
+        run: |
+          ./build/numa_trading_engine --mode validate-fixture --fixture fixtures/valid_small_events.csv
+          ./build/numa_trading_engine --mode validate-fixture --fixture fixtures/boundary_events.csv
+          ! ./build/numa_trading_engine --mode validate-fixture --fixture fixtures/invalid_negative_price.csv
+
+      - name: Run smoke benchmark and verify acceptance criteria
+        run: |
+          mkdir -p reports
+          ./build/bench_placements --events 50000 --warmup 2000 --reps 3 --seed 42 \
+            --json reports/ci_benchmark.json --csv reports/ci_benchmark.csv
+          python3 scripts/verify_acceptance.py --benchmark-json reports/ci_benchmark.json

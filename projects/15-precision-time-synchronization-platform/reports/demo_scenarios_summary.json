@@ -1,0 +1,276 @@
+{
+  "schema_version": "ptsp.v1",
+  "error_source": "SYNTHETIC_FIXTURE",
+  "scenarios": [
+{
+  "schema_version": "ptsp.v1",
+  "scenario_name": "reference_drift",
+  "run_fingerprint": "5c2e35aa6b220ad3",
+  "error_source": "SYNTHETIC_FIXTURE",
+  "sync_sample_count": 60,
+  "packet_count": 30,
+  "baseline_estimator": {
+    "mae_offset_ns": 1.8421,
+    "max_abs_offset_error_ns": 4,
+    "mae_drift_ppb": 0.1422,
+    "samples_processed": 60,
+    "samples_accepted": 60,
+    "domain_errors": 0
+  },
+  "robust_estimator": {
+    "mae_offset_ns": 1.8596,
+    "max_abs_offset_error_ns": 4,
+    "steady_state_max_error_ns": 4,
+    "mae_drift_ppb": 0.1424,
+    "envelope_coverage_ratio": 1.0000,
+    "samples_processed": 60,
+    "samples_accepted": 60,
+    "outliers_rejected": 0,
+    "steps_detected": 0,
+    "restarts_detected": 0,
+    "domain_errors": 0
+  },
+  "orderer": {
+    "final_state": "HEALTHY",
+    "halt_code": "OK",
+    "halt_message": "",
+    "packets_ingested": 30,
+    "packets_emitted": 30,
+    "packets_reordered": 0,
+    "domain_mismatches": 0,
+    "invalid_packets": 0,
+    "skew_violations": 0,
+    "causal_violations": 0,
+    "ambiguity_halts": 0,
+    "buffer_overflows": 0,
+    "rejected_while_halted": 0
+  }
+}
+,
+{
+  "schema_version": "ptsp.v1",
+  "scenario_name": "clock_step_and_outliers",
+  "run_fingerprint": "5bde5dc96a3caf73",
+  "error_source": "SYNTHETIC_FIXTURE",
+  "sync_sample_count": 70,
+  "packet_count": 25,
+  "baseline_estimator": {
+    "mae_offset_ns": 2206.0317,
+    "max_abs_offset_error_ns": 8158,
+    "mae_drift_ppb": 359.8070,
+    "samples_processed": 70,
+    "samples_accepted": 70,
+    "domain_errors": 0
+  },
+  "robust_estimator": {
+    "mae_offset_ns": 1.4444,
+    "max_abs_offset_error_ns": 4,
+    "steady_state_max_error_ns": 4,
+    "mae_drift_ppb": 0.1812,
+    "envelope_coverage_ratio": 1.0000,
+    "samples_processed": 70,
+    "samples_accepted": 66,
+    "outliers_rejected": 5,
+    "steps_detected": 1,
+    "restarts_detected": 0,
+    "domain_errors": 0
+  },
+  "orderer": {
+    "final_state": "HEALTHY",
+    "halt_code": "OK",
+    "halt_message": "",
+    "packets_ingested": 25,
+    "packets_emitted": 25,
+    "packets_reordered": 0,
+    "domain_mismatches": 0,
+    "invalid_packets": 0,
+    "skew_violations": 0,
+    "causal_violations": 0,
+    "ambiguity_halts": 0,
+    "buffer_overflows": 0,
+    "rejected_while_halted": 0
+  }
+}
+,
+{
+  "schema_version": "ptsp.v1",
+  "scenario_name": "packet_asymmetry",
+  "run_fingerprint": "a5421eb658ed8285",
+  "error_source": "SYNTHETIC_FIXTURE",
+  "sync_sample_count": 60,
+  "packet_count": 20,
+  "baseline_estimator": {
+    "mae_offset_ns": 767.9649,
+    "max_abs_offset_error_ns": 1562,
+    "mae_drift_ppb": 28.9758,
+    "samples_processed": 60,
+    "samples_accepted": 60,
+    "domain_errors": 0
+  },
+  "robust_estimator": {
+    "mae_offset_ns": 2.0877,
+    "max_abs_offset_error_ns": 6,
+    "steady_state_max_error_ns": 6,
+    "mae_drift_ppb": 0.1560,
+    "envelope_coverage_ratio": 1.0000,
+    "samples_processed": 60,
+    "samples_accepted": 53,
+    "outliers_rejected": 7,
+    "steps_detected": 0,
+    "restarts_detected": 0,
+    "domain_errors": 0
+  },
+  "orderer": {
+    "final_state": "HEALTHY",
+    "halt_code": "OK",
+    "halt_message": "",
+    "packets_ingested": 20,
+    "packets_emitted": 20,
+    "packets_reordered": 0,
+    "domain_mismatches": 0,
+    "invalid_packets": 0,
+    "skew_violations": 0,
+    "causal_violations": 0,
+    "ambiguity_halts": 0,
+    "buffer_overflows": 0,
+    "rejected_while_halted": 0
+  }
+}
+,
+{
+  "schema_version": "ptsp.v1",
+  "scenario_name": "clock_restart",
+  "run_fingerprint": "e5bbf6bfeac3e0d4",
+  "error_source": "SYNTHETIC_FIXTURE",
+  "sync_sample_count": 55,
+  "packet_count": 15,
+  "baseline_estimator": {
+    "mae_offset_ns": 43878127.5510,
+    "max_abs_offset_error_ns": 216669441,
+    "mae_drift_ppb": 9374461.8630,
+    "samples_processed": 55,
+    "samples_accepted": 55,
+    "domain_errors": 0
+  },
+  "robust_estimator": {
+    "mae_offset_ns": 1.9184,
+    "max_abs_offset_error_ns": 5,
+    "steady_state_max_error_ns": 5,
+    "mae_drift_ppb": 0.2597,
+    "envelope_coverage_ratio": 1.0000,
+    "samples_processed": 55,
+    "samples_accepted": 55,
+    "outliers_rejected": 0,
+    "steps_detected": 0,
+    "restarts_detected": 1,
+    "domain_errors": 0
+  },
+  "orderer": {
+    "final_state": "HEALTHY",
+    "halt_code": "OK",
+    "halt_message": "",
+    "packets_ingested": 15,
+    "packets_emitted": 15,
+    "packets_reordered": 0,
+    "domain_mismatches": 0,
+    "invalid_packets": 0,
+    "skew_violations": 0,
+    "causal_violations": 0,
+    "ambiguity_halts": 0,
+    "buffer_overflows": 0,
+    "rejected_while_halted": 0
+  }
+}
+,
+{
+  "schema_version": "ptsp.v1",
+  "scenario_name": "out_of_order_stream",
+  "run_fingerprint": "c3ddfcf05afd2fcc",
+  "error_source": "SYNTHETIC_FIXTURE",
+  "sync_sample_count": 30,
+  "packet_count": 16,
+  "baseline_estimator": {
+    "mae_offset_ns": 1.7407,
+    "max_abs_offset_error_ns": 4,
+    "mae_drift_ppb": 0.1848,
+    "samples_processed": 30,
+    "samples_accepted": 30,
+    "domain_errors": 0
+  },
+  "robust_estimator": {
+    "mae_offset_ns": 1.7778,
+    "max_abs_offset_error_ns": 4,
+    "steady_state_max_error_ns": 4,
+    "mae_drift_ppb": 0.1845,
+    "envelope_coverage_ratio": 1.0000,
+    "samples_processed": 30,
+    "samples_accepted": 30,
+    "outliers_rejected": 0,
+    "steps_detected": 0,
+    "restarts_detected": 0,
+    "domain_errors": 0
+  },
+  "orderer": {
+    "final_state": "HEALTHY",
+    "halt_code": "OK",
+    "halt_message": "",
+    "packets_ingested": 16,
+    "packets_emitted": 16,
+    "packets_reordered": 4,
+    "domain_mismatches": 0,
+    "invalid_packets": 0,
+    "skew_violations": 0,
+    "causal_violations": 0,
+    "ambiguity_halts": 0,
+    "buffer_overflows": 0,
+    "rejected_while_halted": 0
+  }
+}
+,
+{
+  "schema_version": "ptsp.v1",
+  "scenario_name": "skew_violation_fail_closed",
+  "run_fingerprint": "a608f5988b50042d",
+  "error_source": "SYNTHETIC_FIXTURE",
+  "sync_sample_count": 30,
+  "packet_count": 10,
+  "baseline_estimator": {
+    "mae_offset_ns": 1.7407,
+    "max_abs_offset_error_ns": 4,
+    "mae_drift_ppb": 0.1848,
+    "samples_processed": 30,
+    "samples_accepted": 30,
+    "domain_errors": 0
+  },
+  "robust_estimator": {
+    "mae_offset_ns": 1.7778,
+    "max_abs_offset_error_ns": 4,
+    "steady_state_max_error_ns": 4,
+    "mae_drift_ppb": 0.1845,
+    "envelope_coverage_ratio": 1.0000,
+    "samples_processed": 30,
+    "samples_accepted": 30,
+    "outliers_rejected": 0,
+    "steps_detected": 0,
+    "restarts_detected": 0,
+    "domain_errors": 0
+  },
+  "orderer": {
+    "final_state": "HALTED_FAIL_CLOSED",
+    "halt_code": "CAUSAL_VIOLATION",
+    "halt_message": "Causal skew violation on packet 6: aligned_receive_ns=1700000015000025000 precedes event_time_ns=1700000015000050000 by 25000 ns (exceeds uncertainty 100 + slack 200 ns)",
+    "packets_ingested": 10,
+    "packets_emitted": 4,
+    "packets_reordered": 0,
+    "domain_mismatches": 0,
+    "invalid_packets": 0,
+    "skew_violations": 0,
+    "causal_violations": 1,
+    "ambiguity_halts": 0,
+    "buffer_overflows": 0,
+    "rejected_while_halted": 4
+  }
+}
+
+  ]
+}

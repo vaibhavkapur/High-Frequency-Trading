@@ -1,0 +1,4 @@
+# Invalid fixture: negative price on ADD event
+seq_id,symbol_id,event_type,side,price_ticks,quantity,order_id,flags
+1,0,ADD,BID,1000000,100,6001,0
+2,0,ADD,ASK,-500,100,6002,0

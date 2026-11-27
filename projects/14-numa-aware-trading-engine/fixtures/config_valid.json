@@ -1,0 +1,15 @@
+{
+  "scenario_name": "fixture_local_first_touch",
+  "pipeline_kind": "lock_free_spsc",
+  "memory_policy": "first_touch_local",
+  "queue_capacity": 1024,
+  "producer_cpu": 0,
+  "consumer_cpu": 1,
+  "preferred_memory_node": 0,
+  "consumer_first_touch": true,
+  "allow_single_node_fallback": true,
+  "require_hard_pinning": false,
+  "consumer_work_iters": 0,
+  "seed": 42,
+  "warmup_events": 0
+}

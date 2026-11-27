@@ -1,0 +1,10 @@
+{
+  "tick_size": 0.01,
+  "stale_threshold_ns": 1000000000,
+  "flow_window_ns": 500000000,
+  "depth_levels_k": 5,
+  "max_levels": 1024,
+  "max_orders": 65536,
+  "clear_gap_on_snapshot": true,
+  "variant": "optimized"
+}

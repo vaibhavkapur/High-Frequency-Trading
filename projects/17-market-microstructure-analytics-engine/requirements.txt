@@ -1,0 +1,4 @@
+# Optional pinned Python dependencies for columnar Polars acceleration and pytest.
+# Core analytics and unittest validation also run with Python >=3.9 standard library only.
+polars==1.17.1
+pytest==8.3.4

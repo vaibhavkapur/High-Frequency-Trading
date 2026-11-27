@@ -1,0 +1,8 @@
+# Invalid canonical events for contract validation testing (each line violates a specific invariant)
+{"seq_id":0,"timestamp_ns":1700000000000001000,"symbol_id":1,"order_id":10001,"price_ticks":15025000000,"quantity":500,"type":"ADD","side":"BID","scope":"L3","level_index":0}
+{"seq_id":1,"timestamp_ns":1700000000000001000,"symbol_id":0,"order_id":10001,"price_ticks":15025000000,"quantity":500,"type":"ADD","side":"BID","scope":"L3","level_index":0}
+{"seq_id":2,"timestamp_ns":1700000000000001000,"symbol_id":1,"order_id":10001,"price_ticks":15025000000,"quantity":-10,"type":"ADD","side":"BID","scope":"L3","level_index":0}
+{"seq_id":3,"timestamp_ns":1700000000000001000,"symbol_id":1,"order_id":0,"price_ticks":15025000000,"quantity":500,"type":"ADD","side":"BID","scope":"L3","level_index":0}
+{"seq_id":4,"timestamp_ns":1700000000000001000,"symbol_id":1,"order_id":10001,"price_ticks":15025000000,"quantity":500,"type":"ADD","side":"NONE","scope":"L3","level_index":0}
+{"seq_id":5,"timestamp_ns":1700000000000001000,"symbol_id":1,"order_id":10001,"price_ticks":15025000000,"quantity":500,"type":"ADD","side":"BID","scope":"L2","level_index":0}
+{"seq_id":6,"timestamp_ns":1700000000000001000,"symbol_id":1,"order_id":10001,"price_ticks":15025000000,"quantity":500,"type":"L2_UPDATE","side":"BID","scope":"L3","level_index":0}

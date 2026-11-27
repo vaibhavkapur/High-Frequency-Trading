@@ -1,0 +1,5 @@
+{"seq_id":100,"timestamp_ns":1700000000100000000,"symbol_id":1,"order_id":500001,"price_ticks":10000000000,"quantity":250,"type":"ADD","side":"BID","scope":"L3","level_index":0,"venue_id":1,"flags":1,"match_id":0}
+{"seq_id":101,"timestamp_ns":1700000000100001200,"symbol_id":1,"order_id":500002,"price_ticks":10001000000,"quantity":150,"type":"ADD","side":"ASK","scope":"L3","level_index":0,"venue_id":1,"flags":1,"match_id":0}
+{"seq_id":102,"timestamp_ns":1700000000100002400,"symbol_id":1,"order_id":500002,"price_ticks":10001000000,"quantity":150,"type":"EXECUTE","side":"ASK","scope":"L3","level_index":0,"venue_id":1,"flags":2,"match_id":900001}
+{"seq_id":103,"timestamp_ns":1700000000100003800,"symbol_id":3,"order_id":0,"price_ticks":-50000000,"quantity":1000,"type":"L2_UPDATE","side":"BID","scope":"L2","level_index":0,"venue_id":4,"flags":8,"match_id":0}
+{"seq_id":104,"timestamp_ns":1700000000100005000,"symbol_id":3,"order_id":0,"price_ticks":0,"quantity":0,"type":"BOOK_CLEAR","side":"NONE","scope":"L3","level_index":0,"venue_id":4,"flags":16,"match_id":0}

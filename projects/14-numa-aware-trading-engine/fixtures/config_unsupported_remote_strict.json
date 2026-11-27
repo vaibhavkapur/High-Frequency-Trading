@@ -1,0 +1,12 @@
+{
+  "scenario_name": "strict_remote_numa_test",
+  "pipeline_kind": "lock_free_spsc",
+  "memory_policy": "remote",
+  "queue_capacity": 1024,
+  "producer_cpu": 0,
+  "consumer_cpu": 1,
+  "preferred_memory_node": 1,
+  "allow_single_node_fallback": false,
+  "require_hard_pinning": false,
+  "seed": 42
+}

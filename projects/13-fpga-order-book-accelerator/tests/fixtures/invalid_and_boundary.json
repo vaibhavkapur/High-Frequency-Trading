@@ -1,0 +1,28 @@
+{
+  "name": "invalid_and_boundary_v1",
+  "schema_version": "fpga-ob.v1",
+  "config": {
+    "price_base": 10000,
+    "num_levels": 16,
+    "max_active_levels": 2
+  },
+  "events": [
+    {"seq_no": 1,  "timestamp_ns": 10, "opcode": "ADD",     "side": "BID", "price": 10000, "qty": 100,        "flags": 0, "schema_ver": 2},
+    {"seq_no": 2,  "timestamp_ns": 20, "opcode": "ADD",     "side": "BID", "price": 10000, "qty": 100,        "flags": 1, "schema_ver": 1},
+    {"seq_no": 3,  "timestamp_ns": 30, "opcode": 4,         "side": "BID", "price": 10000, "qty": 100,        "flags": 0, "schema_ver": 1},
+    {"seq_no": 4,  "timestamp_ns": 40, "opcode": "ADD",     "side": 2,     "price": 10000, "qty": 100,        "flags": 0, "schema_ver": 1},
+    {"seq_no": 5,  "timestamp_ns": 50, "opcode": "ADD",     "side": "BID", "price": 9999,  "qty": 100,        "flags": 0, "schema_ver": 1},
+    {"seq_no": 6,  "timestamp_ns": 60, "opcode": "ADD",     "side": "BID", "price": 10016, "qty": 100,        "flags": 0, "schema_ver": 1},
+    {"seq_no": 7,  "timestamp_ns": 70, "opcode": "ADD",     "side": "BID", "price": 10000, "qty": 0,          "flags": 0, "schema_ver": 1},
+    {"seq_no": 8,  "timestamp_ns": 80, "opcode": "CANCEL",  "side": "BID", "price": 10000, "qty": 10,         "flags": 0, "schema_ver": 1},
+    {"seq_no": 9,  "timestamp_ns": 90, "opcode": "EXECUTE", "side": "ASK", "price": 10015, "qty": 10,         "flags": 0, "schema_ver": 1},
+    {"seq_no": 10, "timestamp_ns": 100,"opcode": "ADD",     "side": "BID", "price": 10000, "qty": 4294967290, "flags": 0, "schema_ver": 1},
+    {"seq_no": 11, "timestamp_ns": 110,"opcode": "ADD",     "side": "BID", "price": 10000, "qty": 10,         "flags": 0, "schema_ver": 1},
+    {"seq_no": 12, "timestamp_ns": 120,"opcode": "ADD",     "side": "BID", "price": 10015, "qty": 50,         "flags": 0, "schema_ver": 1},
+    {"seq_no": 13, "timestamp_ns": 130,"opcode": "ADD",     "side": "BID", "price": 10005, "qty": 25,         "flags": 0, "schema_ver": 1},
+    {"seq_no": 14, "timestamp_ns": 140,"opcode": "CANCEL",  "side": "BID", "price": 10015, "qty": 51,         "flags": 0, "schema_ver": 1},
+    {"seq_no": 15, "timestamp_ns": 150,"opcode": "EXECUTE", "side": "BID", "price": 10015, "qty": 51,         "flags": 0, "schema_ver": 1},
+    {"seq_no": 16, "timestamp_ns": 160,"opcode": "CANCEL",  "side": "BID", "price": 10015, "qty": 50,         "flags": 0, "schema_ver": 1},
+    {"seq_no": 17, "timestamp_ns": 170,"opcode": "ADD",     "side": "BID", "price": 10005, "qty": 25,         "flags": 0, "schema_ver": 1}
+  ]
+}

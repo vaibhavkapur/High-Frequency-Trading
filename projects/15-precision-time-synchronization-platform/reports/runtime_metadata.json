@@ -1,0 +1,9 @@
+{
+  "schema_version": "ptsp.v1",
+  "os": "Darwin",
+  "os_release": "25.5.0",
+  "machine": "arm64",
+  "python_version": "3.9.6",
+  "linux_hw_ptp_tested": false,
+  "linux_hw_ptp_note": "Host is non-Linux or lacks a NIC PHC (/dev/ptp0); unavailable hardware timestamping path was explicitly tested and verified to fail closed."
+}

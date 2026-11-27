@@ -1,0 +1,3 @@
+# Optional RTL coroutine testbench dependencies (not required for C++20/Python stdlib validation)
+cocotb==1.9.2
+pytest==8.3.4

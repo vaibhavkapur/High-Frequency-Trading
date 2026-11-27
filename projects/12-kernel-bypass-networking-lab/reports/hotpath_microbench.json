@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "benchmark_type": "DOMAIN_HOTPATH_MICROBENCH",
+  "execution_status": "MEASURED",
+  "is_simulated": false,
+  "disclaimer": "Measures pure in-memory SPSC ring + CRC32 decode + SequenceTracker + LatencyStats overhead; NOT a network or NIC bypass benchmark.",
+  "timestamp_utc": "2026-11-27T13:28:30Z",
+  "clock": {
+    "name": "CLOCK_MONOTONIC_RAW",
+    "measured_call_overhead_ns": 18
+  },
+  "iterations": 200000,
+  "warmup_iterations": 10000,
+  "packet_bytes": 64,
+  "duration_ns": 62656708,
+  "throughput_ops_per_sec": 3191996.618,
+  "accounting_invariant_holds": true,
+  "unique_received": 210000,
+  "decode_errors": 0,
+  "ring_drops": 0,
+  "processing_latency_ns": {
+    "min": 0,
+    "mean": 132.109,
+    "p50": 125,
+    "p95": 208,
+    "p99": 250,
+    "p99_9": 292,
+    "max": 29250
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "workload": {
+    "schema_version": 1,
+    "scenario_name": "invalid_zero_rate",
+    "packet_bytes": 64,
+    "warmup_packets": 100,
+    "measured_packets": 1000,
+    "target_pps": 0,
+    "backend": "posix_udp_blocking"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "fixture_id": "deterministic_feed_v1",
+  "oracle_derivation": "Independently calculated from fixtures/deterministic_feed_v1.json specification.",
+  "expected_sequence": {
+    "expected_total_sent": 12,
+    "total_valid_data_packets": 11,
+    "unique_received": 10,
+    "warmup_received": 2,
+    "measured_received": 8,
+    "gaps_events": 3,
+    "missing_within_highest": 2,
+    "inferred_total_lost": 2,
+    "out_of_order": 1,
+    "duplicates": 1,
+    "checksum_errors": 1,
+    "decode_errors": 1,
+    "eos_packets": 1,
+    "first_seq": 1,
+    "highest_seq": 12,
+    "last_seq": 12,
+    "accounting_invariant_holds": true,
+    "sequence_accounting_verified": true
+  },
+  "expected_latency_ns": {
+    "count": 8,
+    "warmup_ignored": 2,
+    "exact_quantiles": true,
+    "min": 1000,
+    "mean": 1837.5,
+    "p50": 1800,
+    "p95": 3000,
+    "p99": 3000,
+    "p99_9": 3000,
+    "max": 3000
+  }
+}

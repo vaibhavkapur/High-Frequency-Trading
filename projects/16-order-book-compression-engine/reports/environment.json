@@ -1,0 +1,11 @@
+{
+  "os": "Darwin",
+  "os_release": "25.5.0",
+  "arch": "arm64",
+  "cpu": "Apple M5",
+  "logical_cpus": "10",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+  "cmake": "cmake version 4.5.1",
+  "build_type": "Release",
+  "cxx_standard": "C++20"
+}

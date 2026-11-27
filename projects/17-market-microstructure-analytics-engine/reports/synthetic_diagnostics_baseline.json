@@ -1,0 +1,52 @@
+{
+  "schema_version": "mmae.v1",
+  "run_id": "synthetic-seed42-baseline",
+  "engine_variant": "baseline",
+  "symbol": "SYNTH_FLOW",
+  "config": {
+    "tick_size": 0.01000000,
+    "stale_threshold_ns": 1000000000,
+    "flow_window_ns": 500000000,
+    "depth_levels_k": 5,
+    "max_levels": 1024,
+    "max_orders": 65536
+  },
+  "counts": {
+    "total_input_rows": 5243,
+    "accepted_events": 5243,
+    "rejected_events": 0,
+    "out_of_order_events": 0,
+    "duplicate_seq_events": 0,
+    "capacity_errors": 0,
+    "unknown_order_errors": 0
+  },
+  "book_health": {
+    "crossed_book_events": 0,
+    "locked_book_events": 0,
+    "stale_book_events": 0,
+    "gap_count": 2,
+    "events_in_gap_state": 2
+  },
+  "trade_classification": {
+    "total_trades": 1200,
+    "classified_buys": 549,
+    "classified_sells": 564,
+    "ambiguous_trades": 87,
+    "ambiguous_midpoint": 85,
+    "ambiguous_book_invalid": 0,
+    "ambiguous_stale": 0,
+    "ambiguous_gap": 2
+  },
+  "queue_metrics": {
+    "l3_adds": 3184,
+    "l3_modifies": 0,
+    "l3_cancels": 121,
+    "l3_executes": 408,
+    "fifo_anomalies": 0
+  },
+  "gaps": [
+    {"expected_seq": 1829, "observed_seq": 1834, "missing_count": 5, "prev_event_ts_ns": 1700000008996000000, "observed_event_ts_ns": 1700000009001000000, "resolved_by_snapshot": true, "resolved_seq": 1835},
+    {"expected_seq": 4042, "observed_seq": 4047, "missing_count": 5, "prev_event_ts_ns": 1700000020121000000, "observed_event_ts_ns": 1700000020126000000, "resolved_by_snapshot": true, "resolved_seq": 4048}
+  ],
+  "validation_errors": []
+}

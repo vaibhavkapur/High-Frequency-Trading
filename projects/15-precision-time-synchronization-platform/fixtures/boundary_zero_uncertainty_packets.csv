@@ -1,0 +1,3 @@
+# schema_version=ptsp.v1
+packet_id,sequence_id,source_id,symbol,event_ns,event_unc_ns,event_domain,event_role,event_capture,event_error_source,event_clock_id,rx_ns,rx_unc_ns,rx_domain,rx_role,rx_capture,rx_error_source,rx_clock_id
+1,1,feed-a,SYNTH-EQ1,1700000000000010000,0,TAI,EVENT_TIME,SYNTHETIC_FIXTURE,SYNTHETIC_FIXTURE,venue-feed-a,1700000000000010000,0,MONOTONIC_RAW,RECEIVE_TIME,SYNTHETIC_FIXTURE,SYNTHETIC_FIXTURE,local-osc-0

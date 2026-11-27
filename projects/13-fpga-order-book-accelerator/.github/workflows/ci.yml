@@ -1,0 +1,49 @@
+name: FPGA Order Book Accelerator CI
+
+on:
+  push:
+    paths:
+      - 'projects/13-fpga-order-book-accelerator/**'
+  pull_request:
+    paths:
+      - 'projects/13-fpga-order-book-accelerator/**'
+  workflow_dispatch:
+
+jobs:
+  build-test-and-sim:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: projects/13-fpga-order-book-accelerator
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install toolchain (C++, CMake, Verilator, Yosys, Python)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential cmake verilator yosys python3 python3-pip
+          python3 -m pip install --break-system-packages -r requirements.txt
+
+      - name: Build and run C++20 + Python validation suite
+        run: |
+          python3 scripts/run_all_validations.py
+
+      - name: Run Verilator RTL differential simulation (10,000+ events)
+        run: |
+          make sim-verilator
+
+      - name: Run cocotb RTL testbench
+        run: |
+          make sim-cocotb
+
+      - name: Run Yosys RTL synthesis check
+        run: |
+          make synth-yosys
+
+      - name: Upload raw reports artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: fpga-ob-reports
+          path: projects/13-fpga-order-book-accelerator/reports/

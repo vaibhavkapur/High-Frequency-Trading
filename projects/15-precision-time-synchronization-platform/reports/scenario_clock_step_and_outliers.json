@@ -1,0 +1,44 @@
+{
+  "schema_version": "ptsp.v1",
+  "scenario_name": "clock_step_and_outliers",
+  "run_fingerprint": "5bde5dc96a3caf73",
+  "error_source": "SYNTHETIC_FIXTURE",
+  "sync_sample_count": 70,
+  "packet_count": 25,
+  "baseline_estimator": {
+    "mae_offset_ns": 2206.0317,
+    "max_abs_offset_error_ns": 8158,
+    "mae_drift_ppb": 359.8070,
+    "samples_processed": 70,
+    "samples_accepted": 70,
+    "domain_errors": 0
+  },
+  "robust_estimator": {
+    "mae_offset_ns": 1.4444,
+    "max_abs_offset_error_ns": 4,
+    "steady_state_max_error_ns": 4,
+    "mae_drift_ppb": 0.1812,
+    "envelope_coverage_ratio": 1.0000,
+    "samples_processed": 70,
+    "samples_accepted": 66,
+    "outliers_rejected": 5,
+    "steps_detected": 1,
+    "restarts_detected": 0,
+    "domain_errors": 0
+  },
+  "orderer": {
+    "final_state": "HEALTHY",
+    "halt_code": "OK",
+    "halt_message": "",
+    "packets_ingested": 25,
+    "packets_emitted": 25,
+    "packets_reordered": 0,
+    "domain_mismatches": 0,
+    "invalid_packets": 0,
+    "skew_violations": 0,
+    "causal_violations": 0,
+    "ambiguity_halts": 0,
+    "buffer_overflows": 0,
+    "rejected_while_halted": 0
+  }
+}

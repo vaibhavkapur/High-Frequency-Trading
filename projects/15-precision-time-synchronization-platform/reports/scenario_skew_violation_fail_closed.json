@@ -1,0 +1,44 @@
+{
+  "schema_version": "ptsp.v1",
+  "scenario_name": "skew_violation_fail_closed",
+  "run_fingerprint": "a608f5988b50042d",
+  "error_source": "SYNTHETIC_FIXTURE",
+  "sync_sample_count": 30,
+  "packet_count": 10,
+  "baseline_estimator": {
+    "mae_offset_ns": 1.7407,
+    "max_abs_offset_error_ns": 4,
+    "mae_drift_ppb": 0.1848,
+    "samples_processed": 30,
+    "samples_accepted": 30,
+    "domain_errors": 0
+  },
+  "robust_estimator": {
+    "mae_offset_ns": 1.7778,
+    "max_abs_offset_error_ns": 4,
+    "steady_state_max_error_ns": 4,
+    "mae_drift_ppb": 0.1845,
+    "envelope_coverage_ratio": 1.0000,
+    "samples_processed": 30,
+    "samples_accepted": 30,
+    "outliers_rejected": 0,
+    "steps_detected": 0,
+    "restarts_detected": 0,
+    "domain_errors": 0
+  },
+  "orderer": {
+    "final_state": "HALTED_FAIL_CLOSED",
+    "halt_code": "CAUSAL_VIOLATION",
+    "halt_message": "Causal skew violation on packet 6: aligned_receive_ns=1700000015000025000 precedes event_time_ns=1700000015000050000 by 25000 ns (exceeds uncertainty 100 + slack 200 ns)",
+    "packets_ingested": 10,
+    "packets_emitted": 4,
+    "packets_reordered": 0,
+    "domain_mismatches": 0,
+    "invalid_packets": 0,
+    "skew_violations": 0,
+    "causal_violations": 1,
+    "ambiguity_halts": 0,
+    "buffer_overflows": 0,
+    "rejected_while_halted": 4
+  }
+}
