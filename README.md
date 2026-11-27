@@ -2,6 +2,8 @@
 
 Ten C++20 projects explore how an order moves through an exchange, how market data reaches a trader, and how to measure execution strategies and system latency.
 
+The [High-Frequency Trading Engine](High-Frequency-Trading-Engine/) combines all ten projects into a single simulator. Its README includes build instructions and a deterministic replay demo.
+
 ## Getting started
 
 ```bash

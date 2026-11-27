@@ -3,7 +3,7 @@
 #
 # Resolution order for HFT_PROJECTS_ROOT:
 #   1. Explicit -DHFT_PROJECTS_ROOT=<path> or $ENV{HFT_PROJECTS_ROOT}
-#   2. Local checkout at ../projects, ../High-Frequency-Trading/projects, or ../../High-Frequency-Trading/projects
+#   2. Local checkout at ../../projects, ../projects, ../High-Frequency-Trading/projects, or ../../High-Frequency-Trading/projects
 #   3. Automatic CMake FetchContent clone of vaibhavkapur/High-Frequency-Trading (when HFT_FETCH_UPSTREAM=ON)
 
 set(HFT_PROJECTS_ROOT "" CACHE PATH "Path to the projects/ directory from vaibhavkapur/High-Frequency-Trading")
@@ -17,6 +17,7 @@ endif()
 
 if(NOT HFT_PROJECTS_ROOT)
   foreach(_candidate
+      "${CMAKE_CURRENT_SOURCE_DIR}/../../projects"
       "${CMAKE_CURRENT_SOURCE_DIR}/../projects"
       "${CMAKE_CURRENT_SOURCE_DIR}/../High-Frequency-Trading/projects"
       "${CMAKE_CURRENT_SOURCE_DIR}/../../High-Frequency-Trading/projects")

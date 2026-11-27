@@ -7,6 +7,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+defaults:
+  run:
+    working-directory: High-Frequency-Trading-Engine
+
 jobs:
   engine-build-and-test:
     name: Engine (${{ matrix.os }} / ${{ matrix.compiler }})
@@ -26,19 +30,13 @@ jobs:
             cxx: clang++
     steps:
       - uses: actions/checkout@v4
-      - name: Checkout upstream standalone modules (pinned)
-        uses: actions/checkout@v4
-        with:
-          repository: vaibhavkapur/High-Frequency-Trading
-          ref: 8aa7bdd4a4c066c0c252ef232d8f14cf4f481a89
-          path: upstream_hft
       - name: Configure integrated engine (-Werror)
         run: |
           cmake -S engine -B build/engine \
             -DCMAKE_CXX_COMPILER=${{ matrix.cxx }} \
             -DCMAKE_BUILD_TYPE=Release \
             -DHFT_WERROR=ON \
-            -DHFT_PROJECTS_ROOT="${GITHUB_WORKSPACE}/upstream_hft/projects"
+            -DHFT_PROJECTS_ROOT="${GITHUB_WORKSPACE}/projects"
       - name: Build integrated engine
         run: cmake --build build/engine --parallel
       - name: Run engine contract, integration, failure, and golden tests
@@ -61,12 +59,6 @@ jobs:
           - thread
     steps:
       - uses: actions/checkout@v4
-      - name: Checkout upstream standalone modules (pinned)
-        uses: actions/checkout@v4
-        with:
-          repository: vaibhavkapur/High-Frequency-Trading
-          ref: 8aa7bdd4a4c066c0c252ef232d8f14cf4f481a89
-          path: upstream_hft
       - name: Configure with -DHFT_SANITIZE=${{ matrix.sanitize }}
         run: |
           cmake -S engine -B build/san \
@@ -74,7 +66,7 @@ jobs:
             -DCMAKE_BUILD_TYPE=RelWithDebInfo \
             -DHFT_WERROR=ON \
             -DHFT_SANITIZE=${{ matrix.sanitize }} \
-            -DHFT_PROJECTS_ROOT="${GITHUB_WORKSPACE}/upstream_hft/projects"
+            -DHFT_PROJECTS_ROOT="${GITHUB_WORKSPACE}/projects"
       - name: Build
         run: cmake --build build/san --parallel
       - name: Test under ${{ matrix.sanitize }}
@@ -86,19 +78,13 @@ jobs:
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4
-      - name: Checkout upstream standalone modules (pinned)
-        uses: actions/checkout@v4
-        with:
-          repository: vaibhavkapur/High-Frequency-Trading
-          ref: 8aa7bdd4a4c066c0c252ef232d8f14cf4f481a89
-          path: upstream_hft
       - name: Run benchmark suite (informational only; shared CI hosts are noisy)
         env:
-          HFT_PROJECTS_ROOT: ${{ github.workspace }}/upstream_hft/projects
+          HFT_PROJECTS_ROOT: ${{ github.workspace }}/projects
         run: |
           chmod +x scripts/run_benchmarks.sh
           ./scripts/run_benchmarks.sh integration/results/ci_linux
       - uses: actions/upload-artifact@v4
         with:
           name: hft-bench-linux-artifacts
-          path: integration/results/ci_linux/
+          path: High-Frequency-Trading-Engine/integration/results/ci_linux/

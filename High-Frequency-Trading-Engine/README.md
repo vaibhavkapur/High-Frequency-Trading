@@ -10,11 +10,11 @@ This repository contains the integration layer (`engine/`), versioned contracts 
 
 ## Getting started
 
-Requires CMake 3.20+ and a C++20 compiler. CMake automatically locates a local checkout of [`vaibhavkapur/High-Frequency-Trading`](https://github.com/vaibhavkapur/High-Frequency-Trading) (via `-DHFT_PROJECTS_ROOT=...`, `$HFT_PROJECTS_ROOT`, or a sibling `../High-Frequency-Trading/projects` folder) or fetches the pinned commit automatically when configuring.
+Requires CMake 3.20+ and a C++20 compiler. CMake uses the ten modules in the repository’s `projects/` directory by default. Set `HFT_PROJECTS_ROOT` to use a different local checkout.
 
 ```bash
-git clone https://github.com/vaibhavkapur/High-Frequency-Trading-Engine.git
-cd High-Frequency-Trading-Engine
+git clone https://github.com/vaibhavkapur/High-Frequency-Trading.git
+cd High-Frequency-Trading/High-Frequency-Trading-Engine
 
 cmake -S engine -B build/engine -DCMAKE_BUILD_TYPE=Release
 cmake --build build/engine --parallel
@@ -120,7 +120,7 @@ High-Frequency-Trading-Engine/
 │   └── results/apple_m5_release/       # Raw benchmark CSV/JSON, provenance, and generated summary
 ├── scripts/                            # build_all.sh, run_demo.sh, run_benchmarks.sh, summarize_benchmarks.py
 ├── docs/                               # integration-audit, contracts, architecture, failure-modes, performance-report, showcase
-└── .github/workflows/ci.yml            # Multi-compiler Release, ASan+UBSan, TSan, and non-gating perf CI
+└── ../.github/workflows/engine-ci.yml            # Multi-compiler Release, ASan+UBSan, TSan, and non-gating perf CI
 ```
 
 ## Tests
